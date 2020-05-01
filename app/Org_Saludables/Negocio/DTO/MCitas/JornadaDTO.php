@@ -15,6 +15,7 @@ class JornadaDTO extends BaseDTO
 {
     
     public $Fecha;
+    public $FechaFin;
     public $Inicio;
     public $Fin;
     public $Descanso;

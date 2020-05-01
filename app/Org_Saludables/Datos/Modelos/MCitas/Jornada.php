@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jornada extends  Model
 {
     protected $table = 'Tbl_Jornadas';
-    protected $fillable =['Fecha','Inicio','Fin','Lugar','Duracion','Cupos','Descanso','Tipo_Cita_id',
+    protected $fillable =['Fecha','FechaFin','Inicio','Fin','Lugar','Duracion','Cupos','Descanso','Tipo_Cita_id',
     'Regional_id'];
 
    // public function Compania()

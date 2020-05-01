@@ -46,19 +46,24 @@ class CitaServicio implements ICitaServicio
 
     public function ProgramarHorariosCitas($jornadaDTO)
     {
-        $inicioJornada = $jornadaDTO->Inicio;
-        $finJornada = $jornadaDTO->Fin;
         $descansoCita = $jornadaDTO->Descanso;
         $duracionCita = $jornadaDTO->Duracion;
         $arrayCitas = array();
-        while ($inicioJornada <= $finJornada) {
-            $cita = new Cita();
-            $cita->Fecha = $jornadaDTO->Fecha;
-            $cita->Cupos = $jornadaDTO->Cupos;
-            $cita->Inicio = $inicioJornada;
-            $cita->Fin = $this->SumaHoras($inicioJornada, $duracionCita);
-            $inicioJornada = $this->SumaHoras($inicioJornada, $duracionCita + $descansoCita);
-            $arrayCitas[] = $cita;
+        $fechasInicio = $jornadaDTO->Fecha;
+        $fechaFin = $jornadaDTO->FechaFin;
+        while ($fechasInicio <= $fechaFin) {
+            $inicioJornada = $jornadaDTO->Inicio;
+            $finJornada = $jornadaDTO->Fin;
+            while ($inicioJornada <= $finJornada) {
+                $cita = new Cita();
+                $cita->Fecha = $fechasInicio;
+                $cita->Cupos = $jornadaDTO->Cupos;
+                $cita->Inicio = $inicioJornada;
+                $cita->Fin = $this->SumaHoras($inicioJornada, $duracionCita);
+                $inicioJornada = $this->SumaHoras($inicioJornada, $duracionCita + $descansoCita);
+                $arrayCitas[] = $cita;
+            }
+            $fechasInicio = date("Y-m-d", strtotime($fechasInicio . "+ 1 days"));
         }
         return $arrayCitas;
     }

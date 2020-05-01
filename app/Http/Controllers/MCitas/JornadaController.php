@@ -170,4 +170,17 @@ class JornadaController extends Controller
 
       
     }
+
+
+
+    public  function ObtenerMiCalendario(Request $request){
+       // $urlinfo= $request->getPathInfo();
+        //$request->user()->AutorizarUrlRecurso($urlinfo);
+        $view = View::make('Citas/MiCalendario');
+        if($request->ajax()){
+            $sections = $view->renderSections();
+            return Response::json($sections['content']);
+        }else return view('Citas/listaJornadas');
+
+    }
 }

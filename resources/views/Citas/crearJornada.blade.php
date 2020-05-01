@@ -12,8 +12,13 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <label>Fecha</label>
+                                <label>Fecha Inicial</label>
                                 <input type="date"  id="Fecha" name="Fecha" class="form-control"  step="1" min="<?php echo date("Y-m-d");?>" max="2020-12-31" value="<?php echo date("Y-m-d");?>" onchange="validarFecha()">
+                                <span class="invalid-feedback" role="alert" id="errorFecha"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Fecha Fin</label>
+                                <input type="date"  id="FechaFin" name="FechaFin" class="form-control"  step="1" min="<?php echo date("Y-m-d");?>" max="2020-12-31" value="<?php echo date("Y-m-d");?>" onchange="validarFecha()">
                                 <span class="invalid-feedback" role="alert" id="errorFecha"></span>
                             </div>
                             <div class="col-md-4">

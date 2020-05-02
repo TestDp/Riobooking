@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCitasPorUsuarios extends Migration
+class CrearTurnoPorColaborador extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateCitasPorUsuarios extends Migration
      */
     public function up()
     {
-         Schema::create('Tbl_Citas_Por_Usuarios', function (Blueprint $table) {
+         Schema::create('Tbl_Turno_Por_Colaborador', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('Cita_id')->unsigned();
             $table->foreign("Cita_id")->references('id')->on('Tbl_Citas');
-            $table->integer('user_id')->unsigned();
-            $table->foreign("user_id")->references('id')->on('users');
+            $table->integer('Colaborador_id')->unsigned();
+            $table->foreign("Colaborador_id")->references('id')->on('Tbl_Colaborador');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateCitasPorUsuarios extends Migration
      */
     public function down()
     {
-          Schema::dropIfExists('Tbl_Citas_Por_Usuarios');
+          Schema::dropIfExists('Tbl_TipoServicio_Por_Colaborador');
     }
 }

@@ -8,14 +8,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Nutresa | Organizaciones Saludables</title>
+    <title>RioBooking | Reserva de citas</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -48,6 +48,8 @@
 <script src="{{ asset('js/metisMenu.min.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{{ asset('images/favicon.png') }}}">
 <!--//Metis Menu -->
 	
 </head>
@@ -72,8 +74,8 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="navbar-brand" href="{{ route('login') }}">Inicio de Sesión</a></li>
-                            <li><a class="navbar-brand" href="{{ route('register') }}">Registrarse</a></li>
+                            <li><a class="btn btn-link" href="{{ route('login') }}">Inicio de Sesión</a></li>
+                            <li><a class="btn btn-link" href="{{ route('register') }}">Registrarse</a></li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -98,7 +100,7 @@
             </div>
         </nav>
 
-        <main style="background-size: cover; background-image: url('{{ asset('images/Fondo.png') }}');" class="py-4">
+        <main style="background-size: cover; background-position:bottom; background-image: url('{{ asset('images/Fondo.png') }}');" class="py-4">
             @yield('content')
         </main>
     </div>

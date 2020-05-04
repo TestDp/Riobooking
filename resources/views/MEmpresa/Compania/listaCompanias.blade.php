@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="panel panel-success">
-                <div class="panel-heading"><h3>Compañias</h3></div>
+                <div class="panel-heading"><h3>Negocios</h3></div>
                 <div class="panel-body">
                     <table class="table">
                         <thead>
@@ -28,7 +28,7 @@
                     </table>
                     <div class="row">
                         <div class="col-md-4">
-                            <button onclick="ajaxRenderSectionCrearCompania()" type="button" class="btn btn-success">Nueva Compania</button>
+                            <button onclick="ajaxRenderSectionCrearCompania()" type="button" class="btn btn-success">Nuevo Negocio</button>
                         </div>
                     </div>
                 </div>

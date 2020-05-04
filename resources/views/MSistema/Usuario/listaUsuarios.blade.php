@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="panel panel-success">
-                <div class="panel-heading"><h3>Usuarios</h3></div>
+                <div class="panel-heading"><h3>Colaboradores</h3></div>
                 <div class="panel-body">
                     <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" class="table table-bordered" id="tablaUsuarios">
                         <thead>
@@ -29,7 +29,7 @@
                     </table>
                     <div class="row">
                         <div class="col-md-4">
-                            <button onclick="ajaxRenderSectionCrearUsuario()" type="button" class="btn btn-success">Nuevo Usuario</button>
+                            <button onclick="ajaxRenderSectionCrearUsuario()" type="button" class="btn btn-success">Nuevo Colaborador</button>
                         </div>
 
                     </div>

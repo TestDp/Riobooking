@@ -21,7 +21,7 @@ use Org_Saludables\Datos\Modelos\MCitas\Muestra;
 class Compania extends Model
 {
     protected $table = 'Tbl_Companias';
-    protected $fillable =['Nombre','Direccion','Activa'];
+    protected $fillable =['Nombre','Direccion','Activa','LogoNegocio'];
 
     public function Regionales(){
         return $this->hasMany(Regional::class,'Compania_id','id');

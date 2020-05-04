@@ -6,50 +6,56 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="panel panel-success">
-                    <div class="panel-heading"><h3>Crear Usuario</h3></div>
+                    <div class="panel-heading"><h3>Crear Colaborador</h3></div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4">
-                                Nombre
+                                <label>Nombre</label>
                                 <input id="name" name="name" type="text" class="form-control">
                                 <span class="invalid-feedback" role="alert" id="errorname"></span>
                             </div>
                             <div class="col-md-4">
-                                Apellidos
+                                <label>Apellidos</label>
                                 <input id="last_name" name="last_name" type="text" class="form-control">
                                 <span class="invalid-feedback" role="alert" id="errorlast_name"></span>
                             </div>
                             <div class="col-md-4">
-                                Cedula
+                                <label>Cédula</label>
                                 <input id="username" name="username" type="text" class="form-control">
                                 <span class="invalid-feedback" role="alert" id="errorusername"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                Correo Electrónico
+                                <label>Correo Electrónico</label>
                                 <input id="email" name="email" type="text" class="form-control">
                                 <span class="invalid-feedback" role="alert" id="erroremail"></span>
                             </div>
                             <div class="col-md-4">
-                                Contraseña
+                                <label>Telefono</label>
+                                <input id="telefono" name="telefono" type="text" class="form-control">
+                                <span class="invalid-feedback" role="alert" id="errortelefono"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Foto de perfil</label>
+                                <input type="file" class="form-control" name="imgColaborador" accept=".png,.jpg,.jpeg">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Contraseña</label>
                                 <input id="password" name="password" type="password" class="form-control">
                                 <span class="invalid-feedback" role="alert" id="errorpassword"></span>
                             </div>
-                            <div class="col-md-4">
-                                Confirmar Contraseña
+                            <div class="col-md-6">
+                                <label>Confirmar Contraseña</label>
                                 <input id="password_confirmation" name="password_confirmation" type="password" class="form-control">
                                 <span class="invalid-feedback" role="alert" id="errorpassword_confirmation"></span>
                             </div>
                         </div>
                         <div class="row">
-                             <div class="col-md-4">
-                              <label>Telefono</label>
-                                <input id="telefono" name="telefono" type="text" class="form-control">
-                                <span class="invalid-feedback" role="alert" id="errortelefono"></span>
-                            </div>
-                            <div class="col-md-4">
-                                   <label>Compañia</label>
+                            <div class="col-md-6">
+                                   <label>Negocio</label>
                                 <select id="Sede_id" name="Sede_id"  class="form-control"  name="language">
                                     <option value="">Seleccionar</option>
                                     @foreach($listCompanias as $compania)
@@ -58,7 +64,7 @@
                                 </select>
                                 <span class="invalid-feedback" role="alert" id="errorSede_id"></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                    <label>Roles</label>
                                 <select id="Roles_id" name="Roles_id[]"  class="form-control" multiple name="language">
                                     <option value="">Seleccionar</option>
@@ -72,7 +78,7 @@
 
                         <div class="row">
                             <div class="col-md-4">
-                                <button onclick="GuardarUsuario()" type="button" class="btn btn-success">Crear Usuario</button>
+                                <button onclick="GuardarUsuario()" type="button" class="btn btn-success">Crear Colaborador</button>
                             </div>
                         </div>
 

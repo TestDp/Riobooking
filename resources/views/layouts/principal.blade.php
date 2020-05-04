@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Nutresa | Organizaciones Saludables</title>
+    <title>RioBooking | Reserva de citas</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -27,14 +27,14 @@
 
     <script src="{{ asset('js/modernizr.custom.js') }}"></script>
     <!--webfonts-->
-    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:500,500,500italic,800italic,300,300italic'
-          rel='stylesheet' type='text/css'>
     <!--//webfonts-->
     <!--animate-->
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet" type="text/css" media="all">
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <!-- Metis Menu -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{{ asset('images/favicon.png') }}}">
     <!-- sweet plugins-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Prueba autor del build -->
@@ -51,7 +51,7 @@
                 <ul class="nav" id="side-menu">
                     @if(Auth::user()->buscarRecurso('Empresa'))
                         <li>
-                            <a href="#ulEmpresa" data-toggle="collapse"><i class="fa fa-table nav_icon"></i>Compañia<span
+                            <a href="#ulEmpresa" data-toggle="collapse"><i class="fa fa-table nav_icon"></i>Negocio<span
                                         class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse" id="ulEmpresa">
 
@@ -63,7 +63,7 @@
                                 @endif
                                 @if(Auth::user()->buscarRecurso('Usuarios'))
                                     <li>
-                                        <a href="#" onclick="ajaxRenderSectionListaUsuarios()">Usuarios</a>
+                                        <a href="#" onclick="ajaxRenderSectionListaUsuarios()">Colaboradores</a>
                                     </li>
                                 @endif
                                 @if(Auth::user()->buscarRecurso('Roles'))
@@ -89,7 +89,7 @@
 
                                    @if(Auth::user()->buscarRecurso('Companias'))  
                                     <li>
-                                         <a href="#" onclick="ajaxRenderSectionListaCompanias()" >Compañias</a>
+                                         <a href="#" onclick="ajaxRenderSectionListaCompanias()" >Mis Negocios</a>
                                     </li>
                                 @endif
                                 @if(Auth::user()->buscarRecurso('TiposDeCitas'))
@@ -165,12 +165,12 @@
                             </div>
                         </a>
                         <ul class="dropdown-menu drp-mnu">
-                            <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fa fa-cog"></i> Opciones</a></li>
+                            <li><a href="#"><i class="fa fa-user"></i> Mi Perfil</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i
-                                            class="fa fa-sign-out"></i> Logout</a>
+                                            class="fa fa-sign-out"></i> Cerrar sesión</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">
                                     @csrf
@@ -200,7 +200,7 @@
 </div>
 <!--footer-->
 <div class="footer">
-    <p>Org Saludables | Grupo Nutresa- Equipo de desarrollo Servicios Nutresa
+    <p>RioBooking | Reserva de citas | Desarrollado por DPSoluciones
     </p>
 </div>
 <!--//footer-->

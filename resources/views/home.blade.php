@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Bienvenidos</div>
+                <div class="card-header">Bienvenid@ a RIOBOOKING</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Reserva tu cita a solo un clic!!
+                    Sistema de reserva de citas.
                 </div>
             </div>
         </div>

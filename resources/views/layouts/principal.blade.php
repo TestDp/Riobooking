@@ -106,7 +106,7 @@
                                         class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse" id="ulCitas">
 
-                                   @if(Auth::user()->buscarRecurso('Jornadas'))  
+                                @if(Auth::user()->buscarRecurso('Jornadas'))
                                     <li>
                                          <a href="#" onclick="ajaxRenderSectionListaJornadas()" >Jornadas</a>
                                     </li>
@@ -116,11 +116,14 @@
                                        <a href= "{{url('/citas')}}">Solicitar Citas</a>
                                     </li>
                                 @endif
-                                    @if(Auth::user()->buscarRecurso('cancelarReserva'))
+                                @if(Auth::user()->buscarRecurso('cancelarReserva'))
                                     <li>                                        
                                        <a href= "{{url('/cancelarReserva')}}">Mis Citas</a>
                                     </li>
                                 @endif
+                                    <li>
+                                        <a href="#" onclick="ajaxRenderSectionMiCalendario()" >Mi Calendario</a>
+                                    </li>
                             </ul>
                         </li> 
                 @endif

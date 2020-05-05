@@ -25,12 +25,14 @@ function ajaxRenderSectionCrearCompania() {
 function GuardarCompania() {
     PopupPosition();
     var formData = new FormData();
-    formData.append('file', $('#LogoNegocio')[0].files[0]);
+    formData.append('fileLogoNegocio', $('#LogoNegocio')[0].files[0]);
     formData.append('Nombre', $('#Nombre').val());
     formData.append('Direccion', $('#Direccion').val());
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',
+        contentType: false,
+        processData: false,
         url: urlBase +'guardarCompania',
         dataType: 'json',
         enctype: 'multipart/form-data',

@@ -122,6 +122,29 @@ function ajaxRenderSectionListaJornadas() {
     });
 }
 
+
+function ajaxRenderSectionMiCalendario() {
+    PopupPosition();
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'miCalendario',
+        dataType: 'json',
+        success: function (data) {
+            OcultarPopupposition();
+            $('#principalPanel').empty().append($(data));
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+
 function VerJornada(idJornada) {
     PopupPosition();
     $.ajax({

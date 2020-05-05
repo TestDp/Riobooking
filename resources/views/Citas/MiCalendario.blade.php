@@ -2,14 +2,16 @@
 
 @section('content')
 
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/calendar.css')}}" rel="stylesheet">
+    <link href="{{asset('js/Plugins/fullcalendar/core/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('js/Plugins/fullcalendar/daygrid/main.css')}}"  rel='stylesheet' />
+    <link href="{{asset('js/Plugins/fullcalendar/list/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('js/Plugins/fullcalendar/timegrid/main.css')}}"  rel='stylesheet' />
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="panel panel-success">
                 <div class="panel-heading"><h3>Mi Calendario</h3></div>
                 <div class="panel-body">
-
                     <div class="row">
                         <div class="col-md-12">
                             <div id="calendar"></div>
@@ -21,14 +23,31 @@
         </div>
     </div>
 
-    <script src="{{asset('js/jquery-3.1.1.js')}}"></script>
-    <script src="{{asset('js/underscore-min.js')}}"></script>
-    <script src="{{asset('js/calendar.js')}}"></script>
+    <script src={{asset('js/Plugins/fullcalendar/core/main.js')}}></script>
+    <script src={{asset('js/Plugins/fullcalendar/daygrid/main.js')}}></script>
+    <script src={{asset('js/Plugins/fullcalendar/list/main.js')}}></script>
+    <script src={{asset('js/Plugins/fullcalendar/timegrid/main.js')}}></script>
+    <script src={{asset('js/Plugins/fullcalendar/interaction/main.js')}}></script>
 
     <script type="text/javascript">
-        var calendar = $("#calendar").calendar({
-                tmpl_path: "/tmpls/",
-                events_source: function () { return []; }
+        $(document).ready(function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [ 'dayGrid','interaction','list','timeGrid' ],
+                //defaultView:'timeGridDay'
+                header:{
+                    left:'prev,next today',
+                    center:'title',
+                    right:'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events:[{
+                    title: "turno de Cristian",
+                    start: "2020-05-02 14:00:00",
+                    end: "2020-05-02 14:30:00"
+                }]
             });
+            calendar.setOption('locale','Es');
+            calendar.render();
+        });
     </script>
 @endsection

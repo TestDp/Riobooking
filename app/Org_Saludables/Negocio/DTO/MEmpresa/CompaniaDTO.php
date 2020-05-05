@@ -17,4 +17,5 @@ class CompaniaDTO extends BaseDTO
     public $Nombre;
     public $Direccion;
     public $Activa;
+    public $LogoNegocio;
 }

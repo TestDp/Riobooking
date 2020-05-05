@@ -52,10 +52,15 @@ class CompaniaController extends Controller
         if($request->ajax()){
             
             $compania = new CompaniaDTO($request->all());
-          
+            $nomreLogo = "LogoNegocio".$compania->Nombre.'.jpg';
+            $compania->LogoNegocio = $nomreLogo;
             $repuesta = $this->companiaServicio->GuardarCompania($compania);
-        
             if($repuesta == true){
+                if($request->hasFile('fileLogoNegocio')){
+                    $file = $request->file('fileLogoNegocio');
+                    $nombre = $nomreLogo;
+                    $file->move('LogosNegocio', $nombre);
+                }
                 $companias = $this->companiaServicio->ObtenerListaCompanias();
                 $view = View::make('MEmpresa/Compania/listaCompanias')->with('listCompanias',$companias);
                 $sections = $view->renderSections();

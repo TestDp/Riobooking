@@ -24,14 +24,18 @@ function ajaxRenderSectionCrearCompania() {
 //Metodo para guarda la informacion de la unidad retorna la vista con todas las unidades
 function GuardarCompania() {
     PopupPosition();
-    var form = $("#formCompania");
+    var formData = new FormData();
+    formData.append('file', $('#LogoNegocio')[0].files[0]);
+    formData.append('Nombre', $('#Nombre').val());
+    formData.append('Direccion', $('#Direccion').val());
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',
         url: urlBase +'guardarCompania',
         dataType: 'json',
+        enctype: 'multipart/form-data',
         headers: {'X-CSRF-TOKEN': token},
-        data:form.serialize(),
+        data:formData,
         success: function (data) {
             OcultarPopupposition();
             if(data.codeStatus == 200){

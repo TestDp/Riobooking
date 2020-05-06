@@ -22,10 +22,8 @@ class CrearTablaColaborador extends Migration
             $table->string('ImagenColaborador');
             $table->integer('Calificacion');
             $table->boolean('Activo')->default(1);
-             $table->string('telefono',50)->nullable;
-
-
-
+            $table->string('telefono',50)->nullable;
+            $table->timestamps();
 
         });
     }

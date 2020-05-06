@@ -9,7 +9,6 @@
 namespace App\Org_Saludables\Datos\Repositorio\MEmpresa;
 
 use Org_Saludables\Datos\Modelos\MEmpresa\Compania;
-use App\Org_Saludables\Datos\Repositorio\MEmpresa\ICompaniaRepositorio;
 use Illuminate\Support\Facades\DB;
 
 
@@ -17,7 +16,7 @@ class CompaniaRepositorio implements ICompaniaRepositorio
 {
 
 
-      public  function GuardarCompania(Compania $compania)
+    public  function GuardarCompania(Compania $compania)
     {
         DB::beginTransaction();
         try {

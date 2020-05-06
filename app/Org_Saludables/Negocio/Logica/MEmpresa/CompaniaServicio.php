@@ -27,12 +27,10 @@ class CompaniaServicio implements ICompaniaServicio
     }
 
     
-     public  function GuardarCompania(CompaniaDTO $companiaDTO){
+    public  function GuardarCompania(CompaniaDTO $companiaDTO){
         $companiaModel = $companiaDTO->toModel(Compania::class);
         $companiaModel->Activa = 1;
         return $this->iCompaniaRepositorio->GuardarCompania($companiaModel);
-
-    
     }
 
     public function ObtenerListaCompanias(){

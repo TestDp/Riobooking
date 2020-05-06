@@ -10,6 +10,8 @@ namespace App\Http\Controllers\MSistema;
 
 
 use App\Http\Controllers\Controller;
+use App\Org_Saludables\Negocio\DTO\MCitas\ColaboradorDTO;
+use App\Org_Saludables\Negocio\Logica\MCitas\ColaboradorServicio;
 use App\User;
 use Org_Saludables\Datos\Modelos\MSistema\Rol_Por_Usuario;
 use Org_Saludables\Negocio\Logica\MEmpresa\SedeServicio;
@@ -31,15 +33,18 @@ class UsuarioController extends  Controller
     protected $sedeServicio;
     protected $rolServicio;
     protected $usuarioValidaciones;
-     public $iCompaniaServicio;
+    public $iCompaniaServicio;
+    public $colaboradorServicio;
 
     public function __construct(UsuarioServicio $usuarioServicio, SedeServicio $sedeServicio, RolServicio $rolServicio,
-                                UsuarioValidaciones $usuarioValidaciones, ICompaniaServicio $iCompaniaServicio){
+                                UsuarioValidaciones $usuarioValidaciones, ICompaniaServicio $iCompaniaServicio,
+                                ColaboradorServicio $colaboradorServicio){
         $this->usuarioServicio = $usuarioServicio;
         $this->sedeServicio = $sedeServicio;
         $this->rolServicio = $rolServicio;
         $this->usuarioValidaciones = $usuarioValidaciones;
         $this->iCompaniaServicio = $iCompaniaServicio;
+        $this->colaboradorServicio = $colaboradorServicio;
     }
 
     //Metodo para cargar  la vista de crear un rol
@@ -67,13 +72,22 @@ class UsuarioController extends  Controller
         $this->usuarioValidaciones->ValidarFormularioCrear($request->all())->validate();
         DB::beginTransaction();
         try 
-        {   
-            $idEmpreesa = Auth::user()->Compania_id;
+        {
+
             $user = new User($request->all());
             $user->password = Hash::make($request->password);
-           $user->Compania_id=$request['Sede_id'];
-
+            $user->Compania_id=$request['Sede_id'];
             $user->save();
+            $nombreFotoColaborador = "Foto_Colaborador".$user->name.'_'.$user->last_name.'.jpg';
+            $colaborador = new ColaboradorDTO();
+            $colaborador->user_id = $user->id;
+            $colaborador->Nombre = $user->name.' '.$user->last_name;
+            $colaborador->Nickname =  $user->username;
+            $colaborador->Activo = 1;
+            $colaborador->telefono = $user->telefono;
+            $colaborador->ImagenColaborador = $nombreFotoColaborador;
+            $colaborador->Calificacion = 1;
+            $respuesta = $this->colaboradorServicio->GuardarColaborador($colaborador);
             foreach ($request->Roles_id as $rolid){
                 $rolPorUsuario = new Rol_Por_Usuario();
                 $rolPorUsuario->Rol_id = $rolid;
@@ -81,6 +95,16 @@ class UsuarioController extends  Controller
                 $rolPorUsuario->save();
             }
             DB::commit();
+            if($respuesta == true){
+                if($request->hasFile('imgColaborador')){
+                    $file = $request->file('imgColaborador');
+                    $nombre = $nombreFotoColaborador;
+                    $file->move('FotosColaboradores', $nombre);
+                }
+            }else{
+                DB::rollback();
+                return ['respuesta' => false, 'error' => "No fue posible guardar el colaborador"];
+            }
         } catch (\Exception $e) {
             $error = $e->getMessage();
             DB::rollback();
@@ -102,8 +126,13 @@ class UsuarioController extends  Controller
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Compania_id;
         $idUsuario = Auth::user()->id;
-         //dd($idEmpresa,$idUsuario);
-        $usuarios = $this->usuarioServicio->ObtenerListaUsuarios($idEmpreesa,$idUsuario);
+        $usuarios = null;
+        if($request->user()->hasRole(env('IdRolSuperAdmin')))
+        {
+            $usuarios = $this->usuarioServicio->ObtenerTodosLosUsuarios($idUsuario);
+        }else{
+            $usuarios = $this->usuarioServicio->ObtenerListaUsuarios($idEmpreesa,$idUsuario);
+        }
         $view = View::make('MSistema/Usuario/listaUsuarios')->with('listUsuarios',$usuarios);
         if($request->ajax()){
             $sections = $view->renderSections();

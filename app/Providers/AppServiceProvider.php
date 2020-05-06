@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 
+use App\Org_Saludables\Datos\Repositorio\MCitas\ColaboradorRepositorio;
+use App\Org_Saludables\Datos\Repositorio\MCitas\IColaboradorRepositorio;
 use App\Org_Saludables\Datos\Repositorio\MEmpresa\CompaniaRepositorio;
 use App\Org_Saludables\Datos\Repositorio\MEmpresa\ICompaniaRepositorio;
 use App\Org_Saludables\Negocio\Logica\MEmpresa\CompaniaServicio;
@@ -54,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
         app()->bind(IJornadaRepositorio::class,JornadaRepositorio::class);
         app()->bind(ICitasRepositorio::class,CitasRepositorio::class);
         app()->bind(ICitaServicio::class,CitaServicio::class);
+        app()->bind(IColaboradorRepositorio::class,ColaboradorRepositorio::class);
     }
 
     /**

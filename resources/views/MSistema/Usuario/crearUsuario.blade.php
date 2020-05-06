@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 
 @section('content')
-    <form id="formUsuario">
+    <form id="formUsuario" enctype="multipart/form-data">
         <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
         <div class="container">
             <div class="row justify-content-center">
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label>Foto de perfil</label>
-                                <input type="file" class="form-control" name="imgColaborador" accept=".png,.jpg,.jpeg">
+                                <input type="file" class="form-control" id="imgColaborador" name="imgColaborador" accept=".png,.jpg,.jpeg">
                             </div>
                         </div>
                         <div class="row">

@@ -65,13 +65,21 @@ class User extends Authenticatable
         return false;
     }
 
-    public function hasRole($role)
+    public function hasRole($IdRole)
+    {
+        if ($this->roles()->where('Rol_id', '=',$IdRole)->first()) {
+            return true;
+        }
+        return false;
+    }
+
+  /*  public function hasRole($role)
     {
         if ($this->roles()->where('Nombre', $role)->first()) {
             return true;
         }
         return false;
-    }
+    }*/
 
     public  function buscarRecurso($recurso)
     {

@@ -22,17 +22,32 @@ function ajaxRenderSectionCrearUsuario() {
     });
 }
 
-//Metodo para guarda la informacion del producto retorna la vista con todos los provedores
+//Metodo para guarda la informacion del usaurio
 function GuardarUsuario() {
-    var form = $("#formUsuario");
+    var formData = new FormData();
+    formData.append('imgColaborador', $('#imgColaborador')[0].files[0]);
+    formData.append('name', $('#name').val());
+    formData.append('last_name', $('#last_name').val());
+    formData.append('username', $('#username').val());
+    formData.append('email', $('#email').val());
+    formData.append('telefono', $('#telefono').val());
+    formData.append('password', $('#password').val());
+    formData.append('password_confirmation', $('#password_confirmation').val());
+    formData.append('Sede_id', $('#Sede_id').val());
+    $("#Roles_id").find('option:selected').each(function(ind,option){
+        formData.append('Roles_id[]', $(option).val());
+    });
     var token = $("#_token").val();
     PopupPosition();
     $.ajax({
         type: 'POST',
+        contentType: false,
+        processData: false,
         url: urlBase +'guardarUsuario',
         dataType: 'json',
+        enctype: 'multipart/form-data',
         headers: {'X-CSRF-TOKEN': token},
-        data:form.serialize(),
+        data:formData,
         success: function (data) {
             OcultarPopupposition();
             swal({

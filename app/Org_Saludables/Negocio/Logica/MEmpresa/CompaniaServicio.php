@@ -38,6 +38,7 @@ class CompaniaServicio implements ICompaniaServicio
        $arrayDTOCompnias = array();
        foreach ($arrayModelCompanias as $modelCompania){
            $companiaDTO = new CompaniaDTO($modelCompania->toArray());
+           $companiaDTO->RutaLogo= env('RutaLogo');
            $arrayDTOCompnias[]=$companiaDTO;
        }
        return $arrayDTOCompnias;

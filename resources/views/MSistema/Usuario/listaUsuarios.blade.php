@@ -10,7 +10,7 @@
                     <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" class="table table-bordered" id="tablaUsuarios">
                         <thead>
                         <tr>
-                            <th scope="col">Id</th>
+                            <th scope="col">Foto de perfil</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Cedula</th>
                             <th scope="col">Correo</th>
@@ -19,7 +19,7 @@
                         <tbody>
                         @foreach($listUsuarios as $usuario)
                             <tr>
-                                <th scope="row">{{$usuario->id}}</th>
+                                <th><div style="background-size: cover; background-repeat: no-repeat; background-image: url('')"class="logo-negocio"></div></th>
                                 <td>{{$usuario->name}} {{$usuario->last_name}}</td>
                                 <td>{{$usuario->username}}</td>
                                 <td>{{$usuario->email}}</td>

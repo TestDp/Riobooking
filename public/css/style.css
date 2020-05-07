@@ -4003,3 +4003,11 @@ h4.title3 {
 	width: 100%;
 	height: 100%;
 }
+
+.logo-negocio{
+	height: 100px;
+	width: auto;
+	border: solid 1px #0098e4;
+	border-radius: 50%;
+
+}

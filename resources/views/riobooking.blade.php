@@ -112,16 +112,17 @@
                 <p>Estos son nuestros negocios más destacados</p>
             </div>
             <div class="row">
+                @foreach($listCompanias as $Compania)
                 <div class="col-lg-4 col-md-6">
                     <div class="box_list home">
                         <figure>
-                            <a href="detail-page.html"><img src="LogosNegocio/LogoNegocioOgs Barbery Studio.jpg" class="img-fluid" alt=""></a>
+                            <a href=""><img src="{{ $Compania->RutaLogo.$Compania->LogoNegocio}}" class="img-fluid" alt=""></a>
                             <div class="preview"><span>Reservar cita</span></div>
                         </figure>
                         <div class="wrapper">
                             <small>Rionegro</small>
-                            <h3>Og´s Barbery Studio</h3>
-                            <p>Sector Las Torres</p>
+                            <h3>{{$Compania->Nombre}}</h3>
+                            <p>{{$Compania->Direccion}}</p>
                             <ul>
                                 <li><a href="">Reservar cita</a></li>
                             </ul>
@@ -129,6 +130,7 @@
 
                     </div>
                 </div>
+                @endforeach
             </div>
             <!-- /row -->
             <p class="text-center add_top_30"><a href="#" class="btn_1 medium">Ver todos los negocios</a></p>
@@ -240,6 +242,8 @@
 <script src="welcome/js/jquery-2.2.4.min.js"></script>
 <script src="welcome/js/common_scripts.min.js"></script>
 <script src="welcome/js/functions.js"></script>
+<script src="{{ asset('js/MEmpresa/Compania.js') }}"></script>
+<script src="{{ asset('js/Transversal/generales.js') }}"></script>
 
 </body>
 

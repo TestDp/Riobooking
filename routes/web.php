@@ -23,6 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {return view('riobooking');});
+Route::get('/', 'InicioController@cargarVistaNegocios');
 
 //CONTROLADOR TIPOCITAS
 Route::get('crearTipoCita', 'MSistema\TipoCitaController@CrearTipoCita')->name('crearTipoCita');//cargar la vista para crear un tipo de cita

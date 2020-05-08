@@ -13,7 +13,6 @@
                             <th scope="col">Logo</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Dirección</th>
-                            <th scope="col">Activa</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -22,8 +21,6 @@
                                 <th><div style="background-size: cover; background-repeat: no-repeat; background-image: url('{{ $Compania->RutaLogo.$Compania->LogoNegocio}}')"class="logo-negocio"></div></th>
                                 <td>{{$Compania->Nombre}}</td>
                                 <td>{{$Compania->Direccion}}</td>
-                                <td>{{$Compania->Activa}}</td>
-                             
                             </tr>
                         @endforeach
                         </tbody>

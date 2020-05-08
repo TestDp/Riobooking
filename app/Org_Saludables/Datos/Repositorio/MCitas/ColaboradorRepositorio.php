@@ -26,4 +26,16 @@ class ColaboradorRepositorio implements  IColaboradorRepositorio
             return $error;
         }
     }
+
+
+    public function ObtenerListaColaboradores($idEmpresa)
+    {
+        $colaboradores = DB::table('Tbl_Colaborador')
+             ->join('users', 'users.id', '=', 'Tbl_Colaborador.user_id')
+            ->join('Tbl_Companias', 'Tbl_Companias.id', '=', 'users.Compania_id')
+            ->select('Tbl_Colaborador.*')
+            ->where('Tbl_Companias.id', '=', $idEmpresa)
+            ->get();
+        return $colaboradores;
+    }
 }

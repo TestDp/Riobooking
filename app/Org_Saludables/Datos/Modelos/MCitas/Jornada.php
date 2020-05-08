@@ -19,8 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jornada extends  Model
 {
     protected $table = 'Tbl_Jornadas';
-    protected $fillable =['Fecha','FechaFin','Inicio','Fin','Lugar','Duracion','Cupos','Descanso','Tipo_Cita_id',
-    'Regional_id'];
+    protected $fillable =['Fecha','FechaFin','Inicio','Fin','Lugar','Duracion','Cupos','Descanso','Regional_id'];
 
    // public function Compania()
    // {
@@ -35,10 +34,7 @@ class Jornada extends  Model
     public function Regional(){
         return $this->belongsTo(Regional::class,'Regional_id','id');
     }
-    
-      public function TiposCitas(){
-        return $this->belongsTo(TipoCita::class,'Tipo_Cita_id','id');
-    }
+
 
  
 }

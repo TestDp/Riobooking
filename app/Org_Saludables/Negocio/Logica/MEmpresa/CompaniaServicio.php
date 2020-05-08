@@ -10,9 +10,7 @@ namespace App\Org_Saludables\Negocio\Logica\MEmpresa;
 
 
 use App\Org_Saludables\Datos\Repositorio\MEmpresa\ICompaniaRepositorio;
-use App\Org_Saludables\Datos\Repositorio\MEmpresa\CompaniaRepositorio;
 use App\Org_Saludables\Negocio\DTO\MEmpresa\CompaniaDTO;
-use App\Org_Saludables\Negocio\Logica\MEmpresa\ICompaniaServicio;
 use Org_Saludables\Datos\Modelos\MEmpresa\Compania;
 
 class CompaniaServicio implements ICompaniaServicio

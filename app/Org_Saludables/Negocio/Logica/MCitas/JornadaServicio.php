@@ -32,9 +32,8 @@ class JornadaServicio implements IJornadaServicio
 
     }
 
-    public  function GuardarJornada(JornadaDTO $jornadaDTO, $request){
-
-
+    public  function GuardarJornada(JornadaDTO $jornadaDTO, $request)
+    {
         $jornadaModel = $jornadaDTO->toModel(Jornada::class);
         $idEmpreesa = Auth::user()->Compania_id;
         $jornadasCreadas = $this->jornadaRepositorio->ObtenerListaJornadas($idEmpreesa);
@@ -45,7 +44,6 @@ class JornadaServicio implements IJornadaServicio
             {
                 if (strcmp ($jornada->Lugar , $jornadaModel->Lugar ) == 0)
                 {
-                    $informacionJornadaGuardada=$jornada->id;
                     $InicioJornadaCrear= $jornadaModel->Inicio;
                     $FinJornadaCrear=$jornadaModel->Fin;
                     $InicioJornadaGuardada=$jornada->Inicio;
@@ -63,7 +61,7 @@ class JornadaServicio implements IJornadaServicio
             $jornadaModel->Cupos=1;
         }
         $arrayCitasModel = $this->citaServicio->ProgramarHorariosCitas($jornadaModel);
-        return $this->jornadaRepositorio->GuardarJornada($jornadaModel,$arrayCitasModel);
+        return $this->jornadaRepositorio->GuardarJornada($jornadaModel,$arrayCitasModel,$request);
     }
 
     public  function  ObtenerListaJornadas($idEmpreesa){

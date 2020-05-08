@@ -13,6 +13,7 @@ use App\Org_Saludables\Negocio\DTO\BaseDTO;
 
 class ColaboradorDTO extends BaseDTO
 {
+    public $id;
     public $Nombre;
     public $Nickname;
     public $user_id;

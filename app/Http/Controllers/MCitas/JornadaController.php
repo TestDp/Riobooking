@@ -11,6 +11,7 @@ namespace App\Http\Controllers\MCitas;
 use App\Http\Controllers\Controller;
 use App\Org_Saludables\Negocio\DTO\MCitas\CitaDTO;
 use App\Org_Saludables\Negocio\DTO\MCitas\JornadaDTO;
+use App\Org_Saludables\Negocio\Logica\MCitas\ColaboradorServicio;
 use App\Org_Saludables\Negocio\Logica\MCitas\IJornadaServicio;
 use App\Org_Saludables\Negocio\Logica\MCitas\JornadaServicio;
 use Org_Saludables\Validaciones\MCitas\JornadaValidaciones;
@@ -31,27 +32,29 @@ class JornadaController extends Controller
     protected  $jornadaValidaciones;
     protected  $sedeServicio;
     protected  $TipoCitaServicio;
+    protected  $colaboradorServicio;
 
 
-    public function __construct(IJornadaServicio $jornadaServicio,JornadaValidaciones $jornadaValidaciones,ISedeServicio $sedeServicio, 
-    TipoCitaServicio $TipoCitaServicio){
+    public function __construct(IJornadaServicio $jornadaServicio,JornadaValidaciones $jornadaValidaciones,
+                                ISedeServicio $sedeServicio,TipoCitaServicio $TipoCitaServicio,
+                                ColaboradorServicio $colaboradorServicio){
         $this->jornadaServicio =  $jornadaServicio;
         $this->jornadaValidaciones = $jornadaValidaciones;
         $this->sedeServicio = $sedeServicio;
         $this->TipoCitaServicio = $TipoCitaServicio;
+        $this->colaboradorServicio = $colaboradorServicio;
     }
 
     //Metodo para cargar  la vista de crear Compania
     public function CrearJornada(Request $request)
     {
-     
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
          $idEmpreesa = Auth::user()->Compania_id;
          $regionales = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
-          $tiposCitas = $this->TipoCitaServicio->ObtenerListaTipoCitasR($idEmpreesa, $request['Regional_id']);
-         $view = View::make('Citas/crearJornada')->with('listRegionales',$regionales)->with('listTiposCitas',$tiposCitas);
-          
+         $colaboradores = $this->colaboradorServicio->ObtenerListaColaboradores($idEmpreesa);
+         $view = View::make('Citas/crearJornada')->with('listRegionales',$regionales)
+             ->with('listColaboradores',$colaboradores);
         if($request->ajax()){
             $sections = $view->renderSections();
             return Response::json($sections['content']);
@@ -66,11 +69,8 @@ class JornadaController extends Controller
         $this->jornadaValidaciones->ValidarFormularioCrear($request->all())->validate();
         if($request->ajax()){
             $idEmpreesa = Auth::user()->Compania_id;
-         
             $jornada = new JornadaDTO($request->all());
-          
             $repuesta = $this->jornadaServicio->GuardarJornada($jornada, $request);
-        
             if($repuesta == true){
                 $jornadas = $this->jornadaServicio->ObtenerListaJornadas($idEmpreesa);
                 $view = View::make('Citas/listaJornadas')->with('listJornadas',$jornadas);

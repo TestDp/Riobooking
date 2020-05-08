@@ -18,7 +18,7 @@ interface IJornadaRepositorio
      * @param Jornada $jornada
      * @return verdadero o falso si la operacion fue correcta o no.
      */
-    public function GuardarJornada(Jornada $jornada,$arrayCitas) ;
+    public function GuardarJornada(Jornada $jornada,$arrayCitas,$request) ;
 
     /**
      * @param $idEmpreesa : id o pk de la empresa

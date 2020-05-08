@@ -10,6 +10,7 @@ namespace Org_Saludables\Datos\Repositorio\MCitas;
 
 
 
+use App\Org_Saludables\Datos\Modelos\MCitas\TurnoXColaborador;
 use Org_Saludables\Datos\Modelos\MCitas\Jornada;
 use App\Org_Saludables\Datos\Repositorio\MCitas\IJornadaRepositorio;
 use App\Org_Saludables\Datos\Repositorio\MCitas\ICitasRepositorio;
@@ -24,16 +25,22 @@ class JornadaRepositorio implements IJornadaRepositorio
        
         $this->citaRepositorio=$citaRepositorio;
     }
-    public  function GuardarJornada(Jornada $jornada,$arrayCitas)
+    public  function GuardarJornada(Jornada $jornada,$arrayCitas,$request)
     {
         DB::beginTransaction();
         try {
             $jornada->save();
-            
-             foreach ($arrayCitas as $cita) {
-                 $cita->Jornada_id = $jornada->id;
-                 $cita->save();
-             }   
+            $arrayColaboradores = $request->Colaborador_id;
+            foreach ($arrayColaboradores as $colaborador){
+                 foreach ($arrayCitas as $cita) {
+                     $cita->Jornada_id = $jornada->id;
+                     $cita->save();
+                     $turnoXColaborador = new TurnoXColaborador();
+                     $turnoXColaborador->Cita_id = $cita->id;
+                     $turnoXColaborador->Colaborador_id = $colaborador;
+                     $turnoXColaborador->save();
+                 }
+            }
             DB::commit();
             return true;
         } catch (\Exception $e) {
@@ -49,10 +56,11 @@ class JornadaRepositorio implements IJornadaRepositorio
            // ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
             ->join('Tbl_Companias', 'Tbl_Companias.id', '=', 'Tbl_Regionales.Compania_id')
             ->join('Tbl_Jornadas', 'Tbl_Regionales.id', '=', 'Tbl_Jornadas.Regional_id')
-            ->join('Tbl_Tipos_Citas', 'Tbl_Tipos_Citas.id', '=', 'Tbl_Jornadas.Tipo_Cita_id')
-            ->select('Tbl_Jornadas.*','Tbl_Regionales.Nombre as NombreRegional','Tbl_Tipos_Citas.Nombre as NombreCita')
+         //   ->join('Tbl_Tipos_Citas', 'Tbl_Tipos_Citas.id', '=', 'Tbl_Jornadas.Tipo_Cita_id')
+          //  ->select('Tbl_Jornadas.*','Tbl_Regionales.Nombre as NombreRegional','Tbl_Tipos_Citas.Nombre as NombreCita')
+             ->select('Tbl_Jornadas.*','Tbl_Regionales.Nombre as NombreRegional')
             ->where('Tbl_Companias.id', '=', $idEmpreesa)
-             ->where ('Tbl_Tipos_Citas.activa','=', 1)
+             //->where ('Tbl_Tipos_Citas.activa','=', 1)
             ->get();
         return  $jornadas;
        

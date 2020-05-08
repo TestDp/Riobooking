@@ -13,7 +13,6 @@
                             <th scope="col">Id</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Regional</th>
-                            <th scope="col">Tipo Cita</th>
                             <th scope="col">Cupos por Cita</th>
                             <th scope="col">Lugar</th>
                             <th scope="col">   </th>
@@ -26,15 +25,10 @@
                                 <th scope="row">{{$Jornada->id}}</th>
                                 <td >{{$Jornada->Fecha}}</td>
                                 <td>{{$Jornada->NombreRegional}}</td>
-                                <td>{{$Jornada->NombreCita}}</td>
                                 <td>{{$Jornada->Cupos}}</td>
                                 <td>{{$Jornada->Lugar}}</td>
                                  <td> <button onclick="VerJornada({{$Jornada->id}})" type="button" class="btn btn-success">Detalle Jornada</button></td>
                                  <td> <a class="btn btn-success" href="{{url('/exportarJornada',['idJornada'=>$Jornada->id])}}">Exportar Jornada</a></td>
-                                
-                                
-                    
-                             
                             </tr>
                         @endforeach
                         </tbody>

@@ -14,4 +14,5 @@ use App\Org_Saludables\Datos\Modelos\MCitas\Colaborador;
 interface IColaboradorRepositorio
 {
     public  function GuardarColaborador(Colaborador $colaborador);
+    public  function ObtenerListaColaboradores($idEmpresa);
 }

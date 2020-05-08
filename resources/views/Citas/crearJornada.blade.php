@@ -32,7 +32,7 @@
                                 </select>
                                 <span class="invalid-feedback" role="alert" id="errorRegional_id"></span>
                             </div>
-                            <div class="col-md-4">
+                         {{--   <div class="col-md-4">
                                 <label>Tipo Cita</label>
                                 <select id="Tipo_Cita_id" name="Tipo_Cita_id"  class="form-control"  name="language">
                                     <option value="">Seleccionar</option>
@@ -41,7 +41,7 @@
                                     @endforeach
                                 </select>
                                 <span class="invalid-feedback" role="alert" id="errorTipo_Cita_id"></span>
-                            </div>
+                            </div>--}}
                         </div>
                         <div class="row">
 
@@ -84,6 +84,18 @@
                                 <span class="invalid-feedback" role="alert" id="errorLugar"></span>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Asignar jornada a colaboradores</label>
+                                <select id="Colaborador_id" name="Colaborador_id[]"  class="form-control" multiple name="language">
+                                    <option value="">Seleccionar</option>
+                                    @foreach($listColaboradores as $colaborador)
+                                        <option value="{{ $colaborador->id }}">{{ $colaborador->Nombre }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="invalid-feedback" role="alert" id="errorRoles_id"></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
@@ -95,5 +107,17 @@
             </div>
         </div>
     </form>
+    <link href="{{ asset('js/Plugins/fastselect-master/dist/fastselect.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/jquery-3.1.1.js') }}"></script>
+    <script src="{{ asset('js/Plugins/fastselect-master/dist/fastsearch.js') }}"></script>
+    <script src="{{ asset('js/Plugins/fastselect-master/dist/fastselect.js') }}"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#Colaborador_id').fastselect({
+                placeholder: 'Seleccione la sede',
+                searchPlaceholder: 'Buscar opciones'
+            });
+        });
+    </script>
 @endsection

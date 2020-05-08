@@ -14,9 +14,8 @@ use App\User;
 
 use Illuminate\Database\Eloquent\Model;
 use Org_Saludables\Datos\Modelos\MCitas\Citas;
-use Org_Saludables\Datos\Modelos\MCitas\Jornada;
 use Org_Saludables\Datos\Modelos\MSistema\TipoCitas;
-use Org_Saludables\Datos\Modelos\MCitas\Muestra;
+
 
 class Compania extends Model
 {

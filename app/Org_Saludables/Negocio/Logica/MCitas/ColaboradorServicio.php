@@ -28,4 +28,15 @@ class ColaboradorServicio
         return $this->iColaboradorRepositorio->GuardarColaborador($colaboradorModel);
     }
 
+    public function ObtenerListaColaboradores($idEmpresa){
+        $arrayModelColaboradores= $this->iColaboradorRepositorio->ObtenerListaColaboradores($idEmpresa);
+        $arrayDTOColaboradores = array();
+        foreach ($arrayModelColaboradores as $modelColaborador){
+            $colaboradorDTO = new ColaboradorDTO((array)$modelColaborador);
+            $colaboradorDTO->RutaLogo= env('RutaLogo');
+            $arrayDTOColaboradores[]=$colaboradorDTO;
+        }
+        return $arrayDTOColaboradores;
+    }
+
 }

@@ -115,7 +115,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="box_list home">
                         <figure>
-                            <a href="detail-page.html"><img src="http://via.placeholder.com/565x565.jpg" class="img-fluid" alt=""></a>
+                            <a href="detail-page.html"><img src="LogosNegocio/LogoNegocioOgs Barbery Studio.jpg" class="img-fluid" alt=""></a>
                             <div class="preview"><span>Reservar cita</span></div>
                         </figure>
                         <div class="wrapper">

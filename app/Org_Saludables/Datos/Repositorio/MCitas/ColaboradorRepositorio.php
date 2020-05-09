@@ -9,6 +9,7 @@
 namespace App\Org_Saludables\Datos\Repositorio\MCitas;
 
 use App\Org_Saludables\Datos\Modelos\MCitas\Colaborador;
+use App\Org_Saludables\Datos\Modelos\MCitas\TipoServicioPorColaborador;
 use Illuminate\Support\Facades\DB;
 
 class ColaboradorRepositorio implements  IColaboradorRepositorio
@@ -37,5 +38,24 @@ class ColaboradorRepositorio implements  IColaboradorRepositorio
             ->where('Tbl_Companias.id', '=', $idEmpresa)
             ->get();
         return $colaboradores;
+    }
+
+    public function GuardarServiciosPorColaboradores($idColaborador, $idServicio)
+    {
+
+        $servicioXcolaborador = new TipoServicioPorColaborador();
+        $servicioXcolaborador->TipoCita_id = $idColaborador;
+        $servicioXcolaborador->Colaborador_id = $idServicio;
+
+        DB::beginTransaction();
+        try {
+            $servicioXcolaborador->save();
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
+            DB::rollback();
+            return $error;
+        }
     }
 }

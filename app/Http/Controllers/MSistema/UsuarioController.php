@@ -18,6 +18,7 @@ use Org_Saludables\Negocio\Logica\MEmpresa\SedeServicio;
 use App\Org_Saludables\Negocio\Logica\MEmpresa\ICompaniaServicio;
 use Org_Saludables\Negocio\Logica\MSistema\RolServicio;
 use Org_Saludables\Negocio\Logica\MSistema\UsuarioServicio;
+use Org_Saludables\Negocio\Logica\MSistema\TipoCitaServicio;
 use Org_Saludables\Validaciones\MSistema\UsuarioValidaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,13 +39,14 @@ class UsuarioController extends  Controller
 
     public function __construct(UsuarioServicio $usuarioServicio, SedeServicio $sedeServicio, RolServicio $rolServicio,
                                 UsuarioValidaciones $usuarioValidaciones, ICompaniaServicio $iCompaniaServicio,
-                                ColaboradorServicio $colaboradorServicio){
+                                ColaboradorServicio $colaboradorServicio, TipoCitaServicio $tipoCitaServicio){
         $this->usuarioServicio = $usuarioServicio;
         $this->sedeServicio = $sedeServicio;
         $this->rolServicio = $rolServicio;
         $this->usuarioValidaciones = $usuarioValidaciones;
         $this->iCompaniaServicio = $iCompaniaServicio;
         $this->colaboradorServicio = $colaboradorServicio;
+        $this->tipoCitaServicio = $tipoCitaServicio;
     }
 
     //Metodo para cargar  la vista de crear un rol
@@ -52,8 +54,8 @@ class UsuarioController extends  Controller
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idEmpreesa = Auth::user()->Compania_id;
-        $roles = $this->rolServicio->ObtenerListaRoles($idEmpreesa);
+        $idSede = Auth::user()->Sede_id;
+        $roles = $this->rolServicio->ObtenerListaRoles($idSede);
         $arrayCompaniasDTO = $this->iCompaniaServicio->ObtenerListaCompanias();
         //$sedes = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
         $view = View::make('MSistema/Usuario/crearUsuario',
@@ -76,7 +78,7 @@ class UsuarioController extends  Controller
 
             $user = new User($request->all());
             $user->password = Hash::make($request->password);
-            $user->Compania_id=$request['Sede_id'];
+            $user->Sede_id=$request['Sede_id'];
             $user->save();
             $nombreFotoColaborador = "Foto_Colaborador".$user->name.'_'.$user->last_name.'.jpg';
             $colaborador = new ColaboradorDTO();
@@ -110,9 +112,9 @@ class UsuarioController extends  Controller
             DB::rollback();
             return ['respuesta' => false, 'error' => $error];
         }
-        $idEmpreesa = Auth::user()->Compania_id;
+        $idSede = Auth::user()->Sede_id;
         $idUsuario = Auth::user()->id;
-        $usuarios = $this->usuarioServicio->ObtenerListaUsuarios($idEmpreesa,$idUsuario);
+        $usuarios = $this->usuarioServicio->ObtenerListaUsuarios($idSede,$idUsuario);
         $view = View::make('MSistema/Usuario/listaUsuarios')->with('listUsuarios',$usuarios);
         if($request->ajax()){
             $sections = $view->renderSections();
@@ -124,14 +126,14 @@ class UsuarioController extends  Controller
     public  function ObtenerUsuarios(Request $request){
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idEmpreesa = Auth::user()->Compania_id;
+        $idSede = Auth::user()->Sede_id;
         $idUsuario = Auth::user()->id;
         $usuarios = null;
         if($request->user()->hasRole(env('IdRolSuperAdmin')))
         {
             $usuarios = $this->usuarioServicio->ObtenerTodosLosUsuarios($idUsuario);
         }else{
-            $usuarios = $this->usuarioServicio->ObtenerListaUsuarios($idEmpreesa,$idUsuario);
+            $usuarios = $this->usuarioServicio->ObtenerListaUsuarios($idSede,$idUsuario);
         }
         $view = View::make('MSistema/Usuario/listaUsuarios')->with('listUsuarios',$usuarios);
         if($request->ajax()){
@@ -151,4 +153,23 @@ class UsuarioController extends  Controller
         $user->save();
         return redirect('/home')->with('notification', 'Has confirmado correctamente tu correo!');
     }
+
+    //Metodo para cargar  la vista de crear la relacion entre colaboradores y servicios
+    public function CrearServiciosPorColaboradores(Request $request)
+    {
+        $urlinfo= $request->getPathInfo();
+        $request->user()->AutorizarUrlRecurso($urlinfo);
+        $idSede = Auth::user()->Sede_id;
+        $tipoServicios = $this->tipoCitaServicio->ObtenerListaTipoCitas($idSede);
+        $arrayColaboradores = $this->colaboradorServicio->ObtenerListaColaboradores();
+        $view = View::make('MSistema/TipoCita/Colaboradores',
+            array('listServicios'=>$tipoServicios,'listColaboradores'=> $arrayColaboradores));
+        if($request->ajax()){
+            $sections = $view->renderSections();
+            return Response::json($sections['content']);
+        }else return view('MSistema/TipoCita/Colaboradores');
+
+
+    }
+
 }

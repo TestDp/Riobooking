@@ -14,21 +14,21 @@ class UsersSeeder extends Seeder
         //
         $arrayUsersIds = ['1'];
 
-        $arrayUsersName = ['Carolina'];
+        $arrayUsersName = ['Juan'];
 
-        $arrayUsersLastName = ['Arias Salas'];
+        $arrayUsersLastName = ['Blandon'];
 
-        $arrayUsersUsersName = ['carias'];  
+        $arrayUsersUsersName = ['jblandon'];
 
-        $arrayUsersEmail = ['carias@serviciosnutresa.com']; 
+        $arrayUsersEmail = ['juancamilo.blandon@gmail.com'];
         
         $UsersActivo = 1; 
 
         $UsersPass = bcrypt("admon123456"); 
 
-        $UsersRemember_token = bcrypt("123456"); 
+        $UsersRemember_token = bcrypt("123456");
 
-        $arrayUsersCompania = [1];
+        $arrayUsersSede = [1];
 
         $arrayUsersCorreoConfirmado = [0];
 
@@ -50,7 +50,7 @@ class UsersSeeder extends Seeder
                 'remember_token' => $UsersRemember_token,
                 'created_at' => date('Y-m-d H:m:s'),
                 'updated_at' => date('Y-m-d H:m:s'),
-                'Compania_id' => $arrayUsersCompania[$i],
+                'Sede_id' => $arrayUsersSede[$i],
                 'CorreoConfirmado' => $arrayUsersCorreoConfirmado[$i],
                 'telefono' => $arrayUsersTel[$i],
             ]);

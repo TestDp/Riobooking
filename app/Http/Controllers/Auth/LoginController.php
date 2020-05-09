@@ -64,7 +64,7 @@ class LoginController extends Controller
             $usuario= $this->guard()->user();
             //if($usuario->CorreoConfirmado == 1)
             //{
-                if($usuario->Compania->Activa==1){
+                if($usuario->Sede->activa==1){
                     return $this->sendLoginResponse($request);
                 }else{
                     $this->guard()->logout();
@@ -103,7 +103,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if($user->Compania->Activa==0)
+        if($user->Sede->activa==0)
             return redirect('/welcome');
     }
 

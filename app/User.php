@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Notifications\ResetPasswordNotification;
-use Org_Saludables\Datos\Modelos\MEmpresa\Compania;
+use Org_Saludables\Datos\Modelos\MEmpresa\Sede;
 use Org_Saludables\Datos\Modelos\MSistema\Rol;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -128,9 +128,9 @@ class User extends Authenticatable
         abort(401, 'Esta acción no está autorizada.');
     }
 
-    public function Compania()
+    public function Sede()
     {
-        return $this->belongsTo(Compania::class,'Compania_id');
+        return $this->belongsTo(Sede::class,'Sede_id');
     }
 
     public function Muestra()

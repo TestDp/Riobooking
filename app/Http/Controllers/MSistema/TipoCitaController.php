@@ -34,8 +34,8 @@ class TipoCitaController extends Controller
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-         $idEmpreesa = Auth::user()->Compania_id;
-         $regionales = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
+         $idSede = Auth::user()->Sede_id;
+         $regionales = $this->sedeServicio->ObtenerListaSedes($idSede);
         $view = View::make('MSistema/TipoCita/crearTipoCita')->with('listRegionales',$regionales);
         if($request->ajax()){
             $sections = $view->renderSections();
@@ -50,10 +50,10 @@ class TipoCitaController extends Controller
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $this->tipoCitaValidaciones->ValidarFormularioCrear($request->all())->validate();
         if($request->ajax()){
-            $idEmpreesa = Auth::user()->Compania_id;
+            $idSede = Auth::user()->Sede_id;
             $repuesta = $this->TipoCitaServicio->GuardarTipoCita($request);
             if($repuesta == true){
-                $tiposCitas = $this->TipoCitaServicio->ObtenerListaTipoCitas($idEmpreesa);
+                $tiposCitas = $this->TipoCitaServicio->ObtenerListaTipoCitas($idSede);
                 $view = View::make('MSistema/TipoCita/listaCitas')->with('listCitas',$tiposCitas);
                 $sections = $view->renderSections();
                 return Response::json(['codeStatus' =>200,'data'=>$sections['content']]);
@@ -68,8 +68,8 @@ class TipoCitaController extends Controller
     public  function ObtenerTiposCitas(Request $request){
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idEmpreesa = Auth::user()->Compania_id;
-        $tiposCitas = $this->TipoCitaServicio->ObtenerListaTipoCitas($idEmpreesa);
+        $idSede = Auth::user()->Sede_id;
+        $tiposCitas = $this->TipoCitaServicio->ObtenerListaTipoCitas($idSede);
         $view = View::make('MSistema/TipoCita/listaCitas')->with('listCitas',$tiposCitas);
         if($request->ajax()){
             $sections = $view->renderSections();

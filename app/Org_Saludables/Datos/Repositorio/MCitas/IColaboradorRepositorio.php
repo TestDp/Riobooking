@@ -15,4 +15,5 @@ interface IColaboradorRepositorio
 {
     public  function GuardarColaborador(Colaborador $colaborador);
     public  function ObtenerListaColaboradores($idEmpresa);
+    public  function GuardarServiciosPorColaboradores($idColaborador, $idServicio);
 }

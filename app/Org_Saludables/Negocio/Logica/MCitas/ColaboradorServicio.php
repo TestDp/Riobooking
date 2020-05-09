@@ -39,4 +39,10 @@ class ColaboradorServicio
         return $arrayDTOColaboradores;
     }
 
+    public function GuardarServiciosPorColaboradores($idColaborador, $idServicio)
+    {
+        return $this->iColaboradorRepositorio->GuardarServiciosPorColaboradores($idColaborador, $idServicio);
+
+    }
+
 }

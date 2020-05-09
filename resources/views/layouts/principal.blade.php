@@ -124,6 +124,9 @@
                                     <li>
                                         <a href="#" onclick="ajaxRenderSectionMiCalendario()" >Mi Calendario</a>
                                     </li>
+                                    <li>
+                                        <a href="#" onclick="ajaxRenderSectionMiAgenda()" >Mi Agenda</a>
+                                    </li>
                             </ul>
                         </li> 
                 @endif
@@ -249,6 +252,7 @@
 <script src="{{ asset('js/Transversal/generales.js') }}"></script>
 <script src="{{ asset('js/Citas/Jornada.js') }}"></script>
 <script src="{{ asset('js/Citas/Cita.js') }}"></script>
+<script src="{{ asset('js/Citas/Agenda.js') }}"></script>
 <script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
 
 </body>

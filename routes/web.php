@@ -103,5 +103,8 @@ Route::get('gcalendar', ['as' => 'gcalendar', 'uses' => 'gCalendarController@ind
 Route::post('guardarCita', 'gCalendarController@store');
 Route::get('oauth', ['as' => 'oauthCallback', 'uses' => 'gCalendarController@oauth']);
 
+//CONTROLADOR AGENDA
+Route::get('agenda', 'MCitas\AgendaController@ObtenerAgenda')->name('agenda');
+
 //CONTROLADOR COLABORADOR
 Route::get('crearServiciosColaborador', 'MSistema\UsuarioController@CrearServiciosPorColaboradores')->name('crearServiciosColaborador');//cargar la vista para crear un usuario

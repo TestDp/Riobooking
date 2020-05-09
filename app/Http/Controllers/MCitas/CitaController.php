@@ -10,8 +10,6 @@ namespace App\Http\Controllers\MCitas;
 
 use App\Http\Controllers\Controller;
 use App\Org_Saludables\Negocio\DTO\MCitas\BuscadorDTO;
-use App\Org_Saludables\Negocio\DTO\MCitas\CitaDTO;
-use App\Org_Saludables\Negocio\DTO\MCitas\JornadaDTO;
 use App\Org_Saludables\Negocio\Logica\MCitas\ICitaServicio;
 use App\Org_Saludables\Negocio\Logica\MCitas\CitaServicio;
 use App\Org_Saludables\Negocio\Logica\MCitas\IJornadaServicio;
@@ -26,7 +24,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use Spatie\GoogleCalendar\Event;
 use Redirect;
-use Illuminate\Http\RedirectResponse;
+
 
 class CitaController extends Controller
 {

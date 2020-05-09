@@ -187,7 +187,7 @@ function BuscadorCitas() {
 
 }
 
-    function ajaxRenderSectionBorrarCita(idCita) {
+function ajaxRenderSectionBorrarCita(idCita) {
     PopupPosition();
     //var form = $("#formCitas");
     //var token = $("#_token").val()

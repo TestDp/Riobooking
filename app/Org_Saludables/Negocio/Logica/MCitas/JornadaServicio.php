@@ -37,7 +37,6 @@ class JornadaServicio implements IJornadaServicio
         $jornadaModel = $jornadaDTO->toModel(Jornada::class);
         $idEmpreesa = Auth::user()->Compania_id;
         $jornadasCreadas = $this->jornadaRepositorio->ObtenerListaJornadas($idEmpreesa);
-        // $jornadas = $this->citaRepositorio->ObtenerHorarioCitaUsuario($usuario, $idEmpreesa);
         foreach ($jornadasCreadas as $jornada)
         {
             if($jornada->Fecha ==$jornadaModel->Fecha && $jornada->Regional_id ==$jornadaModel->Regional_id)

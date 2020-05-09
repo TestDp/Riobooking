@@ -25,6 +25,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {return view('riobooking');});
 Route::get('/', 'InicioController@cargarVistaNegocios');
 
+
+Route::get('perfilNegocio/{idCompania}', 'InicioController@cargarVistaPerfilNegocio');
+
+
 //CONTROLADOR TIPOCITAS
 Route::get('crearTipoCita', 'MSistema\TipoCitaController@CrearTipoCita')->name('crearTipoCita');//cargar la vista para crear un tipo de cita
 Route::post('guardarTipoCita', 'MSistema\TipoCitaController@GuardarTipoCita')->name('guardarTipoCita');//Guardar la informacion del tipo cita

@@ -3341,7 +3341,7 @@ label.css-label strong {
 }
 
 .box_login {
-  width: 50%;
+  width: 100%;
   float: left;
   border-right: 1px solid #e1e8ed;
   padding: 15px 25px;
@@ -3864,14 +3864,15 @@ ul.treatments.checkout li.total {
 }
 
 .bg_color_2 {
-  background: #3f4079 url(../img/hero_bg_1.svg) repeat fixed;
+  background: #3f4079 url(../../images/Fondo.png) repeat fixed;
+  background-size: cover;
 }
 
 .form-control {
   font-size: 14px;
   font-size: 0.875rem;
   min-height: 40px;
-  border-color: #e1e8ed;
+  border-color: #cccccc;
 }
 
 #booking .loader {

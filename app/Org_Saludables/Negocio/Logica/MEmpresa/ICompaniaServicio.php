@@ -14,4 +14,5 @@ interface ICompaniaServicio
 {
     public function GuardarCompania(CompaniaDTO $companiaDTO);
     public function ObtenerListaCompanias();
+    public function ObtenerCompania($idCompania);
 }

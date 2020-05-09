@@ -20,7 +20,7 @@ Primary style
 72px= 5.142857143rem
 */
 a {
-  color: #e97d68;
+  color: #0098e4;
   text-decoration: none;
 }
 a:hover {
@@ -54,7 +54,7 @@ a:hover {
   -moz-border-radius: 50px;
   -ms-border-radius: 50px;
   border-radius: 50px;
-  background-color: #74d1c6;
+  background-color: #cccccc;
   margin-bottom: 0;
 }
 .pricing-switcher input[type="radio"] {

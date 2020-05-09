@@ -1,16 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.negocios')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="widget-shadow">
-                    <div class="login-top"><img class="media-object" src="{{ asset('images/Logo.png') }}"></img></div>
-
-                    <div class="card-body">
+    <div class="bg_color_2">
+        <div class="container margin_60_35">
+            <div id="register">
+                <h1>Crea tu cuenta RioBooking</h1>
+                <div class="row justify-content-center">
+                    <div class="col-md-7">
                         <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                             @csrf
-
+                            <div class="box_form">
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
@@ -112,13 +111,13 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Registrar') }}
                                     </button>
                                 </div>
+                            </div>
                             </div>
                         </form>
                     </div>

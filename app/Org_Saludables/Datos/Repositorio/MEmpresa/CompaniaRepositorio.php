@@ -32,6 +32,11 @@ class CompaniaRepositorio implements ICompaniaRepositorio
     public function ObtenerListaCompanias(){
         return Compania::all();
     }
+    public function ObtenerCompania($idCompania){
+        return Compania::where('id', '=', $idCompania)->get()->first();
 
-     
+    }
+
+
+
 }

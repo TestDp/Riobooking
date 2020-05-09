@@ -13,6 +13,7 @@ interface ICompaniaRepositorio
 {
     public function GuardarCompania(Compania $compania);
     public function ObtenerListaCompanias();
+    public function ObtenerCompania($idCompania);
 
     
 }

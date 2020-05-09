@@ -28,4 +28,18 @@ class InicioController extends Controller
             }
 
     }
+
+    public function cargarVistaPerfilNegocio(Request $request, $idCompania)
+    {
+        $companiaDTO = $this->companiaServicio->ObtenerCompania($idCompania);
+        $view = View::make('perfil');
+        if($request->ajax()){
+            $sections = $view->renderSections();
+            return Response::json($sections['content']);
+        }else
+        {
+            return view ('perfil')->with('Compania',$companiaDTO);
+        }
+
+    }
 }

@@ -24,10 +24,12 @@ class CrearTablaJornada extends Migration
             $table->integer('Cupos');
             //$table->integer('Tipo_Cita_id')->unsigned();
             //$table->foreign('Tipo_Cita_id')->references('id')->on('Tbl_Tipos_Citas');
-            $table->integer('Regional_id')->unsigned();
-            $table->foreign('Regional_id')->references('id')->on('Tbl_Regionales');
+            //$table->integer('Regional_id')->unsigned();
+            //$table->foreign('Regional_id')->references('id')->on('Tbl_Regionales');
+            $table->integer('Sede_id')->unsigned();
+            $table->foreign('Sede_id')->references('id')->on('Tbl_Sedes');
             $table->timestamps();
-            $table->unique(['Fecha','Regional_id', 'Lugar', 'Inicio','Fin'],'jornada_indice_fk');
+            //$table->unique(['Fecha','Regional_id', 'Lugar', 'Inicio','Fin'],'jornada_indice_fk');
         });
     }
 

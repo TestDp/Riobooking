@@ -13,7 +13,7 @@ class CrearTablaGerencias extends Migration
      */
     public function up()
     {
-        Schema::create('Tbl_Gerencias', function (Blueprint $table) {
+        /*Schema::create('Tbl_Gerencias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Nombre',100);
             $table->boolean('activa')->default(1);
@@ -31,7 +31,7 @@ class CrearTablaGerencias extends Migration
             $table->timestamps();
 
             $table->unique(['Regional_id','Nombre']);
-        });
+        });*/
     }
 
     /**

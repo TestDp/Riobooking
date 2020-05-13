@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CompaniasSeeder extends Seeder
+class SedeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,13 +11,11 @@ class CompaniasSeeder extends Seeder
      */
     public function run()
     {
-
-         DB::table('Tbl_Companias')->insert([
+        DB::table('Tbl_Sedes')->insert([
             'id' => '1',
-            'Nombre' => 'Compañia administradora',
-            'Direccion' => 'Medellin',
-             'LogoNegocio' => 'ImagenLogoNegocio',
+            'Nombre' => 'Bomba de Servicios Tucan',
             'Activa' => '1',
+            'Compania_id' => 1,
             'created_at' => date('Y-m-d H:m:s'),
             'updated_at' => date('Y-m-d H:m:s'),
         ]);

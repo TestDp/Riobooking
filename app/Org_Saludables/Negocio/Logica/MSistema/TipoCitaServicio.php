@@ -9,6 +9,7 @@
 namespace Org_Saludables\Negocio\Logica\MSistema;
 
 
+use App\Org_Saludables\Negocio\DTO\MSistema\TipoCitaDTO;
 use Org_Saludables\Datos\Modelos\MSistema\TipoCita;
 use Org_Saludables\Datos\Repositorio\MSistema\TipoCitaRepositorio;
 
@@ -26,8 +27,13 @@ class TipoCitaServicio
 
     public  function  ObtenerListaTipoCitas($idEmpreesa)
     {
-        return $this->TipoCitaRepositorio->ObtenerListaTipoCitas($idEmpreesa);
-    
+        $arrayModelTipoServicio =  $this->TipoCitaRepositorio->ObtenerListaTipoCitas($idEmpreesa);
+        $arrayDTOTiposCitas = array();
+        foreach ($arrayModelTipoServicio as $modelTipoServicio){
+            $tipoCitaDTO = new TipoCitaDTO((array)$modelTipoServicio);
+            $arrayDTOColaboradores[]=$tipoCitaDTO;
+        }
+        return $arrayDTOTiposCitas;
     }
 
        public  function  ObtenerListaTipoCitasR($idRegional)

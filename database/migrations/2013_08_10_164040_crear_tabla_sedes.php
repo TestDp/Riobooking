@@ -19,15 +19,14 @@ class CrearTablaSedes extends Migration
             $table->string('Nombre',100)->unique();
             $table->boolean('activa')->default(1);
             $table->timestamps();
-
-             //$table->integer('Compania_id')->unsigned();
-             //$table->foreign('Compania_id')->references('id')->on('Tbl_Companias');
+            $table->integer('Compania_id')->unsigned();
+            $table->foreign('Compania_id')->references('id')->on('Tbl_Companias');
 
              
-             $table->integer('Regional_id')->unsigned();
-             $table->foreign('Regional_id')->references('id')->on('Tbl_Regionales');
+            // $table->integer('Regional_id')->unsigned();
+             //$table->foreign('Regional_id')->references('id')->on('Tbl_Regionales');
 
-            $table->unique(['Regional_id','id']);
+           // $table->unique(['Regional_id','id']);
 
 
         });

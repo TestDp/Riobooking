@@ -78,10 +78,7 @@ class TipoCitaController extends Controller
     }
 
     public  function ObtenerTiposCitasR($idRegional){
-      
         return response()->json($this->TipoCitaServicio->ObtenerListaTipoCitasR($idRegional));
-        
-        
     }
 }
 

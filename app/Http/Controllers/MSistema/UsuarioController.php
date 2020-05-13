@@ -75,7 +75,6 @@ class UsuarioController extends  Controller
         DB::beginTransaction();
         try 
         {
-
             $user = new User($request->all());
             $user->password = Hash::make($request->password);
             $user->Sede_id=$request['Sede_id'];

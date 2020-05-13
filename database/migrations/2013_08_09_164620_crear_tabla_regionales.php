@@ -13,7 +13,7 @@ class CrearTablaRegionales extends Migration
      */
     public function up()
     {
-        Schema::create('Tbl_Regionales', function (Blueprint $table) {
+        /*Schema::create('Tbl_Regionales', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Nombre',100);
             $table->boolean('Activa')->default(1);
@@ -28,7 +28,7 @@ class CrearTablaRegionales extends Migration
             $table->timestamps();
 
             $table->unique(['Compania_id','Nombre']);
-        });
+        });*/
     }
 
     /**

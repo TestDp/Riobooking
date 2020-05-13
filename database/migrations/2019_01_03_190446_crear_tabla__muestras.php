@@ -13,7 +13,7 @@ class CrearTablaMuestras extends Migration
      */
     public function up()
     {
-         Schema::create('Tbl_Muestras', function (Blueprint $table) {
+        /* Schema::create('Tbl_Muestras', function (Blueprint $table) {
             $table->increments('id');
             $table->date('Fecha');
             $table->string('last_name');
@@ -68,7 +68,7 @@ class CrearTablaMuestras extends Migration
 
 
 
-        });
+        });*/
     }
 
     /**

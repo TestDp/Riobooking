@@ -21,12 +21,15 @@ class CrearTablaTiposCitas extends Migration
            // $table->integer('Compania_id')->unsigned();
            // $table->foreign('Compania_id')->references('id')->on('Tbl_Companias');
 
-            $table->integer('Regional_id')->unsigned();
-            $table->foreign('Regional_id')->references('id')->on('Tbl_Regionales');
+           // $table->integer('Regional_id')->unsigned();
+            //$table->foreign('Regional_id')->references('id')->on('Tbl_Regionales');
+
+             $table->integer('Sede_id')->unsigned();
+             $table->foreign('Sede_id')->references('id')->on('Tbl_Sedes');
 
             $table->timestamps();
 
-            $table->unique(['Regional_id', 'Nombre']);
+          //  $table->unique(['Regional_id', 'Nombre']);
         });
     }
 

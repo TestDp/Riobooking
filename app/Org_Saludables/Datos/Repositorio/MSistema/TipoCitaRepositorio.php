@@ -38,7 +38,6 @@ class TipoCitaRepositorio
     public function ObtenerListaTipoCitas($idEmpreesa)
     {
         $tipoCitas = DB::table('Tbl_Regionales')
-           // ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
             ->join('Tbl_Companias', 'Tbl_Companias.id', '=', 'Tbl_Regionales.Compania_id')
             ->join('Tbl_Tipos_Citas', 'Tbl_Regionales.id', '=', 'Tbl_Tipos_Citas.Regional_id')
             ->select('Tbl_Tipos_Citas.*','Tbl_Regionales.Nombre as NombreRegional')

@@ -4,9 +4,8 @@
     <div id="breadcrumb">
         <div class="container">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">CategoríaDelNegocio</a></li>
-                <li>NombreDelNegocio</li>
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <li>{{$Compania->Nombre}}</li>
             </ul>
         </div>
     </div>
@@ -36,16 +35,7 @@
                 <div class="tabs_styled_2">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="book-tab" data-toggle="tab" href="#servicios" role="tab" aria-controls="servicios">Servicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews">Colaborador</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="book-tab" data-toggle="tab" href="#book" role="tab" aria-controls="book">Disponibilidad</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-expanded="true">Reservar cita</a>
+                            <a class="nav-link active" id="book-tab" data-toggle="tab" href="#servicios" role="tab" aria-controls="servicios">Diligencia la siguiente información para reservar tu cita</a>
                         </li>
                     </ul>
                     <!--/nav-tabs -->
@@ -59,24 +49,56 @@
                             <ul class="treatments clearfix">
                                 <li>
                                     <div class="checkbox">
-                                        <input type="checkbox" class="css-checkbox" id="visit1" name="visit1">
+                                        <input onclick="mostrarColaborador()" type="checkbox" class="css-checkbox" id="visit1" name="visit1">
                                         <label for="visit1" class="css-label">Corte <strong>$10 k</strong></label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="checkbox">
-                                        <input type="checkbox" class="css-checkbox" id="visit2" name="visit2">
+                                        <input onclick="mostrarColaborador()" type="checkbox" class="css-checkbox" id="visit2" name="visit2">
                                         <label for="visit2" class="css-label">Corte y Barba <strong>$15 k</strong></label>
                                     </div>
                                 </li>
                             </ul>
-                            <p class="text-center"><a href="" class="btn_1 medium">Siguiente</a></p>
-                        </div>
-                        <div class="tab-pane fade show" id="book" role="tabpanel" aria-labelledby="book-tab">
-                            <form>
+
+                            <div class="reviews-container">
                                 <div class="main_title_3">
-                                    <h3><strong>3</strong>Selecciona fecha y hora</h3>
+                                    <h3><strong>2</strong>Seleccionar colaborador</h3>
                                 </div>
+                                <div id="divColaborador" class="row" style="display: none;">
+                                    <div class="col-md-4">
+                                        <div class="box_list wow fadeIn">
+                                            <figure>
+                                                <a href=""><img src="http://via.placeholder.com/565x565.jpg" class="img-fluid" alt="">
+                                                </a>
+                                            </figure>
+                                            <div style="text-align:center;" class="wrapper">
+                                                <small>{{$Compania->Nombre}}</small>
+                                                <h3>NombreColaborador</h3>
+                                                <div class="pricing-switcher">
+                                                    <p class="fieldset">
+                                                        <input onclick="mostrarFecha()" type="radio" name="duration-2" value="monthly" id="monthly-2" checked>
+                                                        <label for="monthly-2"><i class="icon-cancel"></i></label>
+                                                        <input onclick="mostrarFecha()" type="radio" name="duration-2" value="yearly" id="yearly-2">
+                                                        <label for="yearly-2"><i class="icon-ok"></i></label>
+                                                        <span class="switch"></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /box_list -->
+
+                                </div>
+                                <!-- /row -->
+
+                            </div>
+
+                            <div class="main_title_3">
+                                <h3><strong>3</strong>Selecciona fecha y hora</h3>
+                            </div>
+                            <div id="divFecha" style="display: none;">
+                            <form>
                                 <div class="row add_bottom_45">
                                     <div class="col-lg-7">
                                         <div class="form-group">
@@ -142,18 +164,13 @@
                                     </div>
                                 </div>
                             </form>
-                            <hr>
-                            <p class="text-center"><a href="" class="btn_1 medium">Siguiente</a></p>
-                        </div>
-                        <!-- /tab_1 -->
-
-                        <div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
-
-                            <div class="box_general_3 booking">
+                                <button style="display: block; margin: auto; margin-bottom: 5%;" class="btn_1" onclick="mostrarReservar()">Siguiente</button>
+                            </div>
+                            <div class="reviews-container">
                                 <div class="main_title_3">
                                     <h3><strong>4</strong>Reservar cita</h3>
                                 </div>
-                                <div id="message-booking"></div>
+                                <div id="divReservar" style="display:none">
                                 <form method="post" action="" id="booking">
                                     <div class="row">
                                         <div class="col-md-6 ">
@@ -186,49 +203,11 @@
                                     <hr>
                                     <div style="position:relative;"><input type="submit" class="btn_1 full-width" value="Reservar Cita" id="submit-booking"></div>
                                 </form>
+                                </div>
                             </div>
-                            <!-- /box_general -->
 
                         </div>
-                        <!-- /tab_2 -->
 
-                        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                            <div class="reviews-container">
-                                <div class="main_title_3">
-                                    <h3><strong>2</strong>Seleccionar colaborador</h3>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="box_list wow fadeIn">
-                                            <figure>
-                                                <a href=""><img src="http://via.placeholder.com/565x565.jpg" class="img-fluid" alt="">
-                                                </a>
-                                            </figure>
-                                            <div style="text-align:center;" class="wrapper">
-                                                <small>NombreNegocio</small>
-                                                <h3>NombreColaborador</h3>
-                                                <div class="pricing-switcher">
-                                                    <p class="fieldset">
-                                                        <input type="radio" name="duration-2" value="monthly" id="monthly-2" checked>
-                                                        <label for="monthly-2"><i class="icon-cancel"></i></label>
-                                                        <input type="radio" name="duration-2" value="yearly" id="yearly-2">
-                                                        <label for="yearly-2"><i class="icon-ok"></i></label>
-                                                        <span class="switch"></span>
-                                                    </p>
-                                                </div>
-                                           </div>
-                                        </div>
-                                        <p class="text-center"><a href="" class="btn_1 medium">Siguiente</a></p>
-                                    </div>
-                                    <!-- /box_list -->
-
-                                </div>
-                                <!-- /row -->
-
-                            </div>
-                            <!-- End review-container -->
-                        </div>
-                        <!-- /tab_3 -->
                     </div>
                     <!-- /tab-content -->
                 </div>

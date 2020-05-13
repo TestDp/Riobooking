@@ -29,6 +29,36 @@
     <!-- Modernizr -->
     <script src="{{ asset('welcome/js/modernizr_tables.js') }}"></script>
 
+    <script>
+        function mostrarColaborador() {
+            var x = document.getElementById("divColaborador");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                window.scrollTo(0, 300);
+            } else {
+                x.style.display = "none";
+            }
+        }
+        function mostrarFecha() {
+            var x = document.getElementById("divFecha");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                window.scrollTo(0, 900);
+            } else {
+                x.style.display = "none";
+            }
+        }
+        function mostrarReservar() {
+            var x = document.getElementById("divReservar");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                window.scrollTo(0, 1400);
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+
 </head>
 
 <body>

@@ -99,7 +99,7 @@
                                 @endif
                                 @if(Auth::user()->buscarRecurso('TiposDeCitas'))
                                     <li>
-                                        <a href="#" onclick="ajaxRenderSectionListaTiposCitas()" >Tipos de Citas</a>
+                                        <a href="#" onclick="ajaxRenderSectionListaTiposCitas()" >Tipos de Servicio</a>
                                     </li>
                                 @endif
                                        @if(Auth::user()->buscarRecurso('ServiciosXColaborador'))

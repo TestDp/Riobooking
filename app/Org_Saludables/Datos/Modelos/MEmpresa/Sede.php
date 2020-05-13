@@ -21,18 +21,21 @@ use App\User;
 class Sede extends  Model
 {
     protected $table = 'Tbl_Sedes';
-    protected $fillable =['Nombre','activa','Regional_id'];
+    protected $fillable =['Nombre','activa','Compania_id'];
 
    // public function Compania()
     //{
         //return $this->belongsTo(Compania::class,'Compania_id');
     //}
 
-     public function Regional()
+  /*   public function Regional()
     {
         return $this->belongsTo(Regional::class,'Regional_id');
+    }*/
+    public function Compania()
+    {
+        return $this->belongsTo(Compania::class,'Compania_id');
     }
-
 
    // public function Gerencias(){
         //return $this->hasMany(Gerencia::class,'Sede_id','id');

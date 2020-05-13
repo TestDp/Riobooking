@@ -10,6 +10,7 @@ namespace App\Org_Saludables\Datos\Repositorio\MEmpresa;
 
 use Org_Saludables\Datos\Modelos\MEmpresa\Compania;
 use Illuminate\Support\Facades\DB;
+use Org_Saludables\Datos\Modelos\MEmpresa\Sede;
 
 
 class CompaniaRepositorio implements ICompaniaRepositorio
@@ -21,6 +22,11 @@ class CompaniaRepositorio implements ICompaniaRepositorio
         DB::beginTransaction();
         try {
             $compania->save();
+            $sede = new Sede();
+            $sede->Nombre="Sede Principal";
+            $sede->activa = 1;
+            $sede->Compania_id = $compania->id;
+            $sede->save();
             DB::commit();
             return true;
         } catch (\Exception $e) {

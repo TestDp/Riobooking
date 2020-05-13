@@ -34,7 +34,7 @@ class TipoCitaController extends Controller
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-         $idSede = Auth::user()->Sede_id;
+         $idSede = Auth::user()->Sede->Compania->id;
          $regionales = $this->sedeServicio->ObtenerListaSedes($idSede);
         $view = View::make('MSistema/TipoCita/crearTipoCita')->with('listRegionales',$regionales);
         if($request->ajax()){
@@ -69,7 +69,7 @@ class TipoCitaController extends Controller
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idSede = Auth::user()->Sede_id;
-        $tiposCitas = $this->TipoCitaServicio->ObtenerListaTipoCitas($idSede);
+        $tiposCitas = $this->TipoCitaServicio->ObtenerListaTipoCitasR($idSede);
         $view = View::make('MSistema/TipoCita/listaCitas')->with('listCitas',$tiposCitas);
         if($request->ajax()){
             $sections = $view->renderSections();

@@ -17,7 +17,7 @@ class JornadaValidaciones
         $mensajes = $this->mensajesFormularioCrear();
 
         return Validator::make($data, [
-            'Regional_id' => 'required|string|max:255',
+            'Sede_id' => 'required|string|max:255',
             'Colaborador_id' => 'required|max:255',
             'Duracion' => 'required',
             'Descanso' => 'required',
@@ -27,7 +27,7 @@ class JornadaValidaciones
 
     public  function  mensajesFormularioCrear(){
         return [
-            'Regional_id.required' => 'La regional es obligatoria',
+            'Sede_id.required' => 'La regional es obligatoria',
             'Colaborador_id.required' => 'El colaborador es obligatorio',
             'Duracion.required' => 'La duración de la cita es obligatoria',
             'Descanso.required' => 'El descanso es obligatorio',

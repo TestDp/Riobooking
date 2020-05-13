@@ -25,8 +25,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {return view('riobooking');});
 Route::get('/', 'InicioController@cargarVistaNegocios');
 
-
+//CONTROLADOR INICIO
 Route::get('perfilNegocio/{idCompania}', 'InicioController@cargarVistaPerfilNegocio');
+Route::get('cargarSedesEmpresa/{idCompania}','InicioController@cargarSedesEmpresa')->name('cargarSedesEmpresa');
 
 
 //CONTROLADOR TIPOCITAS

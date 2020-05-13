@@ -38,14 +38,14 @@ class SedeRepositorio implements ISedeRepositorio
 
          public function ObtenerListaSedes($idEmpreesa)
     {
-        $regionales = DB::table('Tbl_Regionales')
+        $regionales = DB::table('Tbl_Sedes')
            // ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
-            ->join('Tbl_Companias', 'Tbl_Companias.id', '=', 'Tbl_Regionales.Compania_id')
-            ->select('Tbl_Regionales.*','Tbl_Companias.Nombre as NombreCompania')
+            ->join('Tbl_Companias', 'Tbl_Companias.id', '=', 'Tbl_Sedes.Compania_id')
+            ->select('Tbl_Sedes.*','Tbl_Companias.Nombre as NombreCompania')
              ->where('Tbl_Companias.id', '=', $idEmpreesa)
 
             ->get();
         return $regionales;
     }
-   // 'Tbl_Regionales.Nombre as NombreRegional'
+
 }

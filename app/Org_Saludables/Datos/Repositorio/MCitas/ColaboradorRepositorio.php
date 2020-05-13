@@ -31,11 +31,11 @@ class ColaboradorRepositorio implements  IColaboradorRepositorio
 
     public function ObtenerListaColaboradores($idEmpresa)
     {
-        $colaboradores = DB::table('Tbl_Colaborador')
-             ->join('users', 'users.id', '=', 'Tbl_Colaborador.user_id')
-            ->join('Tbl_Companias', 'Tbl_Companias.id', '=', 'users.Compania_id')
+        $colaboradores = DB::table('users')
+             ->join('Tbl_Colaborador', 'users.id', '=', 'Tbl_Colaborador.user_id')
+            ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
             ->select('Tbl_Colaborador.*')
-            ->where('Tbl_Companias.id', '=', $idEmpresa)
+            ->where('Tbl_Sedes.Compania_id', '=', $idEmpresa)
             ->get();
         return $colaboradores;
     }

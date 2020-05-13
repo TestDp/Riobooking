@@ -56,6 +56,7 @@ class CompaniaController extends Controller
             $compania->LogoNegocio = $nombreLogo;
             $respuesta = $this->companiaServicio->GuardarCompania($compania);
             if($respuesta == true){
+
                 if($request->hasFile('fileLogoNegocio')){
                     $file = $request->file('fileLogoNegocio');
                     $nombre = $nombreLogo;

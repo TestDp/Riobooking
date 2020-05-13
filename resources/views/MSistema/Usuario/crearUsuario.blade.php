@@ -56,7 +56,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                    <label>Negocio</label>
-                                <select id="Sede_id" name="Sede_id"  class="form-control"  name="language">
+                                <select id="Compania_id" name="Compania_id"  class="form-control"  name="language" onchange="cargarSedesEmpresa()">
                                     <option value="">Seleccionar</option>
                                     @foreach($listCompanias as $compania)
                                         <option value="{{ $compania->id }}">{{ $compania->Nombre }}</option>
@@ -65,7 +65,16 @@
                                 <span class="invalid-feedback" role="alert" id="errorSede_id"></span>
                             </div>
                             <div class="col-md-6">
-                                   <label>Roles</label>
+                                   <label>Sede</label>
+                                <select id="Sede_id" name="Sede_id"  class="form-control" multiple name="language">
+
+                                </select>
+                                <span class="invalid-feedback" role="alert" id="errorRoles_id"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Roles</label>
                                 <select id="Roles_id" name="Roles_id[]"  class="form-control" multiple name="language">
                                     <option value="">Seleccionar</option>
                                     @foreach($listRoles as $rol)
@@ -75,7 +84,6 @@
                                 <span class="invalid-feedback" role="alert" id="errorRoles_id"></span>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-4">
                                 <button onclick="GuardarUsuario()" type="button" class="btn btn-success">Crear Colaborador</button>
@@ -94,6 +102,7 @@
     <script src="{{ asset('js/Plugins/fastselect-master/dist/fastsearch.js') }}"></script>
     <script src="{{ asset('js/Plugins/fastselect-master/dist/fastselect.js') }}"></script>
 
+
     <script type="text/javascript">
         // Material Select Initialization
         $(document).ready(function() {
@@ -102,6 +111,10 @@
                 searchPlaceholder: 'Buscar opciones'
             });
             $('#Roles_id').fastselect({
+                placeholder: 'Seleccione los roles',
+                searchPlaceholder: 'Buscar opciones'
+            });
+            $('#Compania_id').fastselect({
                 placeholder: 'Seleccione los roles',
                 searchPlaceholder: 'Buscar opciones'
             });

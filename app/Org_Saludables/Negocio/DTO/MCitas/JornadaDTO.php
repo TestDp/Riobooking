@@ -23,5 +23,5 @@ class JornadaDTO extends BaseDTO
     public $Duracion;
     public $Cupos;
     public $Tipo_Cita_id;
-    public $Regional_id;
+    public $Sede_id;
 }

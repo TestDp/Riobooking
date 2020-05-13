@@ -99,3 +99,25 @@ function ajaxRenderSectionListaSedes() {
         }
     });
 }
+
+
+function cargarSedesEmpresa() {
+    var idCompania =$("#Compania_id").val();
+    var $Sede =$("#Sede_id");
+    PopupPosition();
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'cargarSedesEmpresa/'+ idCompania,
+        dataType: 'json',
+        success: function (result) {
+            OcultarPopupposition();
+            if (result) {
+                $Sede.find("option").remove();//Removemos las opciónes anteriores
+                $Sede.append(new Option("Seleccionar", ""));// agregamos la opción de seleccionar
+                $.each(result, function (ind, element) {
+                    $Sede.append(new Option(element.Nombre, element.id));//agregamos las opciónes consultadas
+                });
+            }
+        }
+    });
+}

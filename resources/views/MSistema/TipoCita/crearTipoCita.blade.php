@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="panel panel-success">
-                    <div class="panel-heading"><h3>Crear Tipo de Cita</h3></div>
+                    <div class="panel-heading"><h3>Crear Tipo de servicio</h3></div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -17,7 +17,7 @@
                             
                                 <div class="col-md-6">
                                     <label> Regional </label>
-                                    <select id="Regional_id" name="Regional_id"  class="form-control"  name="language">
+                                    <select id="Sede_id" name="Sede_id"  class="form-control"  name="language">
                                         <option value="">Seleccionar</option>
                                        @foreach($listRegionales as $regional)
                                             <option value="{{$regional->id}}">{{$regional->Nombre}}</option>

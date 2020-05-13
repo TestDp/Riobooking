@@ -52,15 +52,11 @@ class JornadaRepositorio implements IJornadaRepositorio
 
      public  function  ObtenerListaJornadas($idEmpreesa)
      {    
-          $jornadas = DB::table('Tbl_Regionales')
-           // ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
-            ->join('Tbl_Companias', 'Tbl_Companias.id', '=', 'Tbl_Regionales.Compania_id')
-            ->join('Tbl_Jornadas', 'Tbl_Regionales.id', '=', 'Tbl_Jornadas.Regional_id')
-         //   ->join('Tbl_Tipos_Citas', 'Tbl_Tipos_Citas.id', '=', 'Tbl_Jornadas.Tipo_Cita_id')
-          //  ->select('Tbl_Jornadas.*','Tbl_Regionales.Nombre as NombreRegional','Tbl_Tipos_Citas.Nombre as NombreCita')
-             ->select('Tbl_Jornadas.*','Tbl_Regionales.Nombre as NombreRegional')
+          $jornadas = DB::table('Tbl_Sedes')
+            ->join('Tbl_Companias', 'Tbl_Companias.id', '=', 'Tbl_Sedes.Compania_id')
+            ->join('Tbl_Jornadas', 'Tbl_Sedes.id', '=', 'Tbl_Jornadas.Sede_id')
+             ->select('Tbl_Jornadas.*','Tbl_Sedes.Nombre as NombreSede')
             ->where('Tbl_Companias.id', '=', $idEmpreesa)
-             //->where ('Tbl_Tipos_Citas.activa','=', 1)
             ->get();
         return  $jornadas;
        

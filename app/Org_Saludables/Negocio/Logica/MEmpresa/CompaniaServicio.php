@@ -21,7 +21,6 @@ class CompaniaServicio implements ICompaniaServicio
     public function __construct(ICompaniaRepositorio $iCompaniaRepositorio)
     {
         $this->iCompaniaRepositorio = $iCompaniaRepositorio;
-
     }
 
     

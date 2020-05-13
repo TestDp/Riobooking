@@ -12,7 +12,7 @@
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Regional</th>
+                            <th scope="col">Sede</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -20,7 +20,7 @@
                             <tr>
                                 <th scope="row">{{$tipo->id}}</th>
                                 <td>{{$tipo->Nombre}}</td>
-                                <td>{{$tipo->NombreRegional}}</td>
+                                <td>{{$tipo->NombreSede}}</td>
                             </tr>
                         @endforeach
                         </tbody>

@@ -12,7 +12,7 @@
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Fecha</th>
-                            <th scope="col">Regional</th>
+                            <th scope="col">Sede</th>
                             <th scope="col">Cupos por Cita</th>
                             <th scope="col">Lugar</th>
                             <th scope="col">   </th>
@@ -24,7 +24,7 @@
                             <tr>
                                 <th scope="row">{{$Jornada->id}}</th>
                                 <td >{{$Jornada->Fecha}}</td>
-                                <td>{{$Jornada->NombreRegional}}</td>
+                                <td>{{$Jornada->NombreSede}}</td>
                                 <td>{{$Jornada->Cupos}}</td>
                                 <td>{{$Jornada->Lugar}}</td>
                                  <td> <button onclick="VerJornada({{$Jornada->id}})" type="button" class="btn btn-success">Detalle Jornada</button></td>

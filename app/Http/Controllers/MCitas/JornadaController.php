@@ -50,7 +50,7 @@ class JornadaController extends Controller
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-         $idEmpreesa = Auth::user()->Compania_id;
+         $idEmpreesa = Auth::user()->Sede->Compania->id;
          $regionales = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
          $colaboradores = $this->colaboradorServicio->ObtenerListaColaboradores($idEmpreesa);
          $view = View::make('Citas/crearJornada')->with('listRegionales',$regionales)
@@ -68,7 +68,7 @@ class JornadaController extends Controller
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $this->jornadaValidaciones->ValidarFormularioCrear($request->all())->validate();
         if($request->ajax()){
-            $idEmpreesa = Auth::user()->Compania_id;
+            $idEmpreesa =  Auth::user()->Sede->Compania->id;
             $jornada = new JornadaDTO($request->all());
             $repuesta = $this->jornadaServicio->GuardarJornada($jornada, $request);
             if($repuesta == true){
@@ -87,7 +87,7 @@ class JornadaController extends Controller
     public  function ObtenerJornadas(Request $request){
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idEmpreesa = Auth::user()->Compania_id;
+        $idEmpreesa = Auth::user()->Sede->Compania->id;
         $jornadas = $this->jornadaServicio->ObtenerListaJornadas($idEmpreesa);
         $view = View::make('Citas/listaJornadas')->with('listJornadas',$jornadas);
         if($request->ajax()){

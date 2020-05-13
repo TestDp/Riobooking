@@ -19,7 +19,7 @@ class TipoCitaValidaciones
         return Validator::make($data, [
             //'Nombre' => 'required|string|max:255',
             'Nombre' => 'required|max:255', 
-            'Regional_id' =>'required|string|max:255'
+            'Sede_id' =>'required|string|max:255'
         ],$mensajes);
     }
 

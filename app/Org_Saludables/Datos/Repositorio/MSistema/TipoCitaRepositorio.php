@@ -37,20 +37,24 @@ class TipoCitaRepositorio
 
     public function ObtenerListaTipoCitas($idEmpreesa)
     {
-        $tipoCitas = DB::table('Tbl_Regionales')
-            ->join('Tbl_Companias', 'Tbl_Companias.id', '=', 'Tbl_Regionales.Compania_id')
-            ->join('Tbl_Tipos_Citas', 'Tbl_Regionales.id', '=', 'Tbl_Tipos_Citas.Regional_id')
-            ->select('Tbl_Tipos_Citas.*','Tbl_Regionales.Nombre as NombreRegional')
+        $tipoCitas = DB::table('Tbl_Sedes')
+            ->join('Tbl_Companias', 'Tbl_Companias.id', '=', 'Tbl_Sedes.Compania_id')
+            ->join('Tbl_Tipos_Citas', 'Tbl_Sedes.id', '=', 'Tbl_Tipos_Citas.Sede_id')
+            ->select('Tbl_Tipos_Citas.*','Tbl_Sedes.Nombre as NombreRegional')
              ->where ('Tbl_Tipos_Citas.activa','=', 1)
             ->where('Tbl_Companias.id', '=', $idEmpreesa)
-
             ->get();
         return $tipoCitas;
     }
 
     public function ObtenerListaTipoCitasR($idRegional)
     {
-        $tipoCitas = TipoCita::where('Regional_id', '=', $idRegional)->get();
+        $tipoCitas = DB::table('Tbl_Sedes')
+            ->join('Tbl_Tipos_Citas', 'Tbl_Sedes.id', '=', 'Tbl_Tipos_Citas.Sede_id')
+            ->select('Tbl_Tipos_Citas.*','Tbl_Sedes.Nombre as NombreSede')
+            ->where ('Tbl_Tipos_Citas.activa','=', 1)
+            ->where('Tbl_Tipos_Citas.Sede_id', '=', $idRegional)
+            ->get();
         return $tipoCitas;
     }
 

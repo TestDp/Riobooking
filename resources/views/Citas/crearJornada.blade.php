@@ -22,8 +22,8 @@
                                 <span class="invalid-feedback" role="alert" id="errorFecha"></span>
                             </div>
                             <div class="col-md-4">
-                                <label>Regional</label>
-                                <select id="Regional_id" name="Regional_id"  class="form-control"  name="language" onchange="CargarTiposCitasPorRegional()">
+                                <label>Sede</label>
+                                <select id="Sede_id" name="Sede_id"  class="form-control"  name="language" onchange="CargarTiposCitasPorRegional()">
                                     <option value="">Seleccionar</option>
                                     @foreach($listRegionales as $regional)
                                         <option value="{{$regional->id}}">{{$regional->Nombre}}</option>

@@ -63,9 +63,14 @@
                                 @endif
                                 @if(Auth::user()->buscarRecurso('Usuarios'))
                                     <li>
-                                        <a href="#" onclick="ajaxRenderSectionListaUsuarios()">Colaboradores</a>
+                                        <a href="#" onclick="ajaxRenderSectionListaUsuarios()">Usuarios</a>
                                     </li>
                                 @endif
+                                    @if(Auth::user()->buscarRecurso('Colaboradores'))
+                                        <li>
+                                            <a href="#" onclick="ajaxRenderSectionListaColaboradores()">Colaboradores</a>
+                                        </li>
+                                    @endif
                                 @if(Auth::user()->buscarRecurso('Roles'))
                                     <li>
                                         <a href="#" onclick="ajaxRenderSectionListaRoles()">Roles</a>
@@ -97,6 +102,12 @@
                                         <a href="#" onclick="ajaxRenderSectionListaTiposCitas()" >Tipos de Citas</a>
                                     </li>
                                 @endif
+                                       @if(Auth::user()->buscarRecurso('ServiciosXColaborador'))
+                                           <li>
+                                               <a href="#" onclick="ajaxRenderSectionServiciosColaborador()" >Asignacion Servicios</a>
+                                           </li>
+                                       @endif
+
                             </ul>
                         </li> 
                 @endif

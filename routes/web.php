@@ -111,4 +111,10 @@ Route::get('oauth', ['as' => 'oauthCallback', 'uses' => 'gCalendarController@oau
 Route::get('agenda', 'MCitas\AgendaController@ObtenerAgenda')->name('agenda');
 
 //CONTROLADOR COLABORADOR
-Route::get('crearServiciosColaborador', 'MSistema\UsuarioController@CrearServiciosPorColaboradores')->name('crearServiciosColaborador');//cargar la vista para crear un usuario
+Route::get('crearColaborador', 'MSistema\ColaboradorController@CrearColaboradorEmpresa')->name('crearColaborador');//cargar la vista para crear un usuario
+Route::post('guardarColaborador', 'MSistema\ColaboradorController@GuardarColaboradorEmpresa')->name('guardarColaborador');//Guardar la informacion del usuario
+Route::get('colaboradores', 'MSistema\ColaboradorController@ObtenerColaboradores')->name('colaboradores');//Obtiene la lista de usuarios
+Route::get('ServiciosColaborador', 'MSistema\ColaboradorController@CrearServiciosPorColaboradores')->name('ServiciosColaborador');//cargar la vista para crear una nueva asignacion
+Route::get('crearServiciosColaborador', 'MSistema\ColaboradorController@ObtenerServiciosPorColaboradores')->name('crearServiciosColaborador');//Obtiene la lista de asignacion de servicios x Colaborador
+Route::post('guardarServiciosColaborador', 'MSistema\ColaboradorController@GuardarServiciosPorColaboradores')->name('guardarServiciosColaborador');//Guardar la informacion del usuario
+

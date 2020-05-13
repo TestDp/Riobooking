@@ -133,4 +133,27 @@ function DesactivarCampo()
     $("#divCupo").attr("hidden", "hidden");
 }
 
-     
+//Funcion para mostrar la lista de proveedores
+function ajaxRenderSectionServiciosColaborador() {
+    PopupPosition();
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'ServiciosColaborador',
+        dataType: 'json',
+        success: function (data) {
+            OcultarPopupposition();
+            $('#principalPanel').empty().append($(data));
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+
+
+}

@@ -11,7 +11,7 @@
                 <h3>{{$colaborador->Nombre}}</h3>
                 <div class="pricing-switcher">
                     <p class="fieldset">
-                        <input onclick="mostrarFecha()" type="radio" name="duration-2" value="monthly" id="monthly-2" checked>
+                        <input onchange="renderSectionDisponibilidadColaborador()" type="radio" name="duration-2" value="monthly" id="monthly-2" checked>
                         <label for="monthly-2"><i class="icon-cancel"></i></label>
                         <input onclick="mostrarFecha()" type="radio" name="duration-2" value="yearly" id="yearly-2">
                         <label for="yearly-2"><i class="icon-ok"></i></label>

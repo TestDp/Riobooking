@@ -35,3 +35,7 @@ function renderSectionCargarVPColaboradores(idTipoCIta) {
         }
     });
 }
+
+function renderSectionDisponibilidadColaborador() {
+    
+}

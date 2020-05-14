@@ -28,6 +28,7 @@ Route::get('/', 'InicioController@cargarVistaNegocios');
 //CONTROLADOR INICIO
 Route::get('perfilNegocio/{idCompania}', 'InicioController@cargarVistaPerfilNegocio');
 Route::get('cargarSedesEmpresa/{idCompania}','InicioController@cargarSedesEmpresa')->name('cargarSedesEmpresa');
+Route::get('cargarVPColaboradores/{idTipoCita}','InicioController@CargarVPListaColaboradores')->name('cargarVPColaboradores');
 
 
 //CONTROLADOR TIPOCITAS

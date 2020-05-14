@@ -31,7 +31,7 @@ class TipoCitaServicio
         $arrayDTOTiposCitas = array();
         foreach ($arrayModelTipoServicio as $modelTipoServicio){
             $tipoCitaDTO = new TipoCitaDTO((array)$modelTipoServicio);
-            $arrayDTOColaboradores[]=$tipoCitaDTO;
+            $arrayDTOTiposCitas[]=$tipoCitaDTO;
         }
         return $arrayDTOTiposCitas;
     }

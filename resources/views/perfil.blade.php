@@ -47,18 +47,14 @@
                                 <h3><strong>1</strong>Selecciona el tipo de servicio</h3>
                             </div>
                             <ul class="treatments clearfix">
+                                @foreach($tiposCitas as $tipoCita)
                                 <li>
                                     <div class="checkbox">
-                                        <input onclick="mostrarColaborador()" type="checkbox" class="css-checkbox" id="visit1" name="visit1">
-                                        <label for="visit1" class="css-label">Corte <strong>$10 k</strong></label>
+                                        <input onclick="renderSectionCargarVPColaboradores({{$tipoCita->id}})" type="checkbox" class="css-checkbox" id="visit1" name="visit1">
+                                        <label for="visit1" class="css-label">{{$tipoCita->Nombre}} <strong>$10 k</strong></label>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="checkbox">
-                                        <input onclick="mostrarColaborador()" type="checkbox" class="css-checkbox" id="visit2" name="visit2">
-                                        <label for="visit2" class="css-label">Corte y Barba <strong>$15 k</strong></label>
-                                    </div>
-                                </li>
+                                @endforeach
                             </ul>
 
                             <div class="reviews-container">
@@ -66,28 +62,8 @@
                                     <h3><strong>2</strong>Seleccionar colaborador</h3>
                                 </div>
                                 <div id="divColaborador" class="row" style="display: none;">
-                                    <div class="col-md-4">
-                                        <div class="box_list wow fadeIn">
-                                            <figure>
-                                                <a href=""><img src="http://via.placeholder.com/565x565.jpg" class="img-fluid" alt="">
-                                                </a>
-                                            </figure>
-                                            <div style="text-align:center;" class="wrapper">
-                                                <small>{{$Compania->Nombre}}</small>
-                                                <h3>NombreColaborador</h3>
-                                                <div class="pricing-switcher">
-                                                    <p class="fieldset">
-                                                        <input onclick="mostrarFecha()" type="radio" name="duration-2" value="monthly" id="monthly-2" checked>
-                                                        <label for="monthly-2"><i class="icon-cancel"></i></label>
-                                                        <input onclick="mostrarFecha()" type="radio" name="duration-2" value="yearly" id="yearly-2">
-                                                        <label for="yearly-2"><i class="icon-ok"></i></label>
-                                                        <span class="switch"></span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /box_list -->
+
+
 
                                 </div>
                                 <!-- /row -->
@@ -218,4 +194,5 @@
         <!-- /row -->
     </div>
     <!-- /container -->
+
 @endsection

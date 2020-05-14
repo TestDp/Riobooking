@@ -21,4 +21,5 @@ class ColaboradorDTO extends BaseDTO
     public $Calificacion;
     public $Activo;
     public $telefono;
+    public $rutaImagen;
 }

@@ -203,6 +203,7 @@
 <script src="{{ asset('welcome/js/functions.js') }}"></script>
 <script src="{{ asset('js/MEmpresa/Compania.js') }}"></script>
 <script src="{{ asset('js/Transversal/generales.js') }}"></script>
+<script src="{{ asset('js/InicioRioBooking.js') }}"></script>
 <!-- SPECIFIC SCRIPTS -->
 <script src="{{ asset('welcome/js/bootstrap-datepicker.js') }}"></script>
 <!-- SPECIFIC SCRIPTS -->

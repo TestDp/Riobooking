@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Org_Saludables\Negocio\Logica\MCitas\ColaboradorServicio;
 use App\Org_Saludables\Negocio\Logica\MEmpresa\ICompaniaServicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -14,11 +15,14 @@ class InicioController extends Controller
     protected  $companiaServicio;
     protected  $tipoCitaServicio;
     protected  $sedeServicio;
+    protected  $colaboradorServicio;
 
-    public function __construct(ICompaniaServicio $companiaServicio,TipoCitaServicio $tipoCitaServicio,SedeServicio $sedeServicio){
+    public function __construct(ICompaniaServicio $companiaServicio,TipoCitaServicio $tipoCitaServicio,
+                                SedeServicio $sedeServicio,ColaboradorServicio $colaboradorServicio){
         $this->companiaServicio =  $companiaServicio;
         $this->tipoCitaServicio =  $tipoCitaServicio;
         $this->sedeServicio = $sedeServicio;
+        $this->colaboradorServicio = $colaboradorServicio;
     }
 
     public function cargarVistaNegocios(Request $request)
@@ -54,5 +58,16 @@ class InicioController extends Controller
     {
       $sedes = $this->sedeServicio->ObtenerListaSedes($idCompania);
       return Response::json($sedes);
+    }
+
+    //Metodo para cargar  la vista para seleccionar un colaborador cuando se va a realizar una reserva
+    public function CargarVPListaColaboradores(Request $request, $idTipoCita)
+    {
+        $colaboradoresDTO = $this->colaboradorServicio->ObtenerListaColaboradoresPorServicio($idTipoCita);
+        $view = View::make('MSistema/Colaborador/listaColaboradoresVP')->with('Colaboradores',$colaboradoresDTO);
+        if($request->ajax()){
+            $sections = $view->renderSections();
+            return Response::json($sections['content']);
+        }else return view('MSistema/Colaborador/listaColaboradoresVP');
     }
 }

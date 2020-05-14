@@ -38,7 +38,16 @@ class ColaboradorServicio
         }
         return $arrayDTOColaboradores;
     }
-
+    public function ObtenerListaColaboradoresPorServicio($idTipoServicio){
+        $arrayModelColaboradores= $this->iColaboradorRepositorio->ObtenerListaColaboradoresPorServicio($idTipoServicio);
+        $arrayDTOColaboradores = array();
+        foreach ($arrayModelColaboradores as $modelColaborador){
+            $colaboradorDTO = new ColaboradorDTO((array)$modelColaborador);
+            $colaboradorDTO->rutaImagen= env('RutaImgColaboradorPerfil');
+            $arrayDTOColaboradores[]=$colaboradorDTO;
+        }
+        return $arrayDTOColaboradores;
+    }
     public function GuardarServiciosPorColaboradores($idColaborador, $idServicio)
     {
         return $this->iColaboradorRepositorio->GuardarServiciosPorColaboradores($idColaborador, $idServicio);

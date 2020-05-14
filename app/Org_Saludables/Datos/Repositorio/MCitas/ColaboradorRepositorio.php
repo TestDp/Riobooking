@@ -40,6 +40,15 @@ class ColaboradorRepositorio implements  IColaboradorRepositorio
         return $colaboradores;
     }
 
+    public function ObtenerListaColaboradoresPorServicio($idTipoServicio)
+    {
+        $colaboradores = DB::table('tbl_tiposervicio_por_colaborador')
+            ->join('Tbl_Colaborador', 'tbl_tiposervicio_por_colaborador.Colaborador_id', '=', 'Tbl_Colaborador.id')
+            ->select('Tbl_Colaborador.*')
+            ->where('tbl_tiposervicio_por_colaborador.TipoCita_id', '=', $idTipoServicio)
+            ->get();
+        return $colaboradores;
+    }
     public function GuardarServiciosPorColaboradores($idColaborador, $idServicio)
     {
 

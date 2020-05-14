@@ -3,10 +3,10 @@ var urlBase = "";
 function obtenerUlrBase() {
     var rootFolder = "";
     switch (document.location.hostname) {
-        case 'org_saludables.co':
+        case 'Riobooking.co':
             rootFolder = '/'; break;
         case 'localhost':
-            rootFolder = '/org_saludables/trunk/public/'; break;
+            rootFolder = '/Riobooking/trunk/public/'; break;
         default:  // set whatever you want
     }
     urlBase = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + rootFolder;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Org_Saludables\Negocio\Logica\MCitas\AgendaServicio;
 use App\Org_Saludables\Negocio\Logica\MCitas\ColaboradorServicio;
 use App\Org_Saludables\Negocio\Logica\MEmpresa\ICompaniaServicio;
 use Illuminate\Http\Request;
@@ -16,13 +17,15 @@ class InicioController extends Controller
     protected  $tipoCitaServicio;
     protected  $sedeServicio;
     protected  $colaboradorServicio;
+    protected  $agendaServicio;
 
     public function __construct(ICompaniaServicio $companiaServicio,TipoCitaServicio $tipoCitaServicio,
-                                SedeServicio $sedeServicio,ColaboradorServicio $colaboradorServicio){
+                                SedeServicio $sedeServicio,ColaboradorServicio $colaboradorServicio,AgendaServicio $agendaServicio){
         $this->companiaServicio =  $companiaServicio;
         $this->tipoCitaServicio =  $tipoCitaServicio;
         $this->sedeServicio = $sedeServicio;
         $this->colaboradorServicio = $colaboradorServicio;
+        $this->agendaServicio = $agendaServicio;
     }
 
     public function cargarVistaNegocios(Request $request)
@@ -69,5 +72,17 @@ class InicioController extends Controller
             $sections = $view->renderSections();
             return Response::json($sections['content']);
         }else return view('MSistema/Colaborador/listaColaboradoresVP');
+    }
+
+    public function CargarVPDisponibilidadColaborador(Request $request,$idColaborador){
+        $disponibilidadDTO = $this->agendaServicio->obtenerDisponibilidadColaborador($idColaborador);
+        $noDisponibilidadDTO = $this->agendaServicio->obtenerFechasNoDisponibles($idColaborador);
+        $view = View::make('MSistema/Colaborador/disponibilidadColaboradorVP');
+
+        if($request->ajax()){
+            $sections = $view->renderSections();
+            return Response::json(['vista'=>$sections['content'],'disponibilidadDTO'=>$disponibilidadDTO,
+                'noDisponibilidadDTO'=>$noDisponibilidadDTO]);
+        }else return view('MSistema/Colaborador/disponibilidadColaboradorVP');
     }
 }

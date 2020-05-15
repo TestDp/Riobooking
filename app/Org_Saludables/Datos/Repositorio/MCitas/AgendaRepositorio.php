@@ -24,4 +24,20 @@ class AgendaRepositorio
             ->get();
         return  $reservas;
     }
+
+    public function obtenerDisponibilidadColaborador($idColaborador)
+    {
+        $reservas = DB::table('Tbl_Colaborador')
+            ->join('Tbl_Turno_Por_Colaborador','Tbl_Turno_Por_Colaborador.Colaborador_id','=','Tbl_Colaborador.id')
+            ->join('Tbl_Citas', 'Tbl_Citas.id', '=', 'Tbl_Turno_Por_Colaborador.Cita_id')
+            ->select('Tbl_Citas.*','Tbl_Colaborador.Nickname as Nickname')
+            ->where('Tbl_Colaborador.user_id', '=', $idColaborador)
+            ->get();
+        return  $reservas;
+    }
+
+    public function obtenerFechasNoDisponibles($idColaborador)
+    {
+        return array("2020/05/15", "2020/05/16");
+    }
 }

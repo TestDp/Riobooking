@@ -208,15 +208,7 @@
 <script src="{{ asset('welcome/js/bootstrap-datepicker.js') }}"></script>
 <!-- SPECIFIC SCRIPTS -->
 <script src="{{ asset('welcome/js/tables_func.js') }}"></script>
-<script>
-    $('#calendar').datepicker({
-        todayHighlight: true,
-        daysOfWeekDisabled: [0],
-        weekStart: 1,
-        format: "yyyy-mm-dd",
-        datesDisabled: ["2017/10/20", "2017/11/21", "2017/12/21", "2018/01/21", "2018/02/21", "2018/03/21"],
-    });
-</script>
+
 
 </body>
 

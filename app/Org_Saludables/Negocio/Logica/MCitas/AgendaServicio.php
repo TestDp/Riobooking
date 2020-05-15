@@ -30,8 +30,26 @@ class AgendaServicio
             $reservaDTO->start = $modelReservas->Fecha.' '. $modelReservas->Inicio;
             $reservaDTO->end = $modelReservas->Fecha.' '. $modelReservas->Fin;
             $arrayDTOreservas[]=$reservaDTO;
-            //$startDateTime = $fecha."T".$inicio."-05:00";  "2020-05-02 14:00:00"
         }
         return $arrayDTOreservas;
+    }
+
+    public function obtenerDisponibilidadColaborador($idColaborador){
+        $arrayDisponibilidadModel = $this->agendaRepositorio->obtenerDisponibilidadColaborador($idColaborador);
+        $arrayDTOdisponibilidad = array();
+        foreach ($arrayDisponibilidadModel as $modelReservas){
+            $reservaDTO = new ReservaDTO();
+            $reservaDTO->title = "Reserva de ".$modelReservas->Nickname;
+            $reservaDTO->start = $modelReservas->Fecha.' '. $modelReservas->Inicio;
+            $reservaDTO->end = $modelReservas->Fecha.' '. $modelReservas->Fin;
+            $arrayDTOdisponibilidad[]=$reservaDTO;
+        }
+        return $arrayDTOdisponibilidad;
+    }
+
+    public function obtenerFechasNoDisponibles($idColaborador)
+    {
+        $arrayFechasNoDiposniblesModel = $this->agendaRepositorio->obtenerFechasNoDisponibles($idColaborador);
+        return $arrayFechasNoDiposniblesModel;
     }
 }

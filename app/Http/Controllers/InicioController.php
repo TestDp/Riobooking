@@ -85,4 +85,14 @@ class InicioController extends Controller
                 'noDisponibilidadDTO'=>$noDisponibilidadDTO]);
         }else return view('MSistema/Colaborador/disponibilidadColaboradorVP');
     }
+
+    public function CargarVPTurnosDisponibles(Request $request,$fechaConsulta){
+        $view = View::make('MSistema/Colaborador/turnosDisponiblesVP');
+        if($request->ajax()){
+            $sections = $view->renderSections();
+            return Response::json($sections['content']);
+        }else return view('MSistema/Colaborador/turnosDisponiblesVP');
+    }
+
+
 }

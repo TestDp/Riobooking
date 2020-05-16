@@ -67,7 +67,6 @@ function renderSectionDisponibilidadColaborador(idColaborador) {
 }
 
 function renderCalendario(arrayFechasNoDisponibles){
-
     $('#calendar').datepicker({
         todayHighlight: true,
         daysOfWeekDisabled: [0],
@@ -76,7 +75,31 @@ function renderCalendario(arrayFechasNoDisponibles){
         datesDisabled: arrayFechasNoDisponibles,
         language:"es"
     }).on('changeDate', function(e) {
-       alert($(this).datepicker('getDate'));
+        var fecha = new Date($(this).datepicker('getDate'));
+        var fechafinal =fecha.getFullYear()+'/'+ fecha.getMonth()+'/'+ fecha.getDay();
+        renderSectionTurnosDisponibles(fechafinal);
+    });
+}
+
+function renderSectionTurnosDisponibles(fechaConsulta) {
+    PopupPosition();
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'cargarVPTurnosDisponibles/'+fechaConsulta,
+        dataType: 'json',
+        success: function (data) {
+            OcultarPopupposition();
+            $('#turnosDisponibles').empty().append($(data));
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
     });
 }
 

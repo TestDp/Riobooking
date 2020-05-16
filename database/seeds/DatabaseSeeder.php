@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
          /* Invocar metodo iterativo de llamada a Seeders en el orden adecuado*/
          $this->CallSeeders([
             CompaniasSeeder::class,
-            // RegionalSeeder::class,SedeSeeder::class,
+            SedesSeeder::class,
             RecursosSistemasSeeder::class,
             RolesSeeder::class,
             UsersSeeder::class,

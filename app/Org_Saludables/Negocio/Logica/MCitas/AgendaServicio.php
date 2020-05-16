@@ -52,4 +52,11 @@ class AgendaServicio
         $arrayFechasNoDiposniblesModel = $this->agendaRepositorio->obtenerFechasNoDisponibles($idColaborador);
         return $arrayFechasNoDiposniblesModel;
     }
+
+    public function obtenerTunosDisponibleDia($idColaborador, $fecha)
+    {
+        $arrayTunosDisponibleDiaModel = $this->agendaRepositorio->obtenerTunosDisponibleDia($idColaborador, $fecha);
+        return $arrayTunosDisponibleDiaModel;
+
+    }
 }

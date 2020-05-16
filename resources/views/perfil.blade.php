@@ -50,8 +50,8 @@
                                 @foreach($tiposCitas as $tipoCita)
                                 <li>
                                     <div class="checkbox">
-                                        <input onclick="renderSectionCargarVPColaboradores({{$tipoCita->id}})" type="checkbox" class="css-checkbox" id="visit1" name="visit1">
-                                        <label for="visit1" class="css-label">{{$tipoCita->Nombre}} <strong>$10 k</strong></label>
+                                        <input onclick="renderSectionCargarVPColaboradores({{$tipoCita->id}})" type="checkbox" class="css-checkbox" id="tipoServicio{{$tipoCita->id}}" name="tipoServicio{{$tipoCita->id}}">
+                                        <label for="tipoServicio{{$tipoCita->id}}" class="css-label">{{$tipoCita->Nombre}} <strong>$10 k</strong></label>
                                     </div>
                                 </li>
                                 @endforeach

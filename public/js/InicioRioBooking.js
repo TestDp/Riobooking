@@ -73,11 +73,12 @@ function renderCalendario(arrayFechasNoDisponibles){
         weekStart: 1,
         format: "yyyy-mm-dd",
         datesDisabled: arrayFechasNoDisponibles,
-        language:"es"
+        language:"es",
+        dateFormat:"yyyy-mm-dd"
     }).on('changeDate', function(e) {
-        var fecha = new Date($(this).datepicker('getDate'));
-        var fechafinal =fecha.getFullYear()+'/'+ fecha.getMonth()+'/'+ fecha.getDay();
-        renderSectionTurnosDisponibles(fechafinal);
+        var fecha = $(this).datepicker('getDate');
+        //formato de fecha 'aaaa-mm-dd'
+        renderSectionTurnosDisponibles(fecha);
     });
 }
 

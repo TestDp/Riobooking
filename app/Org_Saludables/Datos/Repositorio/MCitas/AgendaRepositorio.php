@@ -39,47 +39,36 @@ class AgendaRepositorio
 
     public function obtenerFechasNoDisponibles($idColaborador)
     {
-
-        $arrayFecha = new Arr();
+        $arrayFechasNoDisponibles = array();
         $fechaActual = new DateTime('today');
         $fechaHasta = new DateTime('today');
         $fechaHasta->modify('1 Month');
-
-        $listaFechasNoDisponibles = DB::table('tbl_citas')
+        $listaFechasDisponiblesModel = DB::table('tbl_citas')
             ->join('tbl_turno_por_colaborador', 'tbl_citas.id', '=', 'tbl_turno_por_colaborador.Cita_id')
             ->join('tbl_colaborador','tbl_colaborador.id','=','tbl_turno_por_colaborador.Colaborador_id')
             ->leftJoin('tbl_citas_por_usuarios', 'tbl_turno_por_colaborador.id', '=', 'tbl_citas_por_usuarios.TurnoPorColaborador_id')
             ->where('tbl_colaborador.id', '=', $idColaborador)
             ->whereRaw('tbl_citas.Fecha >= NOW() and tbl_citas.Fecha <= DATE(DATE_ADD(NOW(), INTERVAL 1 MONTH))')
             ->whereNull('tbl_citas_por_usuarios.id')
-            ->select(\DB::raw('distinct tbl_citas.Fecha,  count(*)' ))
+            ->select(\DB::raw('distinct tbl_citas.Fecha' ))
             ->GroupBy('tbl_citas.Fecha')
             ->get();
 
         while ($fechaActual < $fechaHasta){
-
-
-            $exists = Arr::exists($listaFechasNoDisponibles , $fechaActual);
-
-            if($exists != true)
+            $fechaFormateada = $fechaActual->format('Y-m-d');
+            $respuesta =  $listaFechasDisponiblesModel->where('Fecha','=',$fechaFormateada);
+            if(count($respuesta)==0)
             {
-                $arrayFecha = Arr::add(['Fecha' => $fechaActual]);
+                $arrayFechasNoDisponibles[] = $fechaFormateada;
             }
-
             $fechaActual->modify('1 day');
-
         }
-
-       // return array("2020/05/15", "2020/05/16");
-        return $arrayFecha;
-
+        return $arrayFechasNoDisponibles;
     }
 
 
     public function obtenerTunosDisponibleDia($idColaborador, $fecha)
     {
-
-
         $listaCitasDisponibles = DB::table('tbl_citas')
             ->join('tbl_turno_por_colaborador', 'tbl_citas.id', '=', 'tbl_turno_por_colaborador.Cita_id')
             ->join('tbl_colaborador','tbl_colaborador.id','=','tbl_turno_por_colaborador.Colaborador_id')
@@ -89,10 +78,6 @@ class AgendaRepositorio
             ->whereNull('tbl_citas_por_usuarios.id')
             ->select(\DB::raw('tbl_citas.id, tbl_citas.Fecha,  tbl_turno_por_colaborador.Id' ))
             ->get();
-
-
-        //return array("2020/05/15", "2020/05/16");
-
         return $listaCitasDisponibles;
 
     }

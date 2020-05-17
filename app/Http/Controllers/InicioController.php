@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Org_Saludables\Negocio\Logica\MCitas\AgendaServicio;
 use App\Org_Saludables\Negocio\Logica\MCitas\ColaboradorServicio;
 use App\Org_Saludables\Negocio\Logica\MEmpresa\ICompaniaServicio;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
 use Org_Saludables\Negocio\Logica\MEmpresa\SedeServicio;
 use Org_Saludables\Negocio\Logica\MSistema\TipoCitaServicio;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class InicioController extends Controller
 {
@@ -87,6 +89,8 @@ class InicioController extends Controller
     }
 
     public function CargarVPTurnosDisponibles(Request $request,$fechaConsulta){
+        $fechaDisponible = new Date($fechaConsulta);
+        $fechaBusqueda = $fechaDisponible->format('Y-m-d');
         $view = View::make('MSistema/Colaborador/turnosDisponiblesVP');
         if($request->ajax()){
             $sections = $view->renderSections();

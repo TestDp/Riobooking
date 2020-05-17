@@ -98,15 +98,9 @@ class JornadaRepositorio implements IJornadaRepositorio
          ->whereBetween('Tbl_Jornadas.Inicio', array( $InicioJornadaCrear, $FinJornadaCrear))
         ->orwhereBetween('Tbl_Jornadas.Fin', array( $InicioJornadaCrear, $FinJornadaCrear))
         ->where ('Tbl_Jornadas.id', '=',$informacionJornadaGuardada)
-   
-      
          ->select(DB::raw('count(*) as numero'))
          ->get();
-
-
         return $jornadasGuardadas;
-
-
     }
 
      public  function  InformacionJornada($idJornada)
@@ -114,8 +108,6 @@ class JornadaRepositorio implements IJornadaRepositorio
           $jornadas = DB::table('Tbl_Jornadas')
              ->join('Tbl_Tipos_Citas', 'Tbl_Tipos_Citas.id', '=', 'Tbl_Jornadas.Tipo_Cita_id')
            ->select('Tbl_Jornadas.*','Tbl_Tipos_Citas.Nombre as NombreCita')
-            
-
             ->where('Tbl_Jornadas.id', '=', $idJornada)
             ->get()->first();
         return  $jornadas;

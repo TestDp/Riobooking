@@ -3,7 +3,7 @@
         <div class="row add_bottom_45">
             <div class="col-lg-7">
                 <div class="form-group">
-                    <div id="calendar" onclick="test()"></div>
+                    <div id="calendar"></div>
                     <input type="hidden" id="my_hidden_input">
                     <ul class="legend">
                         <li><strong></strong>Disponible</li>

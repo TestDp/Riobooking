@@ -76,7 +76,7 @@ class AgendaRepositorio
             ->where('tbl_colaborador.id', '=', $idColaborador)
             ->where('tbl_citas.Fecha', '=', $fecha)
             ->whereNull('tbl_citas_por_usuarios.id')
-            ->select(\DB::raw('tbl_citas.id, tbl_citas.Fecha,  tbl_turno_por_colaborador.Id' ))
+            ->select(\DB::raw('tbl_citas.*, tbl_turno_por_colaborador.Id,tbl_colaborador.id as idColaborador' ))
             ->get();
         return $listaCitasDisponibles;
 

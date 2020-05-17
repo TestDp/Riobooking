@@ -30,7 +30,7 @@ Route::get('perfilNegocio/{idCompania}', 'InicioController@cargarVistaPerfilNego
 Route::get('cargarSedesEmpresa/{idCompania}','InicioController@cargarSedesEmpresa')->name('cargarSedesEmpresa');
 Route::get('cargarVPColaboradores/{idTipoCita}','InicioController@CargarVPListaColaboradores')->name('cargarVPColaboradores');
 Route::get('cargarVPDisponibilidadColaborador/{idColaborador}','InicioController@CargarVPDisponibilidadColaborador')->name('cargarVPDisponibilidadColaborador');
-Route::get('cargarVPTurnosDisponibles/{fechaConsulta}','InicioController@CargarVPTurnosDisponibles')->name('cargarVPTurnosDisponibles');
+Route::get('cargarVPTurnosDisponibles/{fechaConsulta}/{idColabordor}','InicioController@CargarVPTurnosDisponibles')->name('cargarVPTurnosDisponibles');
 
 
 //CONTROLADOR TIPOCITAS

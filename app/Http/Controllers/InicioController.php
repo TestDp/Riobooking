@@ -77,21 +77,18 @@ class InicioController extends Controller
     }
 
     public function CargarVPDisponibilidadColaborador(Request $request,$idColaborador){
-        $disponibilidadDTO = $this->agendaServicio->obtenerDisponibilidadColaborador($idColaborador);
         $noDisponibilidadDTO = $this->agendaServicio->obtenerFechasNoDisponibles($idColaborador);
         $view = View::make('MSistema/Colaborador/disponibilidadColaboradorVP');
-
         if($request->ajax()){
             $sections = $view->renderSections();
-            return Response::json(['vista'=>$sections['content'],'disponibilidadDTO'=>$disponibilidadDTO,
-                'noDisponibilidadDTO'=>$noDisponibilidadDTO]);
+            return Response::json(['vista'=>$sections['content'],'noDisponibilidadDTO'=>$noDisponibilidadDTO]);
         }else return view('MSistema/Colaborador/disponibilidadColaboradorVP');
     }
 
-    public function CargarVPTurnosDisponibles(Request $request,$fechaConsulta){
-        $fechaDisponible = new Date($fechaConsulta);
-        $fechaBusqueda = $fechaDisponible->format('Y-m-d');
-        $view = View::make('MSistema/Colaborador/turnosDisponiblesVP');
+    public function CargarVPTurnosDisponibles(Request $request,$fechaConsulta,$idColabordor){
+        $fecha = date('Y-m-d',strtotime($fechaConsulta));
+        $turnosDisponibleXfecha = $this->agendaServicio->obtenerTunosDisponibleDia($idColabordor,$fecha);
+        $view = View::make('MSistema/Colaborador/turnosDisponiblesVP')->with('turnos',$turnosDisponibleXfecha);
         if($request->ajax()){
             $sections = $view->renderSections();
             return Response::json($sections['content']);

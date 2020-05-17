@@ -45,7 +45,7 @@ function renderSectionDisponibilidadColaborador(idColaborador) {
         success: function (data) {
             OcultarPopupposition();
             $('#divDisponibilidad').empty().append($(data.vista));
-            renderCalendario(data.noDisponibilidadDTO);
+            renderCalendario(data.noDisponibilidadDTO,idColaborador);
             var x = document.getElementById("divDisponibilidad");
             if (x.style.display === "none") {
                 x.style.display = "block";
@@ -66,7 +66,7 @@ function renderSectionDisponibilidadColaborador(idColaborador) {
     });
 }
 
-function renderCalendario(arrayFechasNoDisponibles){
+function renderCalendario(arrayFechasNoDisponibles,idColabordor){
     $('#calendar').datepicker({
         todayHighlight: true,
         daysOfWeekDisabled: [0],
@@ -74,19 +74,21 @@ function renderCalendario(arrayFechasNoDisponibles){
         format: "yyyy-mm-dd",
         datesDisabled: arrayFechasNoDisponibles,
         language:"es",
-        dateFormat:"yyyy-mm-dd"
     }).on('changeDate', function(e) {
         var fecha = $(this).datepicker('getDate');
-        //formato de fecha 'aaaa-mm-dd'
-        renderSectionTurnosDisponibles(fecha);
+        var anio = fecha.getFullYear();
+        var mes  = fecha.getMonth() + 1;
+        var dia = fecha.getDate();
+        var fecha = anio + '-' + mes + '-' + dia;
+        renderSectionTurnosDisponibles(fecha,idColabordor);
     });
 }
 
-function renderSectionTurnosDisponibles(fechaConsulta) {
+function renderSectionTurnosDisponibles(fechaConsulta,idColabordor) {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'cargarVPTurnosDisponibles/'+fechaConsulta,
+        url: urlBase +'cargarVPTurnosDisponibles/'+fechaConsulta + '/' + idColabordor,
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();

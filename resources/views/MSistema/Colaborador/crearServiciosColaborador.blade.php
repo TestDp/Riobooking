@@ -12,10 +12,10 @@
                 <div class="panel-body">
                     <div class="col-md-4">
                         <label>Colaborador</label>
-                        <select id="Regional_id" name="Regional_id"  class="form-control"  name="language" onchange="CargarTiposCitasPorRegional()">
+                        <select id="Colaborador_id" name="Colaborador_id"  class="form-control"  name="language" onchange="CargarTiposCitasPorRegional()">
                             <option value="">Seleccionar</option>
-                            @foreach($listColaboradores as $servicio)
-                                <option value="{{$servicio->id}}">{{$servicio->Nombre}}</option>
+                            @foreach($listColaboradores as $colaborador)
+                                <option value="{{$colaborador->id}}">{{$colaborador->Nombre}}</option>
                             @endforeach
 
                         </select>

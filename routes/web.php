@@ -118,7 +118,7 @@ Route::get('agenda', 'MCitas\AgendaController@ObtenerAgenda')->name('agenda');
 Route::get('crearColaborador', 'MSistema\ColaboradorController@CrearColaboradorEmpresa')->name('crearColaborador');//cargar la vista para crear un usuario
 Route::post('guardarColaborador', 'MSistema\ColaboradorController@GuardarColaboradorEmpresa')->name('guardarColaborador');//Guardar la informacion del usuario
 Route::get('colaboradores', 'MSistema\ColaboradorController@ObtenerColaboradores')->name('colaboradores');//Obtiene la lista de usuarios
-Route::get('ServiciosColaborador', 'MSistema\ColaboradorController@CrearServiciosPorColaboradores')->name('ServiciosColaborador');//cargar la vista para crear una nueva asignacion
-Route::get('crearServiciosColaborador', 'MSistema\ColaboradorController@ObtenerServiciosPorColaboradores')->name('crearServiciosColaborador');//Obtiene la lista de asignacion de servicios x Colaborador
+Route::get('serviciosColaborador', 'MSistema\ColaboradorController@ObtenerServiciosPorColaborador')->name('serviciosColaborador');//cargar la vista para crear una nueva asignacion
+Route::get('crearServiciosColaborador', 'MSistema\ColaboradorController@CrearServiciosPorColaboradores')->name('crearServiciosColaborador');//Obtiene la lista de asignacion de servicios x Colaborador
 Route::post('guardarServiciosColaborador', 'MSistema\ColaboradorController@GuardarServiciosPorColaboradores')->name('guardarServiciosColaborador');//Guardar la informacion del usuario
 

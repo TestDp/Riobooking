@@ -7,7 +7,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading"><h3> Servicios Por Colaboradores</h3></div>
                 <div class="panel-body">
-                    <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" class="table table-bordered" id="tablaUsuarios">
+                    <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" class="table table-bordered" id="tablaServiciosColaborador">
                         <thead>
                         <tr>
                             <th scope="col">Colaborador</th>
@@ -17,7 +17,7 @@
                         <tbody>
                         @foreach($listServiciosPorColaboradores as $servicioColaborador)
                             <tr>
-                                <td>{{$servicioColaborador->name}}</td>
+                                <td>{{$servicioColaborador->NombreColaborador}}</td>
                                 <td>{{$servicioColaborador->NombreServicio}}</td>
                             </tr>
                         @endforeach
@@ -25,7 +25,7 @@
                     </table>
                     <div class="row">
                         <div class="col-md-4">
-                            <button onclick="ajaxRenderSectionCrearServicioPorColaborador()" type="button" class="btn btn-success">Nuevo Asignacion de Servicio</button>
+                            <button onclick="ajaxRenderSectionCrearServicioColaborador()" type="button" class="btn btn-success">Nuevo Asignacion de Servicio</button>
                         </div>
 
                     </div>
@@ -40,7 +40,7 @@
     <script type="text/javascript">
         // Material Select Initialization
         $(document).ready(function() {
-            $('#tablaUsuarios').DataTable({
+            $('#tablaServiciosColaborador').DataTable({
                 dom: 'B<"clear">lfrtip',
                 buttons: {
                     name: 'primary',

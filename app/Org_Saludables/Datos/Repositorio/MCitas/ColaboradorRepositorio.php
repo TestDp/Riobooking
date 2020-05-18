@@ -49,22 +49,43 @@ class ColaboradorRepositorio implements  IColaboradorRepositorio
             ->get();
         return $colaboradores;
     }
-    public function GuardarServiciosPorColaboradores($idColaborador, $idServicio)
+    public function GuardarServiciosPorColaboradores($request)
     {
-
-        $servicioXcolaborador = new TipoServicioPorColaborador();
-        $servicioXcolaborador->TipoCita_id = $idColaborador;
-        $servicioXcolaborador->Colaborador_id = $idServicio;
 
         DB::beginTransaction();
         try {
+            $servicioXcolaborador = new TipoServicioPorColaborador($request->all());
             $servicioXcolaborador->save();
             DB::commit();
             return true;
         } catch (\Exception $e) {
+
             $error = $e->getMessage();
             DB::rollback();
             return $error;
         }
+
+    }
+
+    public function ObtenerListaServiciosPorColaborador($idSede)
+    {
+        $colaboradores = DB::table('tbl_tiposervicio_por_colaborador')
+            ->join('Tbl_Colaborador', 'tbl_tiposervicio_por_colaborador.Colaborador_id', '=', 'Tbl_Colaborador.id')
+            ->join('Tbl_Tipos_Citas', 'tbl_tiposervicio_por_colaborador.TipoCita_id', '=', 'Tbl_Tipos_Citas.id')
+            ->select('Tbl_Colaborador.id','Tbl_Colaborador.Nombre as NombreColaborador','Tbl_Tipos_Citas.id','Tbl_Tipos_Citas.Nombre as NombreServicio')
+            ->where('Tbl_Tipos_Citas.Sede_id', '=', $idSede)
+            ->get();
+        return $colaboradores;
+    }
+
+    public function ObtenerTodosLosServiciosPorColaborador($idusuario)
+    {
+        $colaboradores = DB::table('tbl_tiposervicio_por_colaborador')
+            ->join('Tbl_Colaborador', 'tbl_tiposervicio_por_colaborador.Colaborador_id', '=', 'Tbl_Colaborador.id')
+            ->join('Tbl_Tipos_Citas', 'tbl_tiposervicio_por_colaborador.TipoCita_id', '=', 'Tbl_Tipos_Citas.id')
+            ->select('Tbl_Colaborador.id','Tbl_Colaborador.Nombre as NombreColaborador','Tbl_Tipos_Citas.id','Tbl_Tipos_Citas.Nombre as NombreServicio')
+            ->where('Tbl_Colaborador.Usuario_id', '=', $idusuario)
+            ->get();
+        return $colaboradores;
     }
 }

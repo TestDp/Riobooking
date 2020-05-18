@@ -138,7 +138,7 @@ function ajaxRenderSectionServiciosColaborador() {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'ServiciosColaborador',
+        url: urlBase +'serviciosColaborador',
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
@@ -156,4 +156,78 @@ function ajaxRenderSectionServiciosColaborador() {
     });
 
 
+}
+
+function ajaxRenderSectionCrearServicioColaborador(){
+
+    PopupPosition();
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'crearServiciosColaborador',
+        dataType: 'json',
+        success: function (data) {
+            OcultarPopupposition();
+            $('#principalPanel').empty().append($(data));
+        },
+        error: function (data) {
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+
+//Metodo para guarda la informacion del tipo de documento y retorna la vista con todos los tipos de documentos
+function GuardarServicioColaborador() {
+    var form = $("#formServicio");
+    var token = $("#_token").val();
+    PopupPosition();
+    $.ajax({
+        type: 'POST',
+        url: urlBase +'guardarServiciosColaborador',
+        dataType: 'json',
+        headers: {'X-CSRF-TOKEN': token},
+        data:form.serialize(),
+        success: function (data) {
+            OcultarPopupposition();
+            if(data.codeStatus == 200) {
+                swal({
+                    title: "transaccción exitosa!",
+                    text: "La asignacion de servicios fue grabado con exito!",
+                    icon: "success",
+                    button: "OK",
+                });
+                $('#principalPanel').empty().append($(data.data));
+            }
+            else{
+                swal({
+                    title: "Transacción con error!",
+                    text: "No fue posible grabar la asignacion de servicios!",
+                    icon: "error",
+                    button: "OK",
+                });
+            }
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            swal({
+                title: "Transacción con error!",
+                text: "No fue posible grabar la asignacion de servicios!",
+                icon: "error",
+                button: "OK",
+            });
+            $("#errorColaborador_id").html("");
+            $("#errorTipoCita_id").html("");
+            var errors = data.responseJSON;
+            if(errors.errors.Nombre){
+                var errorCOlaboradoo= "<strong>"+ errors.errors.Colaborador_id+"</strong>";
+                $("#errorNombre").append(errorCOlaboradoo);}
+            if(errors.errors.Regional_id){
+                var errorTipoCita_id = "<strong>"+ errors.errors.TipoCita_id+"</strong>";
+                $("#errorRegional_id").append(errorTipoCita_id);}
+        }
+    });
 }

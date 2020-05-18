@@ -6,7 +6,7 @@
  * Time: 11:34 AM
  */
 
-namespace App\Http\Controllers\MCitas;
+namespace App\Http\Controllers\MSistema;
 use App\Http\Controllers\Controller;
 use App\Org_Saludables\Negocio\DTO\MCitas\ColaboradorDTO;
 use App\Org_Saludables\Negocio\Logica\MCitas\ColaboradorServicio;
@@ -18,6 +18,7 @@ use Org_Saludables\Negocio\Logica\MSistema\RolServicio;
 use Org_Saludables\Negocio\Logica\MSistema\UsuarioServicio;
 use Org_Saludables\Negocio\Logica\MSistema\TipoCitaServicio;
 use Org_Saludables\Validaciones\MSistema\UsuarioValidaciones;
+//use Org_Saludables\Validaciones\MSistema\ServiciosColaboradorValidaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -37,12 +38,14 @@ class ColaboradorController extends  Controller
     public $colaboradorServicio;
 
     public function __construct(UsuarioServicio $usuarioServicio, SedeServicio $sedeServicio, RolServicio $rolServicio,
+                               // ServiciosColaboradorValidaciones $serviciosColaboradorValidaciones,
                                 UsuarioValidaciones $usuarioValidaciones, ICompaniaServicio $iCompaniaServicio,
                                 ColaboradorServicio $colaboradorServicio, TipoCitaServicio $tipoCitaServicio){
         $this->usuarioServicio = $usuarioServicio;
         $this->sedeServicio = $sedeServicio;
         $this->rolServicio = $rolServicio;
         $this->usuarioValidaciones = $usuarioValidaciones;
+       // $this->serviciosColaboradorValidaciones = $serviciosColaboradorValidaciones;
         $this->iCompaniaServicio = $iCompaniaServicio;
         $this->colaboradorServicio = $colaboradorServicio;
         $this->tipoCitaServicio = $tipoCitaServicio;
@@ -150,15 +153,15 @@ class ColaboradorController extends  Controller
         $usuarios = null;
         if($request->user()->hasRole(env('IdRolSuperAdmin')))
         {
-            $serviciosColaboradores = $this->usuarioServicio->ObtenerTodosLosServiciosPorColaborador($idUsuario);
+            $serviciosColaboradores = $this->colaboradorServicio->ObtenerTodosLosServiciosPorColaborador($idUsuario);
         }else{
-            $serviciosColaboradores = $this->usuarioServicio->ObtenerListaServiciosPorColaborador($idSede);
+            $serviciosColaboradores = $this->colaboradorServicio->ObtenerListaServiciosPorColaborador($idSede);
         }
-        $view = View::make('MSistema/TipoCita/ServiciosColaborador')->with('listServiciosPorColaboradores',$serviciosColaboradores);
+        $view = View::make('MSistema/Colaborador/listaServiciosColaborador')->with('listServiciosPorColaboradores',$serviciosColaboradores);
         if($request->ajax()){
             $sections = $view->renderSections();
             return Response::json($sections['content']);
-        }else return view('MSistema/TipoCita/ServiciosColaborador');
+        }else return view('MSistema/Colaborador/listaServiciosColaborador');
     }
 
     //Metodo para cargar  la vista de crear la relacion entre colaboradores y servicios
@@ -167,14 +170,14 @@ class ColaboradorController extends  Controller
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idSede = Auth::user()->Sede_id;
-        $tipoServicios = $this->tipoCitaServicio->ObtenerListaTipoCitas(1);
-        $arrayColaboradores = $this->colaboradorServicio->ObtenerListaColaboradores(1);
-        $view = View::make('MSistema/TipoCita/crearAsignacionServicios',
+        $tipoServicios = $this->tipoCitaServicio->ObtenerListaTipoCitas($idSede);
+        $arrayColaboradores = $this->colaboradorServicio->ObtenerListaColaboradores($idSede);
+        $view = View::make('MSistema/Colaborador/crearServiciosColaborador',
             array('listServicios'=>$tipoServicios,'listColaboradores'=> $arrayColaboradores));
         if($request->ajax()){
             $sections = $view->renderSections();
             return Response::json($sections['content']);
-        }else return view('MSistema/TipoCita/crearAsignacionServicios');
+        }else return view('MSistema/Colaborador/crearServiciosColaborador');
 
 
     }
@@ -182,19 +185,19 @@ class ColaboradorController extends  Controller
     {
         $urlinfo = $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $this->tipoCitaValidaciones->ValidarFormularioCrear($request->all())->validate();
+        //$this->serviciosColaboradorValidaciones->ValidarFormularioCrear($request->all())->validate();
         if ($request->ajax()) {
             $idSede = Auth::user()->Sede_id;
-            $repuesta = $this->TipoCitaServicio->GuardarTipoCita($request);
+            $repuesta = $this->ColaboradorServicio->GuardarServiciosPorColaboradores($request);
             if ($repuesta == true) {
-                $tiposCitas = $this->TipoCitaServicio->ObtenerListaTipoCitas($idSede);
-                $view = View::make('MSistema/TipoCita/listaCitas')->with('listCitas', $tiposCitas);
+                $serviciosColaboradores = $this->colaboradorServicio->ObtenerListaServiciosPorColaborador($idSede);
+                $view = View::make('MSistema/Colaborador/listaServiciosColaborador')->with('listServiciosPorColaboradores', $serviciosColaboradores);
                 $sections = $view->renderSections();
                 return Response::json(['codeStatus' => 200, 'data' => $sections['content']]);
             } else {
                 return Response::json(['codeStatus' => 500, 'data' => '']);
             }
-        } else return view('MSistema/TipoCita/listaCitas');
+        } else return view('MSistema/Colaborador/listaServiciosColaborador');
 
     }
 }

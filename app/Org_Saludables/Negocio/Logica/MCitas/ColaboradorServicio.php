@@ -28,6 +28,8 @@ class ColaboradorServicio
         return $this->iColaboradorRepositorio->GuardarColaborador($colaboradorModel);
     }
 
+
+
     public function ObtenerListaColaboradores($idEmpresa){
         $arrayModelColaboradores= $this->iColaboradorRepositorio->ObtenerListaColaboradores($idEmpresa);
         $arrayDTOColaboradores = array();
@@ -48,10 +50,22 @@ class ColaboradorServicio
         }
         return $arrayDTOColaboradores;
     }
-    public function GuardarServiciosPorColaboradores($idColaborador, $idServicio)
+    public function GuardarServiciosPorColaboradores($request)
     {
-        return $this->iColaboradorRepositorio->GuardarServiciosPorColaboradores($idColaborador, $idServicio);
+        return $this->iColaboradorRepositorio->GuardarServiciosPorColaboradores($request);
 
+    }
+
+    public function ObtenerListaServiciosPorColaborador($idSede){
+        $arrayModelServiciosColaborador= $this->iColaboradorRepositorio->ObtenerListaServiciosPorColaborador($idSede);
+
+        return $arrayModelServiciosColaborador;
+    }
+
+    public function ObtenerTodosLosServiciosPorColaborador($idusuario){
+        $arrayModelTodosServiciosColaborador= $this->iColaboradorRepositorio->ObtenerTodosLosServiciosPorColaborador($idusuario);
+
+        return $arrayModelTodosServiciosColaborador;
     }
 
 }

@@ -188,7 +188,7 @@ class ColaboradorController extends  Controller
         //$this->serviciosColaboradorValidaciones->ValidarFormularioCrear($request->all())->validate();
         if ($request->ajax()) {
             $idSede = Auth::user()->Sede_id;
-            $repuesta = $this->ColaboradorServicio->GuardarServiciosPorColaboradores($request);
+            $repuesta = $this->colaboradorServicio->GuardarServiciosPorColaboradores($request);
             if ($repuesta == true) {
                 $serviciosColaboradores = $this->colaboradorServicio->ObtenerListaServiciosPorColaborador($idSede);
                 $view = View::make('MSistema/Colaborador/listaServiciosColaborador')->with('listServiciosPorColaboradores', $serviciosColaboradores);

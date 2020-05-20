@@ -15,7 +15,7 @@ interface IColaboradorRepositorio
 {
     public  function GuardarColaborador(Colaborador $colaborador);
     public  function ObtenerListaColaboradores($idEmpresa);
-    public  function GuardarServiciosPorColaboradores($idColaborador, $idServicio);
+    public  function GuardarServiciosPorColaboradores($request);
     public function ObtenerListaColaboradoresPorServicio($idTipoServicio);
     public function ObtenerListaServiciosPorColaborador($idSede);
     public function ObtenerTodosLosServiciosPorColaborador($idusuario);

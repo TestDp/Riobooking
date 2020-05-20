@@ -52,10 +52,19 @@ class ColaboradorRepositorio implements  IColaboradorRepositorio
     public function GuardarServiciosPorColaboradores($request)
     {
 
+        $arrayServicios = $request->Servicio_id;
+
         DB::beginTransaction();
         try {
-            $servicioXcolaborador = new TipoServicioPorColaborador($request->all());
-            $servicioXcolaborador->save();
+            $servicioXcolaborador = new TipoServicioPorColaborador();
+            $servicioXcolaborador->Colaborador_id = $request->Colaborador_id;
+            foreach ($arrayServicios as $servicio) {
+                $servicioXcolaborador->TipoCita_id = $servicio;
+                $servicioXcolaborador->save();
+
+            }
+
+
             DB::commit();
             return true;
         } catch (\Exception $e) {
@@ -64,8 +73,8 @@ class ColaboradorRepositorio implements  IColaboradorRepositorio
             DB::rollback();
             return $error;
         }
-
     }
+
 
     public function ObtenerListaServiciosPorColaborador($idSede)
     {

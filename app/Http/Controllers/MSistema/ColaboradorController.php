@@ -18,7 +18,7 @@ use Org_Saludables\Negocio\Logica\MSistema\RolServicio;
 use Org_Saludables\Negocio\Logica\MSistema\UsuarioServicio;
 use Org_Saludables\Negocio\Logica\MSistema\TipoCitaServicio;
 use Org_Saludables\Validaciones\MSistema\UsuarioValidaciones;
-//use Org_Saludables\Validaciones\MSistema\ServiciosColaboradorValidaciones;
+use Org_Saludables\Validaciones\MSistema\ServiciosColaboradorValidaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -34,18 +34,19 @@ class ColaboradorController extends  Controller
     protected $sedeServicio;
     protected $rolServicio;
     protected $usuarioValidaciones;
+    protected $serviciosColaboradorValidaciones;
     public $iCompaniaServicio;
     public $colaboradorServicio;
 
     public function __construct(UsuarioServicio $usuarioServicio, SedeServicio $sedeServicio, RolServicio $rolServicio,
-                               // ServiciosColaboradorValidaciones $serviciosColaboradorValidaciones,
+                                ServiciosColaboradorValidaciones $serviciosColaboradorValidaciones,
                                 UsuarioValidaciones $usuarioValidaciones, ICompaniaServicio $iCompaniaServicio,
                                 ColaboradorServicio $colaboradorServicio, TipoCitaServicio $tipoCitaServicio){
         $this->usuarioServicio = $usuarioServicio;
         $this->sedeServicio = $sedeServicio;
         $this->rolServicio = $rolServicio;
         $this->usuarioValidaciones = $usuarioValidaciones;
-       // $this->serviciosColaboradorValidaciones = $serviciosColaboradorValidaciones;
+        $this->serviciosColaboradorValidaciones = $serviciosColaboradorValidaciones;
         $this->iCompaniaServicio = $iCompaniaServicio;
         $this->colaboradorServicio = $colaboradorServicio;
         $this->tipoCitaServicio = $tipoCitaServicio;
@@ -185,7 +186,7 @@ class ColaboradorController extends  Controller
     {
         $urlinfo = $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        //$this->serviciosColaboradorValidaciones->ValidarFormularioCrear($request->all())->validate();
+        $this->serviciosColaboradorValidaciones->ValidarFormularioCrear($request->all())->validate();
         if ($request->ajax()) {
             $idSede = Auth::user()->Sede_id;
             $repuesta = $this->colaboradorServicio->GuardarServiciosPorColaboradores($request);

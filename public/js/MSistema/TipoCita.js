@@ -222,12 +222,12 @@ function GuardarServicioColaborador() {
             $("#errorColaborador_id").html("");
             $("#errorTipoCita_id").html("");
             var errors = data.responseJSON;
-            if(errors.errors.Nombre){
-                var errorCOlaboradoo= "<strong>"+ errors.errors.Colaborador_id+"</strong>";
-                $("#errorNombre").append(errorCOlaboradoo);}
-            if(errors.errors.Regional_id){
+            if(errors.errors.Colaborador_id){
+                var errorColaborador_id= "<strong>"+ errors.errors.Colaborador_id+"</strong>";
+                $("#errorColaborador_id").append(errorColaborador_id);}
+            if(errors.errors.TipoCita_id){
                 var errorTipoCita_id = "<strong>"+ errors.errors.TipoCita_id+"</strong>";
-                $("#errorRegional_id").append(errorTipoCita_id);}
+                $("#errorTipoCita_id").append(errorTipoCita_id);}
         }
     });
 }

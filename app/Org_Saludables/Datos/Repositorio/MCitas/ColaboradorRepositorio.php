@@ -52,7 +52,7 @@ class ColaboradorRepositorio implements  IColaboradorRepositorio
     public function GuardarServiciosPorColaboradores($request)
     {
 
-        $arrayServicios = $request->Servicio_id;
+        $arrayServicios = $request->TipoCita_id;
 
         DB::beginTransaction();
         try {

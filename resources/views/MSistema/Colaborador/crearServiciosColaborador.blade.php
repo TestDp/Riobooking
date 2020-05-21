@@ -19,18 +19,18 @@
                             @endforeach
 
                         </select>
-                        <span class="invalid-feedback" role="alert" id="errorRegional_id"></span>
+                        <span class="invalid-feedback" role="alert" id="errorColaborador_id"></span>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label>Asignar Servicios a colaboradores</label>
-                            <select id="TipoCita_id" name="Servicio_id[]"  class="form-control" multiple name="language">
+                            <select id="TipoCita_id" name="TipoCita_id[]"  class="form-control" multiple name="language">
                                 <option value="">Seleccionar</option>
                                 @foreach($listServicios as $servicio)
                                     <option value="{{ $servicio->id }}">{{ $servicio->Nombre }}</option>
                                 @endforeach
                             </select>
-                            <span class="invalid-feedback" role="alert" id="errorRoles_id"></span>
+                            <span class="invalid-feedback" role="alert" id="errorTipoCita_id"></span>
                         </div>
                     </div>
                     <div class="row">

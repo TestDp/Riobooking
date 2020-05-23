@@ -13,6 +13,7 @@
                             <th scope="col">Id</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Sede</th>
+                            <th scope="col">Precio Servicio</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -21,6 +22,7 @@
                                 <th scope="row">{{$tipo->id}}</th>
                                 <td>{{$tipo->Nombre}}</td>
                                 <td>{{$tipo->NombreSede}}</td>
+                                <td>{{$tipo->Precio}}</td>
                             </tr>
                         @endforeach
                         </tbody>

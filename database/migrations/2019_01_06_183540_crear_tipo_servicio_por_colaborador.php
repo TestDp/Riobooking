@@ -15,9 +15,9 @@ class CrearTipoServicioPorColaborador extends Migration
     {
          Schema::create('Tbl_TipoServicio_Por_Colaborador', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('TipoCita_id')->unsigned();
+            $table->integer('TipoCita_id')->unsigned()->unique();
             $table->foreign("TipoCita_id")->references('id')->on('Tbl_Tipos_Citas');
-            $table->integer('Colaborador_id')->unsigned();
+            $table->integer('Colaborador_id')->unsigned()->unique();
             $table->foreign("Colaborador_id")->references('id')->on('Tbl_Colaborador');
             $table->timestamps();
         });

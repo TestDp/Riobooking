@@ -26,6 +26,11 @@
                                     </select>
                                     <span class="invalid-feedback" role="alert" id="errorRegional_id"></span>
                                 </div>
+                               <div class="col-md-4">
+                                <label>Precio</label>
+                                <input id="Precio" name="Precio" type="number" class="form-control">
+
+                            </div>
                             </div>
                         </div>
                         <div class="row">

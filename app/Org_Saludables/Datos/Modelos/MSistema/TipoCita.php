@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 class TipoCita extends Model
 {
     protected $table = 'Tbl_Tipos_Citas';
-    protected $fillable =['Nombre','Activa','Sede_id'];
+    protected $fillable =['Nombre','Activa','Sede_id', 'Precio'];
 
       public function Regionales(){
         return $this->belongsTo(Regional::class,'Regional_id');

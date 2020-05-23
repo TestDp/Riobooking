@@ -15,7 +15,9 @@ class AgregarCampoComentarioCitasPorUsuario extends Migration
     {
         Schema::table('Tbl_Citas_Por_Usuarios', function (Blueprint $table)
         {
-                $table->string('Comentario',200)->nullable();
+                $table->string('Comentario1',200)->nullable();
+                $table->string('Comentario2',200)->nullable();
+                $table->integer('Estado')->default(1);
         });
     }
 

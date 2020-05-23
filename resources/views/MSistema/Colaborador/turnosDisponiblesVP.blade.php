@@ -1,8 +1,8 @@
 @section('content')
     @foreach($turnos as $turno)
     <li>
-        <input type="radio" id="radio1" name="radio_time" value="{{$turno->Inicio}}">
-        <label for="radio1">{{$turno->Inicio}}</label>
+        <input type="radio" id="turno{{$turno->id}}" name="turno" value="{{$turno->id}}" onclick="mostrarFormReserva(this)">
+        <label for="turno{{$turno->id}}">{{$turno->Inicio}}</label>
     </li>
     @endforeach
 @endsection

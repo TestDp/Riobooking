@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Org_Saludables\Negocio\Logica\MEmpresa\ICompaniaServicio;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\View;
 use Org_Saludables\Datos\Modelos\MEmpresa\Compania;
 use Org_Saludables\Datos\Modelos\MEmpresa\Regional;
 use Org_Saludables\Datos\Modelos\MSistema\Rol;
@@ -62,13 +64,19 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return: redirecciona al usuario al inicio de sesión
      */
-   /** public function register(Request $request)
+    public function register(Request $request)
     {
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
-
-        return view('auth.RespuestaRegistro',['respuesta'=>true]);
-    }**/
+        $this->guard()->login($user);
+        if($request->ajax()){
+            $view = View::make('MSistema/Colaborador/crearReservaColaboradorVP');
+            $sections = $view->renderSections();
+            return Response::json($sections['content']);
+        }
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -84,7 +92,7 @@ class RegisterController extends Controller
             'username' => 'required|max:15|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'Compania_id' =>'required|string|max:255'
+            'Sede_id' =>'required|string|max:255'
         ]);
     }
 
@@ -107,7 +115,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'telefono'=> $data['telefono'],
                 'password' => Hash::make($data['password']),
-                'Compania_id' =>$data['Compania_id'],
+                'Sede_id' =>$data['Sede_id'],
                 'activo'=>1
             ]);
             $user

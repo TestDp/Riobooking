@@ -31,7 +31,7 @@ Route::get('cargarSedesEmpresa/{idCompania}','InicioController@cargarSedesEmpres
 Route::get('cargarVPColaboradores/{idTipoCita}','InicioController@CargarVPListaColaboradores')->name('cargarVPColaboradores');
 Route::get('cargarVPDisponibilidadColaborador/{idColaborador}','InicioController@CargarVPDisponibilidadColaborador')->name('cargarVPDisponibilidadColaborador');
 Route::get('cargarVPTurnosDisponibles/{fechaConsulta}/{idColabordor}','InicioController@CargarVPTurnosDisponibles')->name('cargarVPTurnosDisponibles');
-
+Route::get('cargarVPRegistrarUsuario','InicioController@CargarVPRegistrarUsuario')->name('cargarVPRegistrarUsuario');
 
 //CONTROLADOR TIPOCITAS
 Route::get('crearTipoCita', 'MSistema\TipoCitaController@CrearTipoCita')->name('crearTipoCita');//cargar la vista para crear un tipo de cita

@@ -9,6 +9,7 @@
                     <div class="col-md-7">
                         <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                             @csrf
+                            <input type="hidden" id="Sede_id" name="Sede_id" value="1">
                             <div class="box_form">
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
@@ -97,18 +98,6 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="compani" class="col-md-4 col-form-label text-md-right">{{ __('Compañia') }}</label>
-                                <div class="col-md-6">
-                                    <select id="Compania_id" name="Compania_id"  class="form-control"  name="language" required>
-                                        <option value="">Seleccionar</option>
-                                        @foreach($companias as $compania)
-                                            <option value="{{$compania->id}}">{{$compania->Nombre}}</option>
-                                        @endforeach
-
-                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row mb-0">

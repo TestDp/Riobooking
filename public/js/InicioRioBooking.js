@@ -109,3 +109,97 @@ function renderSectionTurnosDisponibles(fechaConsulta,idColabordor) {
     });
 }
 
+
+function mostrarFormReserva(element) {
+    if($(element).prop( "checked" )) {
+        var x = document.getElementById("divReservar");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            window.scrollTo(0, 1400);
+        } else {
+            x.style.display = "none";
+        }
+   }
+}
+
+
+function iniciarSesion() {
+    PopupPosition();
+    var form = $("#formLogin");
+    var token = $("#_token").val()
+    $.ajax({
+        type: 'POST',
+        url: urlBase +'login',
+        dataType: 'json',
+        headers: {'X-CSRF-TOKEN': token},
+        data:form.serialize(),
+        success: function (data) {
+            OcultarPopupposition();
+           $('#divReservar').empty().append($(data));
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            $("#errorNombre").html("");
+            $("#errorDescripcion").html("");
+            var errors = data.responseJSON;
+            if(errors.errors.Nombre){
+                var errorNombre = "<strong>"+ errors.errors.Nombre+"</strong>";
+                $("#errorNombre").append(errorNombre);}
+            if(errors.errors.Descripcion){
+                var errorDescripcion = "<strong>"+ errors.errors.Descripcion+"</strong>";
+                $("#errorDescripcion").append(errorDescripcion);}
+        }
+    });
+}
+
+function registrarUsuarioReserva() {
+    PopupPosition();
+    var form = $("#registrarUsuario");
+    var token = $("#_token").val()
+    $.ajax({
+        type: 'POST',
+        url: urlBase +'register',
+        dataType: 'json',
+        headers: {'X-CSRF-TOKEN': token},
+        data:form.serialize(),
+        success: function (data) {
+            OcultarPopupposition();
+            $('#divReservar').empty().append($(data));
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            $("#errorNombre").html("");
+            $("#errorDescripcion").html("");
+            var errors = data.responseJSON;
+            if(errors.errors.Nombre){
+                var errorNombre = "<strong>"+ errors.errors.Nombre+"</strong>";
+                $("#errorNombre").append(errorNombre);}
+            if(errors.errors.Descripcion){
+                var errorDescripcion = "<strong>"+ errors.errors.Descripcion+"</strong>";
+                $("#errorDescripcion").append(errorDescripcion);}
+        }
+    });
+}
+
+function renderSectionCargarVPRegistrarUsuario() {
+    PopupPosition();
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'cargarVPRegistrarUsuario/',
+        dataType: 'json',
+        success: function (data) {
+            OcultarPopupposition();
+            $('#divReservar').empty().append($(data));
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+

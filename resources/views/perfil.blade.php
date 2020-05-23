@@ -48,12 +48,12 @@
                             </div>
                             <ul class="treatments clearfix">
                                 @foreach($tiposCitas as $tipoCita)
-                                <li>
-                                    <div class="checkbox">
-                                        <input onclick="renderSectionCargarVPColaboradores({{$tipoCita->id}})" type="checkbox" class="css-checkbox" id="tipoServicio{{$tipoCita->id}}" name="tipoServicio{{$tipoCita->id}}">
-                                        <label for="tipoServicio{{$tipoCita->id}}" class="css-label">{{$tipoCita->Nombre}} <strong>$10 k</strong></label>
-                                    </div>
-                                </li>
+                                    <li>
+                                        <div class="checkbox">
+                                            <input onclick="renderSectionCargarVPColaboradores({{$tipoCita->id}})" type="checkbox" class="css-checkbox" id="tipoServicio{{$tipoCita->id}}" name="tipoServicio{{$tipoCita->id}}">
+                                            <label for="tipoServicio{{$tipoCita->id}}" class="css-label">{{$tipoCita->Nombre}} <strong>$10 k</strong></label>
+                                        </div>
+                                    </li>
                                 @endforeach
                             </ul>
 
@@ -82,38 +82,78 @@
                                     <h3><strong>4</strong>Reservar cita</h3>
                                 </div>
                                 <div id="divReservar" style="display:none">
-                                <form method="post" action="" id="booking">
-                                    <div class="row">
-                                        <div class="col-md-6 ">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Nombre o Apodo" name="name_booking" id="name_booking">
+                                        @guest
+                                            <div class="bg_color_2">
+                                                <div class="container margin_60_35">
+                                                    <div id="login-2">
+                                                        <h1>Inicia Sesión en RioBooking</h1>
+                                                        <form id="formLogin">
+                                                            <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
+                                                            <div class="box_form clearfix">
+                                                                <div class="box_login last">
+                                                                    <div class="form-group">
+                                                                        <input placeholder="Cédula ó Nombre de Usuario" id="login”" type="login" class="form-control{{ $errors->has('login') ? ' is-invalid' : '' }}" name="login" value="{{ old('login') }}" required autofocus>
+
+                                                                        @if ($errors->has('login'))
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $errors->first('login') }}</strong>
+                                                                            </span>
+                                                                        @endif
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input placeholder="Contraseña" id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                                                        @if ($errors->has('password'))
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $errors->first('password') }}</strong>
+                                                                            </span>
+                                                                        @endif
+                                                                        <a href="{{ route('password.request') }}" class="forgot"><small>Olvidaste tu contraseña?</small></a>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input class="btn_1" onclick="iniciarSesion()" value="Iniciar Sesión">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <p class="text-center link_bright">No tienes cuenta? <a onclick="renderSectionCargarVPRegistrarUsuario()"><strong>¡Registrate aquí!</strong></a></p>
+                                                    </div>
+                                                    <!-- /login -->
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Teléfono" name="lastname_booking" id="lastname_booking">
+                                        @else
+                                            <div class="row">
+                                                <div class="col-md-6 ">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Nombre o Apodo" name="name_booking" id="name_booking">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Teléfono" name="lastname_booking" id="lastname_booking">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <!-- /row -->
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="Correo Electrónico" name="email_booking" id="email_booking">
+                                            <!-- /row -->
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" placeholder="Correo Electrónico" name="email_booking" id="email_booking">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <!-- /row -->
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <textarea rows="5" id="booking_message" name="booking_message" class="form-control" style="height:80px;" placeholder="Mensaje adicional"></textarea>
+                                            <!-- /row -->
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <textarea rows="5" id="booking_message" name="booking_message" class="form-control" style="height:80px;" placeholder="Mensaje adicional"></textarea>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div style="position:relative;"><input type="submit" class="btn_1 full-width" value="Reservar Cita" id="submit-booking"></div>
-                                </form>
+                                            <hr>
+                                            <div style="position:relative;"><input type="submit" class="btn_1 full-width" value="Reservar Cita" id="submit-booking"></div>
+                                        @endguest
+
                                 </div>
                             </div>
 

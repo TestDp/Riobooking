@@ -18,5 +18,4 @@
             </div>
         </div>
     </form>
-    <button style="display: block; margin: auto; margin-bottom: 5%;" class="btn_1" onclick="mostrarReservar()">Siguiente</button>
 @endsection

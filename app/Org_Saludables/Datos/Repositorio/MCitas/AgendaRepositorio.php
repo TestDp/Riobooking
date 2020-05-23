@@ -23,7 +23,7 @@ class AgendaRepositorio
             ->leftJoin('tbl_citas_por_usuarios', 'tbl_turno_por_colaborador.id', '=', 'tbl_citas_por_usuarios.TurnoPorColaborador_id')
             ->select('Tbl_Citas.*','Tbl_Colaborador.Nickname as Nickname')
             ->where('Tbl_Colaborador.user_id', '=', $idUser)
-            ->whereNull('tbl_citas_por_usuarios.id')
+            ->whereNotNull('tbl_citas_por_usuarios.id')
             ->get();
         return  $reservas;
     }

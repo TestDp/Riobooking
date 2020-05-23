@@ -95,5 +95,13 @@ class InicioController extends Controller
         }else return view('MSistema/Colaborador/turnosDisponiblesVP');
     }
 
+    public function CargarVPRegistrarUsuario(Request $request){
+        $view = View::make('auth/registrarUsuarioVP');
+        if($request->ajax()){
+            $sections = $view->renderSections();
+            return Response::json($sections['content']);
+        }else return view('auth/registrarUsuarioVP');
+    }
+
 
 }

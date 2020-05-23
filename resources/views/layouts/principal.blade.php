@@ -156,7 +156,7 @@
             <!--toggle button end-->
             <!--logo -->
             <div class="logo">
-                <a href="{{ url('/welcome') }}">
+                <a href="{{ url('/') }}">
                     <img src="{{ asset('images/Logo-home.png') }}"></img>
                 </a>
             </div>

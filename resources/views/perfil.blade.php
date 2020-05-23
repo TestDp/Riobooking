@@ -23,7 +23,6 @@
                     <h1>{{$Compania->Nombre}}</h1>
                     <ul class="contacts">
                         <li><h6>Dirección</h6>{{$Compania->Direccion}}</li>
-                        <li><h6>Teléfono</h6><a>TeléfonoDelNegocio</a></li>
                     </ul>
                     <!--<div class="text-center"><a href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x0:0xa6a9af76b1e2d899!2sAssistance+%E2%80%93+H%C3%B4pitaux+De+Paris!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361" class="btn_1 outline" target="_blank"><i class="icon_pin"></i> View on map</a></div>-->
                 </div>
@@ -83,13 +82,11 @@
                                 </div>
                                 <div id="divReservar" style="display:none">
                                         @guest
-                                            <div class="bg_color_2">
-                                                <div class="container margin_60_35">
                                                     <div id="login-2">
-                                                        <h1>Inicia Sesión en RioBooking</h1>
                                                         <form id="formLogin">
                                                             <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
-                                                            <div class="box_form clearfix">
+                                                            <div style="padding: 3% !important;" class="box_form clearfix">
+                                                                <h6 style="text-align: center;">Inicia Sesión en RioBooking</h6>
                                                                 <div class="box_login last">
                                                                     <div class="form-group">
                                                                         <input placeholder="Cédula ó Nombre de Usuario" id="login”" type="login" class="form-control{{ $errors->has('login') ? ' is-invalid' : '' }}" name="login" value="{{ old('login') }}" required autofocus>
@@ -111,16 +108,14 @@
                                                                         <a href="{{ route('password.request') }}" class="forgot"><small>Olvidaste tu contraseña?</small></a>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input class="btn_1" onclick="iniciarSesion()" value="Iniciar Sesión">
+                                                                        <a class="btn_1" style="cursor: pointer; color:#fff;" onclick="iniciarSesion()" value="Iniciar Sesión">Iniciar Sesión</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </form>
-                                                        <p class="text-center link_bright">No tienes cuenta? <a onclick="renderSectionCargarVPRegistrarUsuario()"><strong>¡Registrate aquí!</strong></a></p>
+                                                        <button style="background: #3f4079 !important;" class="btn_1"><a onclick="renderSectionCargarVPRegistrarUsuario()"><strong>¿No tienes cuenta? ¡Registrate aquí!</strong></a></button>
                                                     </div>
                                                     <!-- /login -->
-                                                </div>
-                                            </div>
                                         @else
                                         <form id="formSolicitarResevar">
                                         <input type="hidden" id="TurnoPorColaborador_id" name="TurnoPorColaborador_id" value="1">

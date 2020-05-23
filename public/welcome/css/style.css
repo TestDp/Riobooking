@@ -435,7 +435,9 @@ a.btn_1,
   background: #0098e4;
   cursor: pointer;
   padding: 7px 20px;
-  display: inline-block;
+  display: block;
+  margin:auto;
+  text-align:center;
   outline: none;
   font-size: 14px;
   font-size: 0.875rem;

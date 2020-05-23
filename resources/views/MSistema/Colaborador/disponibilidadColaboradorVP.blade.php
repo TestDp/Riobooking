@@ -12,6 +12,7 @@
                 </div>
             </div>
             <div class="col-lg-5">
+                <h6 style="text-align: center;">Turnos disponibles</h6>
                 <ul class="time_select version_2 add_top_20" id="turnosDisponibles">
 
                 </ul>

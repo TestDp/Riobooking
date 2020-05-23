@@ -1,14 +1,12 @@
 @section('content')
-    <div class="bg_color_2">
-        <div class="container margin_60_35">
             <div id="register">
-                <h1>Crea tu cuenta RioBooking</h1>
                 <div class="row justify-content-center">
-                    <div class="col-md-7">
+                    <div class="col-md-10">
                         <form method="POST" id="registrarUsuario" name="registrarUsuario">
                             <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                             <input type="hidden" id="Sede_id" name="Sede_id" value="1">
                             <div class="box_form">
+                                <h6 style="text-align: center;">Crea tu cuenta RioBooking</h6>
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
@@ -100,7 +98,7 @@
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <input class="btn btn-primary" onclick="registrarUsuarioReserva()" value="Iniciar Sesión">
+                                    <input class="btn_1" onclick="registrarUsuarioReserva()" value="Crear cuenta RioBooking">
                                 </div>
                             </div>
                             </div>
@@ -108,6 +106,4 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 @endsection

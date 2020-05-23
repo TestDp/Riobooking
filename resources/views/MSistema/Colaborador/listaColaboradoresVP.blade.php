@@ -3,7 +3,7 @@
     <div class="col-md-4">
         <div class="box_list wow fadeIn">
             <figure>
-                <a href=""><img src="{{ $colaborador->rutaImagen.$colaborador->ImagenColaborador}}" class="img-fluid" alt="">
+                <a onclick="renderSectionDisponibilidadColaborador({{$colaborador->id}})"><img src="{{ $colaborador->rutaImagen.$colaborador->ImagenColaborador}}" class="img-fluid" alt="">
                 </a>
             </figure>
             <div style="text-align:center;" class="wrapper">

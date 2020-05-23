@@ -113,6 +113,9 @@ Route::get('oauth', ['as' => 'oauthCallback', 'uses' => 'gCalendarController@oau
 
 //CONTROLADOR AGENDA
 Route::get('agenda', 'MCitas\AgendaController@ObtenerAgenda')->name('agenda');
+Route::post('reservar', 'MCitas\AgendaController@GuardarReserva')->name('reservar');
+
+
 
 //CONTROLADOR COLABORADOR
 Route::get('crearColaborador', 'MSistema\ColaboradorController@CrearColaboradorEmpresa')->name('crearColaborador');//cargar la vista para crear un usuario

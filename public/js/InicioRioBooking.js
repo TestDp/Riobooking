@@ -110,9 +110,10 @@ function renderSectionTurnosDisponibles(fechaConsulta,idColabordor) {
 }
 
 
-function mostrarFormReserva(element) {
+function mostrarFormReserva(element,turnoPorColaborador_id) {
     if($(element).prop( "checked" )) {
         var x = document.getElementById("divReservar");
+        $("#TurnoPorColaborador_id").val(turnoPorColaborador_id);
         if (x.style.display === "none") {
             x.style.display = "block";
             window.scrollTo(0, 1400);
@@ -155,7 +156,7 @@ function iniciarSesion() {
 function registrarUsuarioReserva() {
     PopupPosition();
     var form = $("#registrarUsuario");
-    var token = $("#_token").val()
+    var token = $("#_token").val();
     $.ajax({
         type: 'POST',
         url: urlBase +'register',
@@ -199,6 +200,40 @@ function renderSectionCargarVPRegistrarUsuario() {
                     console.log(errors[i]);
                 });
             }
+        }
+    });
+}
+
+function guardarReservaUsuario() {
+    PopupPosition();
+    var form = $("#formSolicitarResevar");
+    var token = $("#_token").val();
+    $.ajax({
+        type: 'POST',
+        url: urlBase +'reservar',
+        dataType: 'json',
+        headers: {'X-CSRF-TOKEN': token},
+        data:form.serialize(),
+        success: function (data) {
+            OcultarPopupposition();
+            swal({
+                title: 'Reserva agendada',
+                text: "Su reserva fue agendada con exito!",
+                icon: 'success',
+                buttons: {
+                    confirm: {
+                        text: "OK",
+                        value: true,
+                        visible: true,
+                        className: "",
+                        closeModal: true
+                    }},
+            }).then((result) => {
+                location.reload();
+            });
+        },
+        error: function (data) {
+            OcultarPopupposition();
         }
     });
 }

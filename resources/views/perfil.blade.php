@@ -122,36 +122,22 @@
                                                 </div>
                                             </div>
                                         @else
-                                            <div class="row">
-                                                <div class="col-md-6 ">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Nombre o Apodo" name="name_booking" id="name_booking">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Teléfono" name="lastname_booking" id="lastname_booking">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <form id="formSolicitarResevar">
+                                        <input type="hidden" id="TurnoPorColaborador_id" name="TurnoPorColaborador_id" value="1">
+                                        <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                                             <!-- /row -->
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="form-group">
-                                                        <input type="email" class="form-control" placeholder="Correo Electrónico" name="email_booking" id="email_booking">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /row -->
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <textarea rows="5" id="booking_message" name="booking_message" class="form-control" style="height:80px;" placeholder="Mensaje adicional"></textarea>
+                                                        <textarea rows="5" id="Comentario1" name="Comentario1" class="form-control" style="height:80px;" placeholder="Mensaje adicional"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <hr>
-                                            <div style="position:relative;"><input type="submit" class="btn_1 full-width" value="Reservar Cita" id="submit-booking"></div>
+                                            <div style="position:relative;">
+                                                <input type="button" class="btn_1 full-width" value="Reservar Cita" onclick="guardarReservaUsuario()">
+                                            </div>
+                                        </form>
                                         @endguest
 
                                 </div>

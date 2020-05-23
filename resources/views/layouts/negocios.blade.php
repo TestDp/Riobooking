@@ -29,10 +29,8 @@
     <!-- Modernizr -->
     <script src="{{ asset('welcome/js/modernizr_tables.js') }}"></script>
 
-    <script>
-
-
-    </script>
+    <!-- sweet plugins-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 

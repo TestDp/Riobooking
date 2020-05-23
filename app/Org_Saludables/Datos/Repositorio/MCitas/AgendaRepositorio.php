@@ -10,11 +10,25 @@ namespace App\Org_Saludables\Datos\Repositorio\MCitas;
 
 use DateTime;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Arr;
+use Org_Saludables\Datos\Modelos\MCitas\Cita_Por_Usuario;
 
 class AgendaRepositorio
 {
 
+    public function GuardarReserva(Cita_Por_Usuario $citaPorUsuario)
+    {
+        DB::beginTransaction();
+        try {
+            $citaPorUsuario->save();
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
+            DB::rollback();
+            return $error;
+        }
+
+    }
     public function obtenerReservas($idUser)
     {
         $reservas = DB::table('Tbl_Colaborador')
@@ -81,6 +95,5 @@ class AgendaRepositorio
             ->select(\DB::raw('tbl_citas.*, tbl_turno_por_colaborador.Id,tbl_colaborador.id as idColaborador' ))
             ->get();
         return $listaCitasDisponibles;
-
     }
 }

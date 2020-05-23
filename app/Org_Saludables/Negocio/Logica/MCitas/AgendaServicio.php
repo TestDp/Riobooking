@@ -10,7 +10,9 @@ namespace App\Org_Saludables\Negocio\Logica\MCitas;
 
 
 use App\Org_Saludables\Datos\Repositorio\MCitas\AgendaRepositorio;
+use App\Org_Saludables\Negocio\DTO\MCitas\CitaXUsuarioDTO;
 use App\Org_Saludables\Negocio\DTO\MCitas\ReservaDTO;
+use Org_Saludables\Datos\Modelos\MCitas\Cita_Por_Usuario;
 
 class AgendaServicio
 {
@@ -21,6 +23,11 @@ class AgendaServicio
      $this->agendaRepositorio = $agendaRepositorio;
     }
 
+    public function GuardarReserva(CitaXUsuarioDTO $citaXUsuarioDTO)
+    {
+        $reservaModel = $citaXUsuarioDTO->toModel(Cita_Por_Usuario::class);
+        return $this->agendaRepositorio->GuardarReserva($reservaModel);
+    }
     public function obtenerReservas($idUser){
         $arrayReservasModel = $this->agendaRepositorio->obtenerReservas($idUser);
         $arrayDTOreservas = array();

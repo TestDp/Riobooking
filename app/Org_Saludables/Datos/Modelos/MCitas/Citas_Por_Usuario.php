@@ -15,5 +15,5 @@ use Illuminate\Database\Eloquent\Model;
 class Cita_Por_Usuario extends Model
 {
     protected $table = 'Tbl_Citas_Por_Usuarios';
-    protected $fillable =['Cita_id','user_id'];
+    protected $fillable =['TurnoPorColaborador_id','user_id','Comentario1','Comentario2','Estado'];
 }

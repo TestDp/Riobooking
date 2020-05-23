@@ -31,7 +31,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="box_list home">
                         <figure>
-                            <a href=""><img src="{{ $Compania->RutaLogo.$Compania->LogoNegocio}}" class="img-fluid" alt=""></a>
+                            <a href="{{url('perfilNegocio', ['idCompania' => $Compania->id ])}}"><img src="{{ $Compania->RutaLogo.$Compania->LogoNegocio}}" class="img-fluid" alt=""></a>
                         </figure>
                         <div class="wrapper">
                             <small>Rionegro</small>

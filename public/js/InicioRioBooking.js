@@ -67,8 +67,11 @@ function renderSectionDisponibilidadColaborador(idColaborador) {
 }
 
 function renderCalendario(arrayFechasNoDisponibles,idColabordor){
+    var nowDate = new Date();
+    var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
     $('#calendar').datepicker({
         todayHighlight: true,
+        startDate: today,
         daysOfWeekDisabled: [0],
         weekStart: 1,
         format: "yyyy-mm-dd",

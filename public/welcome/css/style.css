@@ -2893,6 +2893,7 @@ ul.time_select li label {
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   background-color: #f8f8f8;
+    border: 1px solid #8ec549;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;

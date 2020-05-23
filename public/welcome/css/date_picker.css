@@ -104,7 +104,8 @@
   cursor: pointer;
 }
 .datepicker table tr td.day {
-	background-color: #f8f8f8;
+	background-color: #8ec549;
+    color:#fff;
 	border: 2px solid #fff;
 }
 .datepicker table tr td.old,
@@ -114,7 +115,7 @@
 .datepicker table tr td.disabled,
 .datepicker table tr td.disabled:hover {
   background: none;
-  color: #999;
+  color: #ddd;
   cursor: default;
 }
 .datepicker table tr td.today,

@@ -20,7 +20,7 @@ use Org_Saludables\Datos\Modelos\MSistema\TipoCitas;
 class Compania extends Model
 {
     protected $table = 'Tbl_Companias';
-    protected $fillable =['Nombre','Direccion','Activa','LogoNegocio'];
+    protected $fillable =['Nombre','Direccion','Activa','LogoNegocio','Categoria_id'];
 
     public function Regionales(){
         return $this->hasMany(Regional::class,'Compania_id','id');
@@ -36,6 +36,10 @@ class Compania extends Model
         return $this->hasMany(User::class,'Compania_id','id');
     }
 
+    public function Categoria()
+    {
+        return $this->belongsTo(Categoria::class,'Categoria_id');
+    }
     // public function Jornadas(){
        // return $this->hasMany(Jornada::class,'Compania_id','id');
    // }

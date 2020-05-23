@@ -19,4 +19,6 @@ class CompaniaDTO extends BaseDTO
     public $Activa;
     public $LogoNegocio;
     public $RutaLogo;
+    public $Categoria_id;
+    public $Categoria;
 }

@@ -28,6 +28,7 @@ function GuardarCompania() {
     formData.append('fileLogoNegocio', $('#LogoNegocio')[0].files[0]);
     formData.append('Nombre', $('#Nombre').val());
     formData.append('Direccion', $('#Direccion').val());
+    formData.append('Categoria_id', $('#Categoria_id').val());
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',

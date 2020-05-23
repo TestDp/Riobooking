@@ -19,6 +19,18 @@
                                 <input type="file" class="form-control" id="LogoNegocio" name="LogoNegocio" accept=".png,.jpg,.jpeg">
                             </div>
                             <div class="col-md-4">
+                                <label> Categoria </label>
+                                <select id="Categoria_id" name="Categoria_id"  class="form-control"  name="language">
+                                    <option value="">Seleccionar</option>
+                                    @foreach($listCategorias as $categoria)
+                                        <option value="{{$categoria->id}}">{{$categoria->Categoria}}</option>
+                                    @endforeach
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-4">
                                 <label>Dirección</label>
                                 <input id="Direccion" name="Direccion" type="text" class="form-control">
                                 <span class="invalid-feedback" role="alert" id="errorDireccion"></span>

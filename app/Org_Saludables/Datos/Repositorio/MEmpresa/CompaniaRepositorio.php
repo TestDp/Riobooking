@@ -9,6 +9,7 @@
 namespace App\Org_Saludables\Datos\Repositorio\MEmpresa;
 
 use Org_Saludables\Datos\Modelos\MEmpresa\Compania;
+use Org_Saludables\Datos\Modelos\MEmpresa\Categoria;
 use Illuminate\Support\Facades\DB;
 use Org_Saludables\Datos\Modelos\MEmpresa\Sede;
 
@@ -36,13 +37,35 @@ class CompaniaRepositorio implements ICompaniaRepositorio
         }
     }
     public function ObtenerListaCompanias(){
-        return Compania::all();
+
+
+
+        $compañias = DB::table('Tbl_Companias')
+            ->join('Tbl_Categoria', 'Tbl_Companias.Categoria_id', '=', 'Tbl_Categoria.id')
+            ->select('Tbl_Companias.*','Tbl_Categoria.Categoria')
+            ->get();
+        return $compañias;
     }
     public function ObtenerCompania($idCompania){
-        return Compania::where('id', '=', $idCompania)->get()->first();
+
+
+        $compañias = DB::table('Tbl_Companias')
+            ->join('Tbl_Categoria', 'Tbl_Companias.Categoria_id', '=', 'Tbl_Categoria.id')
+            ->select('Tbl_Companias.*','Tbl_Categoria.Categoria')
+            ->where('Tbl_Companias.id', '=', $idCompania)
+            ->get()->first();
+        return $compañias;
 
     }
+    public function ObtenerListaCategorias(){
 
+
+        $categorias = DB::table('Tbl_Categoria')
+            ->select('Tbl_Categoria.*')
+            ->get();
+        return $categorias;
+
+    }
 
 
 }

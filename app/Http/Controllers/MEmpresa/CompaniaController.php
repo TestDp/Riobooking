@@ -35,8 +35,8 @@ class CompaniaController extends Controller
      
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        
-        $view = View::make('MEmpresa/Compania/crearCompania');
+        $categorias = $this->companiaServicio->ObtenerListaCategorias();
+        $view = View::make('MEmpresa/Compania/crearCompania')->with('listCategorias',$categorias);;
         if($request->ajax()){
             $sections = $view->renderSections();
             return Response::json($sections['content']);
@@ -54,6 +54,7 @@ class CompaniaController extends Controller
             $compania = new CompaniaDTO($request->all());
             $nombreLogo = "LogoNegocio".$compania->Nombre.'.jpg';
             $compania->LogoNegocio = $nombreLogo;
+            $compania->Categoria_id = $request->Categoria_id;
             $respuesta = $this->companiaServicio->GuardarCompania($compania);
             if($respuesta == true){
 

@@ -11,6 +11,7 @@ namespace App\Org_Saludables\Negocio\Logica\MEmpresa;
 
 use App\Org_Saludables\Datos\Repositorio\MEmpresa\ICompaniaRepositorio;
 use App\Org_Saludables\Negocio\DTO\MEmpresa\CompaniaDTO;
+use App\Org_Saludables\Negocio\DTO\MEmpresa\CategoriaDTO;
 use Org_Saludables\Datos\Modelos\MEmpresa\Compania;
 
 class CompaniaServicio implements ICompaniaServicio
@@ -34,7 +35,7 @@ class CompaniaServicio implements ICompaniaServicio
        $arrayModelCompanias = $this->iCompaniaRepositorio->ObtenerListaCompanias();
        $arrayDTOCompnias = array();
        foreach ($arrayModelCompanias as $modelCompania){
-           $companiaDTO = new CompaniaDTO($modelCompania->toArray());
+           $companiaDTO = new CompaniaDTO((array)$modelCompania);
            $companiaDTO->RutaLogo= env('RutaLogo');
            $arrayDTOCompnias[]=$companiaDTO;
        }
@@ -48,6 +49,18 @@ class CompaniaServicio implements ICompaniaServicio
         $companiaDTO = new CompaniaDTO($companiaModel->toArray());
         $companiaDTO->RutaLogo= env('RutaLogoPerfil');
         return $companiaDTO;
+    }
+
+    public function ObtenerListaCategorias(){
+        $arrayModelCategorias = $this->iCompaniaRepositorio->ObtenerListaCategorias();
+        $arrayDTOCategorias = array();
+        foreach ($arrayModelCategorias as $modelCategoria){
+            $categoriaDTO = new CategoriaDTO((array)$modelCategoria);
+
+            $arrayDTOCategorias[]=$categoriaDTO;
+        }
+        return $arrayDTOCategorias;
+
     }
 
 }

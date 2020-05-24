@@ -38,9 +38,9 @@ class InicioController extends Controller
             $sections = $view->renderSections();
             return Response::json($sections['content']);
         }else
-            {
+        {
             return view ('riobooking')->with('listCompanias',$companias);
-            }
+        }
 
     }
 

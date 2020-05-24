@@ -46,7 +46,7 @@ class CompaniaServicio implements ICompaniaServicio
     public function ObtenerCompania($idCompania)
     {
         $companiaModel = $this->iCompaniaRepositorio->ObtenerCompania($idCompania);
-        $companiaDTO = new CompaniaDTO($companiaModel->toArray());
+        $companiaDTO = new CompaniaDTO((array)$companiaModel);
         $companiaDTO->RutaLogo= env('RutaLogoPerfil');
         return $companiaDTO;
     }

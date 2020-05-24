@@ -36,10 +36,8 @@ class CompaniaRepositorio implements ICompaniaRepositorio
             return $error;
         }
     }
-    public function ObtenerListaCompanias(){
-
-
-
+    public function ObtenerListaCompanias()
+    {
         $compañias = DB::table('Tbl_Companias')
             ->join('Tbl_Categoria', 'Tbl_Companias.Categoria_id', '=', 'Tbl_Categoria.id')
             ->select('Tbl_Companias.*','Tbl_Categoria.Categoria')

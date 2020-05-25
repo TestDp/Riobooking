@@ -9,16 +9,16 @@
                     <div class="panel-heading"><h3>Crear nuevo negocio</h3></div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label>Nombre del negocio</label>
                                 <input id="Nombre" name="Nombre" type="text" class="form-control">
                                 <span class="invalid-feedback" role="alert" id="errorNombre"></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label>Logo</label>
                                 <input type="file" class="form-control" id="LogoNegocio" name="LogoNegocio" accept=".png,.jpg,.jpeg">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label> Categoria </label>
                                 <select id="Categoria_id" name="Categoria_id"  class="form-control"  name="language">
                                     <option value="">Seleccionar</option>
@@ -30,7 +30,7 @@
 
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label>Dirección</label>
                                 <input id="Direccion" name="Direccion" type="text" class="form-control">
                                 <span class="invalid-feedback" role="alert" id="errorDireccion"></span>

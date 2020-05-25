@@ -141,7 +141,15 @@
                             </ul>
                         </li> 
                 @endif
-
+                        <li><a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i
+                                        class="fa fa-sign-out"></i> Cerrar sesión</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                  style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
                 </ul>
 
             </nav>
@@ -176,23 +184,8 @@
                                     <p>{{ Auth::user()->name }} </p>
                                     <span>Bienvenido</span>
                                 </div>
-                                <i class="fa fa-angle-down lnr"></i>
-                                <i class="fa fa-angle-up lnr"></i>
-                                <div class="clearfix"></div>
                             </div>
                         </a>
-                        <ul class="dropdown-menu drp-mnu">
-                            <li><a href="#"><i class="fa fa-cog"></i> Opciones</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Mi Perfil</a></li>
-                            <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i
-                                            class="fa fa-sign-out"></i> Cerrar sesión</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">
-                                    @csrf
-                                </form>
-                            </li>
                         </ul>
                     </li>
                 </ul>

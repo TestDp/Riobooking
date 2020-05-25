@@ -234,6 +234,7 @@ function guardarReservaUsuario() {
         },
         error: function (data) {
             OcultarPopupposition();
+            var errors = data.responseJSON;
         }
     });
 }

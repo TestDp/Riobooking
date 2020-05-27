@@ -124,7 +124,7 @@ class AgendaRepositorio
         return $infoReserva;
     }
 
-    
+
     public function CancelarCita($idCitaUser)
     {
         Cita_Por_Usuario::where('id',$idCitaUser )

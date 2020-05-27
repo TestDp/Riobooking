@@ -109,9 +109,8 @@ class AgendaRepositorio
             ->get();
         return $listaCitasDisponibles;
     }
-<<<<<<< .mine
-=======
->>>>>>> .theirs    public function ObtenerInformacionReserva($TurnoPorColaborador_id){
+
+  public function ObtenerInformacionReserva($TurnoPorColaborador_id){
 
         $infoReserva = DB::table('Tbl_Turno_Por_Colaborador')
                         ->join('Tbl_Citas','Tbl_Turno_Por_Colaborador.Cita_id','=','Tbl_Citas.id')
@@ -124,6 +123,8 @@ class AgendaRepositorio
                         ->get();
         return $infoReserva;
     }
+
+    
     public function CancelarCita($idCitaUser)
     {
         Cita_Por_Usuario::where('id',$idCitaUser )

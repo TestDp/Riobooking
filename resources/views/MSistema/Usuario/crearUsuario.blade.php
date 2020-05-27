@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="panel panel-success">
-                    <div class="panel-heading"><h3>Crear Colaborador</h3></div>
+                    <div class="panel-heading"><h3>Crear Usuario</h3></div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -20,7 +20,7 @@
                                 <span class="invalid-feedback" role="alert" id="errorlast_name"></span>
                             </div>
                             <div class="col-md-4">
-                                <label>Cédula</label>
+                                <label>UserName</label>
                                 <input id="username" name="username" type="text" class="form-control">
                                 <span class="invalid-feedback" role="alert" id="errorusername"></span>
                             </div>
@@ -35,10 +35,6 @@
                                 <label>Telefono</label>
                                 <input id="telefono" name="telefono" type="text" class="form-control">
                                 <span class="invalid-feedback" role="alert" id="errortelefono"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <label>Foto de perfil</label>
-                                <input type="file" class="form-control" id="imgColaborador" name="imgColaborador" accept=".png,.jpg,.jpeg">
                             </div>
                         </div>
                         <div class="row">
@@ -86,7 +82,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <button onclick="GuardarUsuario()" type="button" class="btn btn-success">Crear Colaborador</button>
+                                <button onclick="GuardarUsuario()" type="button" class="btn btn-success">Crear Usuario</button>
                             </div>
                         </div>
 

@@ -134,9 +134,9 @@ class ColaboradorController extends  Controller
         $usuarios = null;
         if($request->user()->hasRole(env('IdRolSuperAdmin')))
         {
-            $usuarios = $this->usuarioServicio->ObtenerTodosLosColaboradores($idUsuario);
+            $usuarios = $this->colaboradorServicio->ObtenerTodosLosColaboradores($idUsuario);
         }else{
-            $usuarios = $this->usuarioServicio->ObtenerListaColaboradores($idSede,$idUsuario);
+            $usuarios = $this->colaboradorServicio->ObtenerListaColaboradores($idSede,$idUsuario);
         }
         $view = View::make('MSistema/Colaborador/listaColaboradores')->with('listColaboradores',$usuarios);
         if($request->ajax()){

@@ -12,17 +12,17 @@
                         <tr>
                             <th scope="col">Foto de perfil</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Cedula</th>
-                            <th scope="col">Correo</th>
+                            <th scope="col">Nick Name</th>
+                            <th scope="col">Telefono</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($listColaboradores as $usuario)
                             <tr>
                                 <th><div style="background-size: cover; background-repeat: no-repeat; background-image: url('')"class="logo-negocio"></div></th>
-                                <td>{{$usuario->name}} {{$usuario->last_name}}</td>
-                                <td>{{$usuario->username}}</td>
-                                <td>{{$usuario->email}}</td>
+                                <td>{{$usuario->Nombre}} </td>
+                                <td>{{$usuario->Nickname}}</td>
+                                <td>{{$usuario->telefono}}</td>
                             </tr>
                         @endforeach
                         </tbody>

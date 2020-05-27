@@ -5,12 +5,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="panel panel-success">
-                <div class="panel-heading"><h3>Colaboradores</h3></div>
+                <div class="panel-heading"><h3>Usuarios</h3></div>
                 <div class="panel-body">
                     <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" class="table table-bordered" id="tablaUsuarios">
                         <thead>
                         <tr>
-                            <th scope="col">Foto de perfil</th>
+
                             <th scope="col">Nombre</th>
                             <th scope="col">Cedula</th>
                             <th scope="col">Correo</th>
@@ -19,7 +19,7 @@
                         <tbody>
                         @foreach($listUsuarios as $usuario)
                             <tr>
-                                <th><div style="background-size: cover; background-repeat: no-repeat; background-image: url('')"class="logo-negocio"></div></th>
+
                                 <td>{{$usuario->name}} {{$usuario->last_name}}</td>
                                 <td>{{$usuario->username}}</td>
                                 <td>{{$usuario->email}}</td>
@@ -29,7 +29,7 @@
                     </table>
                     <div class="row">
                         <div class="col-md-4">
-                            <button onclick="ajaxRenderSectionCrearUsuario()" type="button" class="btn btn-success">Nuevo Colaborador</button>
+                            <button onclick="ajaxRenderSectionCrearUsuario()" type="button" class="btn btn-success">Nuevo Usuario</button>
                         </div>
 
                     </div>

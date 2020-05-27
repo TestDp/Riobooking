@@ -67,7 +67,16 @@ class AgendaServicio
 
     }
 
-    public function ObtenerInformacionReserva($TurnoPorColaborador_id){
-        return  $this->agendaRepositorio->ObtenerInformacionReserva($TurnoPorColaborador_id);
+    public function obtenerMiCalendario($idUser){
+        $arrayReservasModel = $this->agendaRepositorio->obtenerCalendarioUsuario($idUser);
+        $arrayDTOreservas = array();
+        foreach ($arrayReservasModel as $modelReservas){
+            $reservaDTO = new ReservaDTO();
+            $reservaDTO->title = "Reserva de ".$modelReservas->Nickname;
+            $reservaDTO->start = $modelReservas->Fecha.' '. $modelReservas->Inicio;
+            $reservaDTO->end = $modelReservas->Fecha.' '. $modelReservas->Fin;
+            $arrayDTOreservas[]=$reservaDTO;
+        }
+        return $arrayDTOreservas;
     }
 }

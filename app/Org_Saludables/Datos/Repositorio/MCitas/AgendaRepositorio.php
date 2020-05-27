@@ -42,6 +42,19 @@ class AgendaRepositorio
         return  $reservas;
     }
 
+    public function obtenerCalendarioUsuario($idUser)
+    {
+        $reservas = DB::table('Tbl_Colaborador')
+            ->join('Tbl_Turno_Por_Colaborador','Tbl_Turno_Por_Colaborador.Colaborador_id','=','Tbl_Colaborador.id')
+            ->join('Tbl_Citas', 'Tbl_Citas.id', '=', 'Tbl_Turno_Por_Colaborador.Cita_id')
+            ->leftJoin('tbl_citas_por_usuarios', 'tbl_turno_por_colaborador.id', '=', 'tbl_citas_por_usuarios.TurnoPorColaborador_id')
+            ->select('Tbl_Citas.*','Tbl_Colaborador.Nickname as Nickname')
+            ->where('tbl_citas_por_usuarios.user_id', '=', $idUser)
+            ->whereNotNull('tbl_citas_por_usuarios.id')
+            ->get();
+        return  $reservas;
+    }
+
     public function obtenerDisponibilidadColaborador($idColaborador)
     {
         $reservas = DB::table('Tbl_Colaborador')
@@ -96,8 +109,9 @@ class AgendaRepositorio
             ->get();
         return $listaCitasDisponibles;
     }
-
-    public function ObtenerInformacionReserva($TurnoPorColaborador_id){
+<<<<<<< .mine
+=======
+>>>>>>> .theirs    public function ObtenerInformacionReserva($TurnoPorColaborador_id){
 
         $infoReserva = DB::table('Tbl_Turno_Por_Colaborador')
                         ->join('Tbl_Citas','Tbl_Turno_Por_Colaborador.Cita_id','=','Tbl_Citas.id')
@@ -109,5 +123,11 @@ class AgendaRepositorio
                         ->select(\DB::raw('tbl_Citas.*, Tbl_Colaborador.Nombre as NombreColaborador,Tbl_Companias.Nombre as NombreCompania' ))
                         ->get();
         return $infoReserva;
+    }
+    public function CancelarCita($idCitaUser)
+    {
+        Cita_Por_Usuario::where('id',$idCitaUser )
+            ->update(['Estado' => 2]);
+
     }
 }

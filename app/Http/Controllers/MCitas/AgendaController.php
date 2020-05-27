@@ -79,4 +79,17 @@ class AgendaController extends Controller
         }else return view('Citas/Agenda');
 
     }
+
+    public  function ObtenerMiCalendario(Request $request){
+        $urlinfo= $request->getPathInfo();
+        $request->user()->AutorizarUrlRecurso($urlinfo);
+        $idUser = $request->user()->id;
+        $arrayDtoReservas  = $this->agendaServicio->obtenerMiCalendario($idUser);
+        $view = View::make('Citas/MiCalendario');
+        if($request->ajax()){
+            $sections = $view->renderSections();
+            return Response::json(['vista'=>$sections['content'],'reservas'=>$arrayDtoReservas]);
+        }else return view('Citas/MiCalendario');
+
+    }
 }

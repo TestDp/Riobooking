@@ -86,7 +86,7 @@ Route::get('gerencias', 'MEmpresa\GerenciaController@ObtenerGerencias')->name('g
 Route::get('crearJornada', 'MCitas\JornadaController@CrearJornada')->name('crearJornada');//cargar la vista para crear una jornada
 Route::post('guardarJornada', 'MCitas\JornadaController@GuardarJornada')->name('guardarJornada');//Guardar la informacion de la jornada
 Route::get('jornadas', 'MCitas\JornadaController@ObtenerJornadas')->name('jornadas');//Obtiene la lista de jornadas
-Route::get('miCalendario', 'MCitas\JornadaController@ObtenerMiCalendario')->name('miCalendario');
+//Route::get('miCalendario', 'MCitas\JornadaController@ObtenerMiCalendario')->name('miCalendario');
 
 Route::get('detalleJornada/{idJornada}', 'MCitas\JornadaController@DetalleJornada')->name('detalleJornada');//cargar la vista con el detalle de la jornada
 Route::get('exportarJornada/{idJornada}', 'MCitas\JornadaController@ExportarJornada')->name('exportarJornada');//permite descargar la jornada
@@ -113,6 +113,7 @@ Route::get('oauth', ['as' => 'oauthCallback', 'uses' => 'gCalendarController@oau
 
 //CONTROLADOR AGENDA
 Route::get('agenda', 'MCitas\AgendaController@ObtenerAgenda')->name('agenda');
+Route::get('miCalendario', 'MCitas\AgendaController@ObtenerMiCalendario')->name('miCalendario');
 Route::post('reservar', 'MCitas\AgendaController@GuardarReserva')->name('reservar');
 
 

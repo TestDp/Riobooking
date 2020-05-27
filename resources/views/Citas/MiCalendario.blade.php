@@ -31,23 +31,7 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: [ 'dayGrid','interaction','list','timeGrid' ],
-                //defaultView:'timeGridDay'
-                header:{
-                    left:'prev,next today',
-                    center:'title',
-                    right:'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                events:[{
-                    title: "turno de Cristian",
-                    start: "2020-05-02 14:00:00",
-                    end: "2020-05-02 14:30:00"
-                }]
-            });
-            calendar.setOption('locale','Es');
-            calendar.render();
+
         });
     </script>
 @endsection

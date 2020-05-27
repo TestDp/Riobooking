@@ -1,5 +1,7 @@
 @section('content')
-    @foreach($Colaboradores as $colaborador)
+    <div class="col-lg-12">
+        <div class="row">
+            @foreach($Colaboradores as $colaborador)
     <div class="col-md-4">
         <div class="box_list wow fadeIn">
             <figure>
@@ -21,5 +23,8 @@
             </div>
         </div>
     </div>
-    @endforeach
+            @endforeach
+        </div>
+    </div>
+
 @endsection

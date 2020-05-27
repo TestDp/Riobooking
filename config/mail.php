@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'mail.facin.co'),
+    'host' => env('MAIL_HOST', 'mail.riobooking.co'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'info@facin.co'),
+        'address' => env('MAIL_FROM_ADDRESS', 'reservas@riobooking.co'),
         'name' => env('MAIL_FROM_NAME', 'Org_Saludables'),
     ],
 

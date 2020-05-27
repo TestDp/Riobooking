@@ -29,6 +29,16 @@ class AgendaController extends Controller
         $respuesta =  $this->agendaServicio->GuardarReserva($reservaDTO);
 
         if($respuesta == 'true'){
+            $correoElectronicoCliente = $request->user()->email;
+            $correoSaliente = 'dps@riobooking.co';
+            Mail::send('Email/correoReservaCliente', ['ElementosArray' => "Correo Reserva Cliente"], function ($msj) use ($correoElectronicoCliente, $correoSaliente) {
+                $msj->from($correoSaliente, 'Riobooking');
+                $msj->subject('Tu reserva en Riobooking ha sido exitosa');
+                $msj->to($correoElectronicoCliente);
+                $msj->bcc('soporteecotickets@gmail.com');
+            });
+
+
             $infoReserva = $this->agendaServicio->ObtenerInformacionReserva($reservaDTO->TurnoPorColaborador_id);
 
            $respuestaGoogle= $this->googleCalendar->index();
@@ -42,14 +52,7 @@ class AgendaController extends Controller
             return Response::json(['respuesta'=>$urlGoogle]);
 
             
-            $correoElectronicoCliente = $request->user()->email;
-            $correoSaliente = 'info@riobooking.co';
-           Mail::send('Email/correoReservaCliente', ['ElementosArray' => "Correo Reserva Cliente"], function ($msj) use ($correoElectronicoCliente, $correoSaliente) {
-                $msj->from($correoSaliente, 'Riobooking');
-                $msj->subject('Tu reserva en Riobooking ha sido exitosa');
-                $msj->to($correoElectronicoCliente);
-                $msj->bcc('soporteecotickets@gmail.com');
-            });
+
 
             
             Mail::send('Email/correoReservaColaborador', ['ElementosArray' => "Correo Reserva Colaborador"], function ($msj) use ($correoSaliente) {

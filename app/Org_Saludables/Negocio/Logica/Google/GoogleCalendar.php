@@ -141,7 +141,7 @@ class GoogleCalendar
     public function store($cita, $jornada, $citaPorUsuario)
     {
         
-         session_start();
+        session_start();
         $client = new Google_Client();
         $client->setAuthConfig('client_secret.json');
         $client->addScope(Google_Service_Calendar::CALENDAR);

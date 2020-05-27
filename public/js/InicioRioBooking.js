@@ -229,7 +229,7 @@ function guardarReservaUsuario() {
                         closeModal: true
                     }},
             }).then((result) => {
-                location.reload();
+                window.location.href= data.respuesta;
             });
         },
         error: function (data) {

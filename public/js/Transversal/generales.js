@@ -6,7 +6,7 @@ function obtenerUlrBase() {
         case 'Riobooking.co':
             rootFolder = '/'; break;
         case 'localhost':
-            rootFolder = '/Riobooking/trunk/public/'; break;
+            rootFolder = '/Riobooking/public/'; break;
         default:  // set whatever you want
     }
     urlBase = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + rootFolder;

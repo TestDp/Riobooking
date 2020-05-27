@@ -19,7 +19,7 @@
                     <figure>
                         <img src="{{ $Compania->RutaLogo.$Compania->LogoNegocio}}" alt="" class="img-fluid">
                     </figure>
-                    <small>CategoríaDelNegocio</small>
+                    <small>{{$Compania->Categoria}}</small>
                     <h1>{{$Compania->Nombre}}</h1>
                     <ul class="contacts">
                         <li><h6>Dirección</h6>{{$Compania->Direccion}}</li>

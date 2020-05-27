@@ -96,4 +96,18 @@ class AgendaRepositorio
             ->get();
         return $listaCitasDisponibles;
     }
+
+    public function ObtenerInformacionReserva($TurnoPorColaborador_id){
+
+        $infoReserva = DB::table('Tbl_Turno_Por_Colaborador')
+                        ->join('Tbl_Citas','Tbl_Turno_Por_Colaborador.Cita_id','=','Tbl_Citas.id')
+                        ->join('Tbl_Colaborador','Tbl_Colaborador.id','=','Tbl_Turno_Por_Colaborador.Colaborador_id')
+                        ->join('users','Tbl_Colaborador.user_id','=','users.id')
+                        ->join('Tbl_Sedes','users.Sede_id','=','Tbl_Sedes.id')
+                        ->join('Tbl_Companias','Tbl_Sedes.Compania_id','=','Tbl_Companias.id')
+                        ->where('Tbl_Turno_Por_Colaborador.id', '=', $TurnoPorColaborador_id)
+                        ->select(\DB::raw('tbl_Citas.*, Tbl_Colaborador.Nombre as NombreColaborador,Tbl_Companias.Nombre as NombreCompania' ))
+                        ->get();
+        return $infoReserva;
+    }
 }

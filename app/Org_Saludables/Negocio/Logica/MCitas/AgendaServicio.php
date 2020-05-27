@@ -66,4 +66,8 @@ class AgendaServicio
         return $arrayTunosDisponibleDiaModel;
 
     }
+
+    public function ObtenerInformacionReserva($TurnoPorColaborador_id){
+        return  $this->agendaRepositorio->ObtenerInformacionReserva($TurnoPorColaborador_id);
+    }
 }

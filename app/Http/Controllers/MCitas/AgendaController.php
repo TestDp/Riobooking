@@ -29,6 +29,7 @@ class AgendaController extends Controller
         $respuesta =  $this->agendaServicio->GuardarReserva($reservaDTO);
 
         if($respuesta == 'true'){
+            $infoReserva = $this->agendaServicio->ObtenerInformacionReserva($reservaDTO->TurnoPorColaborador_id);
 
            $respuestaGoogle= $this->googleCalendar->index();
            $urlGoogle='';

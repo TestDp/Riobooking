@@ -55,11 +55,11 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                   <label>Negocio</label>
+                                   <label>Sede</label>
                                 <select id="Sede_id" name="Sede_id"  class="form-control"  name="language">
                                     <option value="">Seleccionar</option>
-                                    @foreach($listCompanias as $compania)
-                                        <option value="{{ $compania->id }}">{{ $compania->Nombre }}</option>
+                                    @foreach($listSedes as $sede)
+                                        <option value="{{ $sede->id }}">{{ $sede->Nombre }}</option>
                                     @endforeach
                                 </select>
                                 <span class="invalid-feedback" role="alert" id="errorSede_id"></span>

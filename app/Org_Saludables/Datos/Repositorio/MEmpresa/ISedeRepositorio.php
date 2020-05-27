@@ -24,4 +24,6 @@ interface ISedeRepositorio
      * @return lista de sedes de la empresa
      */
     public  function  ObtenerListaSedes($idEmpreesa);
+
+    public  function  ObtenerListaSedesCompa($idSede);
 }

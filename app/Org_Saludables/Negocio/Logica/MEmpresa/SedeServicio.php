@@ -32,4 +32,8 @@ class SedeServicio implements ISedeServicio
     public  function  ObtenerListaSedes($idEmpreesa){
         return $this->sedeRepositorio->ObtenerListaSedes($idEmpreesa);
     }
+
+    public  function  ObtenerListaSedesCompa($idSede){
+        return $this->sedeRepositorio->ObtenerListaSedesCompa($idSede);
+    }
 }

@@ -59,14 +59,14 @@ class ColaboradorController extends  Controller
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idSede = Auth::user()->Sede_id;
         $roles = $this->rolServicio->ObtenerListaRoles($idSede);
-        $arrayCompaniasDTO = $this->iCompaniaServicio->ObtenerListaCompanias();
-        //$sedes = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
-        $view = View::make('MSistema/Usuario/crearColaborador',
-            array('listRoles'=>$roles,'listCompanias'=> $arrayCompaniasDTO));
+        //$arrayCompaniasDTO = $this->iCompaniaServicio->ObtenerListaCompanias();
+        $sedes = $this->sedeServicio->ObtenerListaSedesCompa($idSede);
+        $view = View::make('MSistema/Colaborador/crearColaborador',
+            array('listRoles'=>$roles,'listSedes'=> $sedes));
         if($request->ajax()){
             $sections = $view->renderSections();
             return Response::json($sections['content']);
-        }else return view('MSistema/Usuario/crearColaborador');
+        }else return view('MSistema/Colaborador/crearColaborador');
     }
 
     //Metodo para crear un colaborador desde el perfil de una empresa
@@ -117,7 +117,7 @@ class ColaboradorController extends  Controller
         }
         $idSede = Auth::user()->Sede_id;
         $idUsuario = Auth::user()->id;
-        $usuarios = $this->usuarioServicio->ObtenerListaUsuarios($idSede,$idUsuario);
+        $usuarios = $this->colaboradorServicio->ObtenerListaColaboradores($idSede,$idUsuario);
         $view = View::make('MSistema/Colaborador/listaColaboradores')->with('listColaboradores',$usuarios);
         if($request->ajax()){
             $sections = $view->renderSections();

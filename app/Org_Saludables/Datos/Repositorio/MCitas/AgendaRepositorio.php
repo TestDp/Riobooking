@@ -34,7 +34,7 @@ class AgendaRepositorio
         $reservas = DB::table('Tbl_Colaborador')
             ->join('Tbl_Turno_Por_Colaborador','Tbl_Turno_Por_Colaborador.Colaborador_id','=','Tbl_Colaborador.id')
             ->join('Tbl_Citas', 'Tbl_Citas.id', '=', 'Tbl_Turno_Por_Colaborador.Cita_id')
-            ->leftJoin('tbl_citas_por_usuarios', 'tbl_turno_por_colaborador.id', '=', 'tbl_citas_por_usuarios.TurnoPorColaborador_id')
+            ->leftJoin('Tbl_Citas_Por_Usuarios', 'Tbl_Turno_Por_Colaborador.id', '=', 'Tbl_Citas_Por_Usuarios.TurnoPorColaborador_id')
             ->select('Tbl_Citas.*','Tbl_Colaborador.Nickname as Nickname')
             ->where('Tbl_Colaborador.user_id', '=', $idUser)
             ->whereNotNull('tbl_citas_por_usuarios.id')
@@ -47,10 +47,10 @@ class AgendaRepositorio
         $reservas = DB::table('Tbl_Colaborador')
             ->join('Tbl_Turno_Por_Colaborador','Tbl_Turno_Por_Colaborador.Colaborador_id','=','Tbl_Colaborador.id')
             ->join('Tbl_Citas', 'Tbl_Citas.id', '=', 'Tbl_Turno_Por_Colaborador.Cita_id')
-            ->leftJoin('tbl_citas_por_usuarios', 'tbl_turno_por_colaborador.id', '=', 'tbl_citas_por_usuarios.TurnoPorColaborador_id')
+            ->leftJoin('Tbl_Citas_Por_Usuarios', 'Tbl_Turno_Por_Colaborador.id', '=', 'Tbl_Citas_Por_Usuarios.TurnoPorColaborador_id')
             ->select('Tbl_Citas.*','Tbl_Colaborador.Nickname as Nickname')
-            ->where('tbl_citas_por_usuarios.user_id', '=', $idUser)
-            ->whereNotNull('tbl_citas_por_usuarios.id')
+            ->where('Tbl_Citas_Por_Usuarios.user_id', '=', $idUser)
+            ->whereNotNull('Tbl_Citas_Por_Usuarios.id')
             ->get();
         return  $reservas;
     }
@@ -72,15 +72,15 @@ class AgendaRepositorio
         $fechaActual = new DateTime('today');
         $fechaHasta = new DateTime('today');
         $fechaHasta->modify('1 Month');
-        $listaFechasDisponiblesModel = DB::table('tbl_citas')
-            ->join('tbl_turno_por_colaborador', 'tbl_citas.id', '=', 'tbl_turno_por_colaborador.Cita_id')
-            ->join('tbl_colaborador','tbl_colaborador.id','=','tbl_turno_por_colaborador.Colaborador_id')
-            ->leftJoin('tbl_citas_por_usuarios', 'tbl_turno_por_colaborador.id', '=', 'tbl_citas_por_usuarios.TurnoPorColaborador_id')
-            ->where('tbl_colaborador.id', '=', $idColaborador)
-            ->whereRaw('tbl_citas.Fecha >= NOW() and tbl_citas.Fecha <= DATE(DATE_ADD(NOW(), INTERVAL 1 MONTH))')
-            ->whereNull('tbl_citas_por_usuarios.id')
-            ->select(\DB::raw('distinct tbl_citas.Fecha' ))
-            ->GroupBy('tbl_citas.Fecha')
+        $listaFechasDisponiblesModel = DB::table('Tbl_Citas')
+            ->join('Tbl_Turno_Por_Colaborador', 'Tbl_Citas.id', '=', 'Tbl_Turno_Por_Colaborador.Cita_id')
+            ->join('Tbl_Colaborador','Tbl_Colaborador.id','=','Tbl_Turno_Por_Colaborador.Colaborador_id')
+            ->leftJoin('Tbl_Citas_Por_Usuarios', 'Tbl_Turno_Por_Colaborador.id', '=', 'Tbl_Citas_Por_Usuarios.TurnoPorColaborador_id')
+            ->where('Tbl_Colaborador.id', '=', $idColaborador)
+            ->whereRaw('Tbl_Citas.Fecha >= NOW() and Tbl_Citas.Fecha <= DATE(DATE_ADD(NOW(), INTERVAL 1 MONTH))')
+            ->whereNull('Tbl_Citas_Por_Usuarios.id')
+            ->select(\DB::raw('distinct Tbl_Citas.Fecha' ))
+            ->GroupBy('Tbl_Citas.Fecha')
             ->get();
 
         while ($fechaActual < $fechaHasta){
@@ -98,14 +98,14 @@ class AgendaRepositorio
 
     public function obtenerTunosDisponibleDia($idColaborador, $fecha)
     {
-        $listaCitasDisponibles = DB::table('tbl_citas')
-            ->join('tbl_turno_por_colaborador', 'tbl_citas.id', '=', 'tbl_turno_por_colaborador.Cita_id')
-            ->join('tbl_colaborador','tbl_colaborador.id','=','tbl_turno_por_colaborador.Colaborador_id')
-            ->leftJoin('tbl_citas_por_usuarios', 'tbl_turno_por_colaborador.id', '=', 'tbl_citas_por_usuarios.TurnoPorColaborador_id')
-            ->where('tbl_colaborador.id', '=', $idColaborador)
-            ->where('tbl_citas.Fecha', '=', $fecha)
-            ->whereNull('tbl_citas_por_usuarios.id')
-            ->select(\DB::raw('tbl_citas.*, tbl_turno_por_colaborador.Id,tbl_colaborador.id as idColaborador' ))
+        $listaCitasDisponibles = DB::table('Tbl_Citas')
+            ->join('Tbl_Turno_Por_Colaborador', 'Tbl_Citas.id', '=', 'Tbl_Turno_Por_Colaborador.Cita_id')
+            ->join('Tbl_Colaborador','Tbl_Colaborador.id','=','Tbl_Turno_Por_Colaborador.Colaborador_id')
+            ->leftJoin('Tbl_Citas_Por_Usuarios', 'tbl_turno_por_colaborador.id', '=', 'Tbl_Citas_Por_Usuarios.TurnoPorColaborador_id')
+            ->where('Tbl_Colaborador.id', '=', $idColaborador)
+            ->where('Tbl_Citas.Fecha', '=', $fecha)
+            ->whereNull('Tbl_Citas_Por_Usuarios.id')
+            ->select(\DB::raw('Tbl_Citas.*, Tbl_Turno_Por_Colaborador.Id,tbl_colaborador.id as idColaborador' ))
             ->get();
         return $listaCitasDisponibles;
     }

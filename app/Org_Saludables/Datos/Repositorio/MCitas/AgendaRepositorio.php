@@ -101,11 +101,11 @@ class AgendaRepositorio
         $listaCitasDisponibles = DB::table('Tbl_Citas')
             ->join('Tbl_Turno_Por_Colaborador', 'Tbl_Citas.id', '=', 'Tbl_Turno_Por_Colaborador.Cita_id')
             ->join('Tbl_Colaborador','Tbl_Colaborador.id','=','Tbl_Turno_Por_Colaborador.Colaborador_id')
-            ->leftJoin('Tbl_Citas_Por_Usuarios', 'tbl_turno_por_colaborador.id', '=', 'Tbl_Citas_Por_Usuarios.TurnoPorColaborador_id')
+            ->leftJoin('Tbl_Citas_Por_Usuarios', 'Tbl_Turno_Por_Colaborador.id', '=', 'Tbl_Citas_Por_Usuarios.TurnoPorColaborador_id')
             ->where('Tbl_Colaborador.id', '=', $idColaborador)
             ->where('Tbl_Citas.Fecha', '=', $fecha)
             ->whereNull('Tbl_Citas_Por_Usuarios.id')
-            ->select(\DB::raw('Tbl_Citas.*, Tbl_Turno_Por_Colaborador.Id,tbl_colaborador.id as idColaborador' ))
+            ->select(\DB::raw('Tbl_Citas.*, Tbl_Turno_Por_Colaborador.Id,Tbl_Colaborador.id as idColaborador' ))
             ->get();
         return $listaCitasDisponibles;
     }

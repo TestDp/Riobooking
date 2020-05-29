@@ -29,17 +29,24 @@ class AgendaController extends Controller
         $respuesta =  $this->agendaServicio->GuardarReserva($reservaDTO);
 
         if($respuesta == 'true'){
+            $infoReservaDTO = $this->agendaServicio->ObtenerInformacionReserva($reservaDTO->TurnoPorColaborador_id);
             $correoElectronicoCliente = $request->user()->email;
+            $infoReservaDTO->NombreCliente = $request->user()->name .' '.$request->user()->last_name;
             $correoSaliente = 'dps@riobooking.co';
-            Mail::send('Email/correoReservaCliente', ['ElementosArray' => "Correo Reserva Cliente"], function ($msj) use ($correoElectronicoCliente, $correoSaliente) {
+            Mail::send('Email/correoReservaCliente', ['infoReserva' => $infoReservaDTO], function ($msj) use ($correoElectronicoCliente, $correoSaliente) {
                 $msj->from($correoSaliente, 'Riobooking');
                 $msj->subject('Tu reserva en Riobooking ha sido exitosa');
                 $msj->to($correoElectronicoCliente);
                 $msj->bcc('soporteecotickets@gmail.com');
             });
+            Mail::send('Email/correoReservaColaborador', ['infoReserva' => $infoReservaDTO], function ($msj) use ($correoSaliente) {
+                $msj->from($correoSaliente, 'Riobooking');
+                $msj->subject('Tienes una nueva reserva en Riobooking');
+                $msj->to('info@dpsoluciones.co');
+                $msj->bcc('soporteecotickets@gmail.com');
+            });
 
 
-            $infoReserva = $this->agendaServicio->ObtenerInformacionReserva($reservaDTO->TurnoPorColaborador_id);
 
            $respuestaGoogle= $this->googleCalendar->index();
            $urlGoogle='';
@@ -55,12 +62,7 @@ class AgendaController extends Controller
 
 
             
-            Mail::send('Email/correoReservaColaborador', ['ElementosArray' => "Correo Reserva Colaborador"], function ($msj) use ($correoSaliente) {
-                $msj->from($correoSaliente, 'Riobooking');
-                $msj->subject('Tienes una nueva reserva en Riobooking');
-                $msj->to('info@dpsoluciones.co');
-                $msj->bcc('soporteecotickets@gmail.com');
-            });
+
         }
         
       

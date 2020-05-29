@@ -8,12 +8,12 @@
                         <tbody>
                         <tr>
                             <td>
-                                <p>&iexcl;Hola <strong>#NombreDelProfesional</strong>! Tienes una nueva solicitud de reserva. Aqu&iacute; est&aacute; la informaci&oacute;n:</p>
+                                <p>&iexcl;Hola <strong>{{$infoReserva->NombreColaborador}}</strong>! Tienes una nueva solicitud de reserva. Aqu&iacute; est&aacute; la informaci&oacute;n:</p>
                                 <ul>
-                                    <li><strong>Cliente:</strong> Sebastian Garcia</li>
-                                    <li><strong>Fecha:</strong> 13 marzo, 2020</li>
-                                    <li><strong>Hora:</strong> 5:00 pm&ndash;6:00 pm</li>
-                                    <li><strong>Lugar:</strong> #NombreDelNegocio</li>
+                                    <li><strong>Cliente:</strong> {{$infoReserva->NombreCliente}}</li>
+                                    <li><strong>Lugar:</strong> {{$infoReserva->NombreCompania}}</li>
+                                    <li><strong>Fecha:</strong> {{$infoReserva->Fecha}}</li>
+                                    <li><strong>Hora:</strong>  {{$infoReserva->Inicio}} - {{$infoReserva->Fin}}</li>
                                 </ul>
                                 <p>Cordialmente...</p>
                                 <strong>Tus amigos de RioBooking</strong></td>

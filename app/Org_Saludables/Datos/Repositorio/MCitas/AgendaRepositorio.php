@@ -120,7 +120,7 @@ class AgendaRepositorio
                         ->join('Tbl_Companias','Tbl_Sedes.Compania_id','=','Tbl_Companias.id')
                         ->where('Tbl_Turno_Por_Colaborador.id', '=', $TurnoPorColaborador_id)
                         ->select(\DB::raw('tbl_Citas.*, Tbl_Colaborador.Nombre as NombreColaborador,Tbl_Companias.Nombre as NombreCompania' ))
-                        ->get();
+                        ->get()->first();
         return $infoReserva;
     }
 

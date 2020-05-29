@@ -11,7 +11,7 @@ function renderSectionCargarVPColaboradores(idTipoCIta) {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'cargarVPColaboradores/'+idTipoCIta,
+        url: urlBase +'/cargarVPColaboradores/'+idTipoCIta,
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
@@ -40,7 +40,7 @@ function renderSectionDisponibilidadColaborador(idColaborador) {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'cargarVPDisponibilidadColaborador/'+idColaborador,
+        url: urlBase +'/cargarVPDisponibilidadColaborador/'+idColaborador,
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
@@ -91,7 +91,7 @@ function renderSectionTurnosDisponibles(fechaConsulta,idColabordor) {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'cargarVPTurnosDisponibles/'+fechaConsulta + '/' + idColabordor,
+        url: urlBase +'/cargarVPTurnosDisponibles/'+fechaConsulta + '/' + idColabordor,
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
@@ -130,7 +130,7 @@ function iniciarSesion() {
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',
-        url: urlBase +'login',
+        url: urlBase +'/login',
         dataType: 'json',
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
@@ -159,7 +159,7 @@ function registrarUsuarioReserva() {
     var token = $("#_token").val();
     $.ajax({
         type: 'POST',
-        url: urlBase +'register',
+        url: urlBase +'/register',
         dataType: 'json',
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
@@ -186,7 +186,7 @@ function renderSectionCargarVPRegistrarUsuario() {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'cargarVPRegistrarUsuario/',
+        url: urlBase +'/cargarVPRegistrarUsuario/',
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
@@ -210,7 +210,7 @@ function guardarReservaUsuario() {
     var token = $("#_token").val();
     $.ajax({
         type: 'POST',
-        url: urlBase +'reservar',
+        url: urlBase +'/reservar',
         dataType: 'json',
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),

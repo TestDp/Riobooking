@@ -38,6 +38,13 @@ class AgendaController extends Controller
                 $msj->bcc('soporteecotickets@gmail.com');
             });
 
+               Mail::send('Email/correoReservaColaborador', ['ElementosArray' => "Correo Reserva Colaborador"], function ($msj) use ($correoSaliente) {
+                $msj->from($correoSaliente, 'Riobooking');
+                $msj->subject('Tienes una nueva reserva en Riobooking');
+                $msj->to('info@dpsoluciones.co');
+                $msj->bcc('soporteecotickets@gmail.com');
+            });
+
 
             $infoReserva = $this->agendaServicio->ObtenerInformacionReserva($reservaDTO->TurnoPorColaborador_id);
 
@@ -49,18 +56,14 @@ class AgendaController extends Controller
                 
                 
             }
+
+             $this->googleCalendar->store("2020-05-29", "08:00:00", "09:00:00", "salon","pelucqueria");
+
+
             return Response::json(['respuesta'=>$urlGoogle]);
 
             
-
-
-            
-            Mail::send('Email/correoReservaColaborador', ['ElementosArray' => "Correo Reserva Colaborador"], function ($msj) use ($correoSaliente) {
-                $msj->from($correoSaliente, 'Riobooking');
-                $msj->subject('Tienes una nueva reserva en Riobooking');
-                $msj->to('info@dpsoluciones.co');
-                $msj->bcc('soporteecotickets@gmail.com');
-            });
+         
         }
         
       

@@ -138,10 +138,10 @@ class GoogleCalendar
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store($cita, $jornada, $citaPorUsuario)
+    public function store($Fecha, $Inicio, $Fin, $Lugar, $NombreCita)
     {
         
-        session_start();
+        //session_start();
         $client = new Google_Client();
         $client->setAuthConfig('client_secret.json');
         $client->addScope(Google_Service_Calendar::CALENDAR);
@@ -152,11 +152,11 @@ class GoogleCalendar
        $client->setApprovalPrompt('force');
        
         //session_start();
-         $fecha=$cita->Fecha;
-         $inicio=$cita->Inicio;
-         $Fin=$cita->Fin;
-         $Lugar=$jornada->Lugar;
-         $TipoCita=$jornada->NombreCita;
+         $fecha=$Fecha;
+         $inicio=$Inicio;
+         $Fin=$Fin;
+         $Lugar=$Lugar;
+         $TipoCita=$NombreCita;
 
         $startDateTime = $fecha."T".$inicio."-05:00";
         $endDateTime =   $fecha."T".$Fin."-05:00";
@@ -181,7 +181,7 @@ class GoogleCalendar
           
             $results = $service->events->insert($calendarId, $event);
             $idEvento=$results->id;
-             $this->citaRepositorio->GuardarIdEvento($cita, $idEvento, $citaPorUsuario);
+            $this->AgendaRepositorio->GuardarIdEvento($cita, $idEvento, $citaPorUsuario);
          
             if (!$results) {
              

@@ -79,16 +79,7 @@ class UsuarioController extends  Controller
             $user->password = Hash::make($request->password);
             $user->Sede_id=$request['Sede_id'];
             $user->save();
-            $nombreFotoColaborador = "Foto_Colaborador".$user->name.'_'.$user->last_name.'.jpg';
-            $colaborador = new ColaboradorDTO();
-            $colaborador->user_id = $user->id;
-            $colaborador->Nombre = $user->name.' '.$user->last_name;
-            $colaborador->Nickname =  $user->username;
-            $colaborador->Activo = 1;
-            $colaborador->telefono = $user->telefono;
-            $colaborador->ImagenColaborador = $nombreFotoColaborador;
-            $colaborador->Calificacion = 1;
-            $respuesta = $this->colaboradorServicio->GuardarColaborador($colaborador);
+
             foreach ($request->Roles_id as $rolid){
                 $rolPorUsuario = new Rol_Por_Usuario();
                 $rolPorUsuario->Rol_id = $rolid;
@@ -96,16 +87,8 @@ class UsuarioController extends  Controller
                 $rolPorUsuario->save();
             }
             DB::commit();
-            if($respuesta == true){
-                if($request->hasFile('imgColaborador')){
-                    $file = $request->file('imgColaborador');
-                    $nombre = $nombreFotoColaborador;
-                    $file->move('FotosColaboradores', $nombre);
-                }
-            }else{
-                DB::rollback();
-                return ['respuesta' => false, 'error' => "No fue posible guardar el colaborador"];
-            }
+
+
         } catch (\Exception $e) {
             $error = $e->getMessage();
             DB::rollback();

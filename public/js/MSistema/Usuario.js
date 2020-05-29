@@ -48,7 +48,6 @@ function ajaxRenderSectionCrearColaborador() {
 //Metodo para guarda la informacion del usaurio
 function GuardarUsuario() {
     var formData = new FormData();
-    formData.append('imgColaborador', $('#imgColaborador')[0].files[0]);
     formData.append('name', $('#name').val());
     formData.append('last_name', $('#last_name').val());
     formData.append('username', $('#username').val());

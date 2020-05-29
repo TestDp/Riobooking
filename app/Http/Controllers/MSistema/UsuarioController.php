@@ -49,17 +49,22 @@ class UsuarioController extends  Controller
         $this->tipoCitaServicio = $tipoCitaServicio;
     }
 
-    //Metodo para cargar  la vista de crear un rol
+    //Metodo para cargar  la vista de crear un usuario
     public function CrearUsuarioEmpresa(Request $request)
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idSede = Auth::user()->Sede_id;
-        $roles = $this->rolServicio->ObtenerListaRoles($idSede);
-        $arrayCompaniasDTO = $this->iCompaniaServicio->ObtenerListaCompanias();
-        //$sedes = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
-        $view = View::make('MSistema/Usuario/crearUsuario',
-            array('listRoles'=>$roles,'listCompanias'=> $arrayCompaniasDTO));
+        $compania_id = Auth::user()->Sede->Compania_id;
+        $roles = $this->rolServicio->ObtenerListaRoles($compania_id);
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
+            $arrayCompaniasDTO = $this->iCompaniaServicio->ObtenerListaCompanias();
+            $view = View::make('MSistema/Usuario/crearUsuarioDesdeSuperAdmin',
+                array('listRoles'=>$roles,'listCompanias'=> $arrayCompaniasDTO));
+        }else{
+            $sedes = $this->sedeServicio->ObtenerListaSedes($compania_id);
+            $view = View::make('MSistema/Usuario/crearUsuario',
+                array('listRoles'=>$roles,'listSedes'=> $sedes));
+        }
         if($request->ajax()){
             $sections = $view->renderSections();
             return Response::json($sections['content']);

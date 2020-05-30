@@ -35,7 +35,8 @@ class AgendaRepositorio
             ->join('Tbl_Turno_Por_Colaborador','Tbl_Turno_Por_Colaborador.Colaborador_id','=','Tbl_Colaborador.id')
             ->join('Tbl_Citas', 'Tbl_Citas.id', '=', 'Tbl_Turno_Por_Colaborador.Cita_id')
             ->leftJoin('Tbl_Citas_Por_Usuarios', 'Tbl_Turno_Por_Colaborador.id', '=', 'Tbl_Citas_Por_Usuarios.TurnoPorColaborador_id')
-            ->select('Tbl_Citas.*','Tbl_Colaborador.Nickname as Nickname')
+            ->join('users', 'users.id', '=', 'Tbl_Citas_Por_Usuarios.user_id')
+            ->select('Tbl_Citas.*','users.name as Nickname')
             ->where('Tbl_Colaborador.user_id', '=', $idUser)
             ->whereNotNull('Tbl_Citas_Por_Usuarios.id')
             ->get();
@@ -83,7 +84,7 @@ class AgendaRepositorio
             ->GroupBy('Tbl_Citas.Fecha')
             ->get();
 
-        while ($fechaActual < $fechaHasta){
+        while ($fechaActual <= $fechaHasta){
             $fechaFormateada = $fechaActual->format('Y-m-d');
             $respuesta =  $listaFechasDisponiblesModel->where('Fecha','=',$fechaFormateada);
             if(count($respuesta)==0)

@@ -49,17 +49,22 @@ class UsuarioController extends  Controller
         $this->tipoCitaServicio = $tipoCitaServicio;
     }
 
-    //Metodo para cargar  la vista de crear un rol
+    //Metodo para cargar  la vista de crear un usuario
     public function CrearUsuarioEmpresa(Request $request)
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idSede = Auth::user()->Sede_id;
-        $roles = $this->rolServicio->ObtenerListaRoles($idSede);
-        $arrayCompaniasDTO = $this->iCompaniaServicio->ObtenerListaCompanias();
-        //$sedes = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
-        $view = View::make('MSistema/Usuario/crearUsuario',
-            array('listRoles'=>$roles,'listCompanias'=> $arrayCompaniasDTO));
+        $compania_id = Auth::user()->Sede->Compania_id;
+        $roles = $this->rolServicio->ObtenerListaRoles($compania_id);
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
+            $arrayCompaniasDTO = $this->iCompaniaServicio->ObtenerListaCompanias();
+            $view = View::make('MSistema/Usuario/crearUsuarioDesdeSuperAdmin',
+                array('listRoles'=>$roles,'listCompanias'=> $arrayCompaniasDTO));
+        }else{
+            $sedes = $this->sedeServicio->ObtenerListaSedes($compania_id);
+            $view = View::make('MSistema/Usuario/crearUsuario',
+                array('listRoles'=>$roles,'listSedes'=> $sedes));
+        }
         if($request->ajax()){
             $sections = $view->renderSections();
             return Response::json($sections['content']);
@@ -79,16 +84,7 @@ class UsuarioController extends  Controller
             $user->password = Hash::make($request->password);
             $user->Sede_id=$request['Sede_id'];
             $user->save();
-            $nombreFotoColaborador = "Foto_Colaborador".$user->name.'_'.$user->last_name.'.jpg';
-            $colaborador = new ColaboradorDTO();
-            $colaborador->user_id = $user->id;
-            $colaborador->Nombre = $user->name.' '.$user->last_name;
-            $colaborador->Nickname =  $user->username;
-            $colaborador->Activo = 1;
-            $colaborador->telefono = $user->telefono;
-            $colaborador->ImagenColaborador = $nombreFotoColaborador;
-            $colaborador->Calificacion = 1;
-            $respuesta = $this->colaboradorServicio->GuardarColaborador($colaborador);
+
             foreach ($request->Roles_id as $rolid){
                 $rolPorUsuario = new Rol_Por_Usuario();
                 $rolPorUsuario->Rol_id = $rolid;
@@ -96,16 +92,8 @@ class UsuarioController extends  Controller
                 $rolPorUsuario->save();
             }
             DB::commit();
-            if($respuesta == true){
-                if($request->hasFile('imgColaborador')){
-                    $file = $request->file('imgColaborador');
-                    $nombre = $nombreFotoColaborador;
-                    $file->move('FotosColaboradores', $nombre);
-                }
-            }else{
-                DB::rollback();
-                return ['respuesta' => false, 'error' => "No fue posible guardar el colaborador"];
-            }
+
+
         } catch (\Exception $e) {
             $error = $e->getMessage();
             DB::rollback();

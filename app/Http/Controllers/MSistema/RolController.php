@@ -63,7 +63,7 @@ class RolController extends Controller
         $this->rolValidaciones->ValidarFormularioCrear($request->all())->validate();
         if($request->ajax()){
             $rol = $request->all();
-            $idEmpreesa = Auth::user()->Compania_id;
+            $idEmpreesa = Auth::user()->Sede->Compania_id;
             $rol['Compania_id'] = $idEmpreesa;
             $repuesta = $this->rolServicio->GuardarRol($rol);
             if($repuesta == true){

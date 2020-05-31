@@ -51,15 +51,24 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                   <label>Sede</label>
-                                <select id="Sede_id" name="Sede_id"  class="form-control"  name="language">
+                                   <label>Negocio</label>
+                                <select id="Compania_id" name="Compania_id"  class="form-control"  name="language" onchange="cargarSedesEmpresa()">
                                     <option value="">Seleccionar</option>
-                                    @foreach($listSedes as $sede)
-                                        <option value="{{ $sede->id }}">{{ $sede->Nombre }}</option>
+                                    @foreach($listCompanias as $compania)
+                                        <option value="{{ $compania->id }}">{{ $compania->Nombre }}</option>
                                     @endforeach
                                 </select>
                                 <span class="invalid-feedback" role="alert" id="errorSede_id"></span>
                             </div>
+                            <div class="col-md-6">
+                                   <label>Sede</label>
+                                <select id="Sede_id" name="Sede_id"  class="form-control" multiple name="language">
+
+                                </select>
+                                <span class="invalid-feedback" role="alert" id="errorRoles_id"></span>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <label>Roles</label>
                                 <select id="Roles_id" name="Roles_id[]"  class="form-control" multiple name="language">

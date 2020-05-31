@@ -52,15 +52,14 @@ class ColaboradorController extends  Controller
         $this->tipoCitaServicio = $tipoCitaServicio;
     }
 
-    //Metodo para cargar  la vista de crear un rol
+    //Metodo para cargar  la vista de crear un colaborador
     public function CrearColaboradorEmpresa(Request $request)
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idSede = Auth::user()->Sede_id;
-        $roles = $this->rolServicio->ObtenerListaRoles($idSede);
-        //$arrayCompaniasDTO = $this->iCompaniaServicio->ObtenerListaCompanias();
-        $sedes = $this->sedeServicio->ObtenerListaSedesCompa($idSede);
+        $compania_id = Auth::user()->Sede->Compania_id;
+        $roles = $this->rolServicio->ObtenerListaRoles($compania_id);
+        $sedes = $this->sedeServicio->ObtenerListaSedes($compania_id);
         $view = View::make('MSistema/Colaborador/crearColaborador',
             array('listRoles'=>$roles,'listSedes'=> $sedes));
         if($request->ajax()){
@@ -170,9 +169,9 @@ class ColaboradorController extends  Controller
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idSede = Auth::user()->Sede_id;
-        $tipoServicios = $this->tipoCitaServicio->ObtenerListaTipoCitas($idSede);
-        $arrayColaboradores = $this->colaboradorServicio->ObtenerListaColaboradores($idSede);
+        $compania_id = Auth::user()->Sede->Compania_id;
+        $tipoServicios = $this->tipoCitaServicio->ObtenerListaTipoCitas($compania_id);
+        $arrayColaboradores = $this->colaboradorServicio->ObtenerListaColaboradores($compania_id);
         $view = View::make('MSistema/Colaborador/crearServiciosColaborador',
             array('listServicios'=>$tipoServicios,'listColaboradores'=> $arrayColaboradores));
         if($request->ajax()){

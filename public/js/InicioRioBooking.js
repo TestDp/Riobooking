@@ -135,8 +135,10 @@ function iniciarSesion() {
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
         success: function (data) {
+            var turnoPorColaborador_id = $("#TurnoPorColaborador_id").val();
             OcultarPopupposition();
            $('#divReservar').empty().append($(data));
+            $("#TurnoPorColaborador_id").val(turnoPorColaborador_id);
         },
         error: function (data) {
             OcultarPopupposition();

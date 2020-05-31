@@ -42,10 +42,10 @@ class ColaboradorRepositorio implements  IColaboradorRepositorio
 
     public function ObtenerListaColaboradoresPorServicio($idTipoServicio)
     {
-        $colaboradores = DB::table('tbl_tiposervicio_por_colaborador')
-            ->join('Tbl_Colaborador', 'tbl_tiposervicio_por_colaborador.Colaborador_id', '=', 'Tbl_Colaborador.id')
+        $colaboradores = DB::table('Tbl_TipoServicio_Por_Colaborador')
+            ->join('Tbl_Colaborador', 'Tbl_TipoServicio_Por_Colaborador.Colaborador_id', '=', 'Tbl_Colaborador.id')
             ->select('Tbl_Colaborador.*')
-            ->where('tbl_tiposervicio_por_colaborador.TipoCita_id', '=', $idTipoServicio)
+            ->where('Tbl_TipoServicio_Por_Colaborador.TipoCita_id', '=', $idTipoServicio)
             ->get();
         return $colaboradores;
     }
@@ -78,9 +78,9 @@ class ColaboradorRepositorio implements  IColaboradorRepositorio
 
     public function ObtenerListaServiciosPorColaborador($idSede)
     {
-        $colaboradores = DB::table('tbl_tiposervicio_por_colaborador')
-            ->join('Tbl_Colaborador', 'tbl_tiposervicio_por_colaborador.Colaborador_id', '=', 'Tbl_Colaborador.id')
-            ->join('Tbl_Tipos_Citas', 'tbl_tiposervicio_por_colaborador.TipoCita_id', '=', 'Tbl_Tipos_Citas.id')
+        $colaboradores = DB::table('Tbl_TipoServicio_Por_Colaborador')
+            ->join('Tbl_Colaborador', 'Tbl_TipoServicio_Por_Colaborador.Colaborador_id', '=', 'Tbl_Colaborador.id')
+            ->join('Tbl_Tipos_Citas', 'Tbl_TipoServicio_Por_Colaborador.TipoCita_id', '=', 'Tbl_Tipos_Citas.id')
             ->select('Tbl_Colaborador.id','Tbl_Colaborador.Nombre as NombreColaborador','Tbl_Tipos_Citas.id','Tbl_Tipos_Citas.Nombre as NombreServicio')
             ->where('Tbl_Tipos_Citas.Sede_id', '=', $idSede)
             ->get();
@@ -89,9 +89,9 @@ class ColaboradorRepositorio implements  IColaboradorRepositorio
 
     public function ObtenerTodosLosServiciosPorColaborador($idusuario)
     {
-        $colaboradores = DB::table('tbl_tiposervicio_por_colaborador')
-            ->join('Tbl_Colaborador', 'tbl_tiposervicio_por_colaborador.Colaborador_id', '=', 'Tbl_Colaborador.id')
-            ->join('Tbl_Tipos_Citas', 'tbl_tiposervicio_por_colaborador.TipoCita_id', '=', 'Tbl_Tipos_Citas.id')
+        $colaboradores = DB::table('Tbl_TipoServicio_Por_Colaborador')
+            ->join('Tbl_Colaborador', 'Tbl_TipoServicio_Por_Colaborador.Colaborador_id', '=', 'Tbl_Colaborador.id')
+            ->join('Tbl_Tipos_Citas', 'Tbl_TipoServicio_Por_Colaborador.TipoCita_id', '=', 'Tbl_Tipos_Citas.id')
             ->select('Tbl_Colaborador.id','Tbl_Colaborador.Nombre as NombreColaborador','Tbl_Tipos_Citas.id','Tbl_Tipos_Citas.Nombre as NombreServicio')
             ->where('Tbl_Colaborador.Usuario_id', '=', $idusuario)
             ->get();

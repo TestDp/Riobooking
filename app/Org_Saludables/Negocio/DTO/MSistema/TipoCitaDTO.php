@@ -15,4 +15,6 @@ class TipoCitaDTO extends BaseDTO
      public $id;
      public $Nombre;
      public $Activa;
+     public $NombreSede;
+     public $Precio;
 }

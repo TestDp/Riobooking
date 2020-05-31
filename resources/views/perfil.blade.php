@@ -82,6 +82,7 @@
                                 </div>
                                 <div id="divReservar" style="display:none">
                                         @guest
+                                        <input type="hidden" id="TurnoPorColaborador_id" name="TurnoPorColaborador_id" value="1">
                                                     <div id="login-2">
                                                         <form id="formLogin">
                                                             <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">

@@ -15,7 +15,7 @@ use Org_Saludables\Datos\Modelos\MSistema\TipoCita;
 class TipoServicioPorColaborador extends  Model
 {
 
-    protected $table = 'tbl_tiposervicio_por_colaborador';
+    protected $table = 'Tbl_TipoServicio_Por_Colaborador';
     protected $fillable =['TipoCita_id','Colaborador_id'];
 
 

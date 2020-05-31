@@ -142,15 +142,15 @@ function iniciarSesion() {
         },
         error: function (data) {
             OcultarPopupposition();
-            $("#errorNombre").html("");
-            $("#errorDescripcion").html("");
+            $("#errorLogin").html("");
+            $("#errorPassword").html("");
             var errors = data.responseJSON;
-            if(errors.errors.Nombre){
-                var errorNombre = "<strong>"+ errors.errors.Nombre+"</strong>";
-                $("#errorNombre").append(errorNombre);}
-            if(errors.errors.Descripcion){
-                var errorDescripcion = "<strong>"+ errors.errors.Descripcion+"</strong>";
-                $("#errorDescripcion").append(errorDescripcion);}
+            if(errors.errors.login){
+                var errorlogin = "<strong>"+ errors.errors.login+"</strong>";
+                $("#errorLogin").append(errorlogin);}
+            if(errors.errors.password){
+                var errorPassword = "<strong>"+ errors.errors.password+"</strong>";
+                $("#errorPassword").append(errorPassword);}
         }
     });
 }
@@ -166,33 +166,54 @@ function registrarUsuarioReserva() {
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
         success: function (data) {
+            var turnoPorColaborador_id = $("#TurnoPorColaborador_id").val();
             OcultarPopupposition();
             $('#divReservar').empty().append($(data));
+            $("#TurnoPorColaborador_id").val(turnoPorColaborador_id);
         },
         error: function (data) {
             OcultarPopupposition();
             $("#errorNombre").html("");
-            $("#errorDescripcion").html("");
+            $("#errorApellido").html("");
+            $("#errorUsuario").html("");
+            $("#errorEmail").html("");
+            $("#errorTelefono").html("");
+            $("#errorPassword").html("");
             var errors = data.responseJSON;
-            if(errors.errors.Nombre){
-                var errorNombre = "<strong>"+ errors.errors.Nombre+"</strong>";
+            if(errors.errors.name){
+                var errorNombre = "<strong>"+ errors.errors.name+"</strong>";
                 $("#errorNombre").append(errorNombre);}
-            if(errors.errors.Descripcion){
-                var errorDescripcion = "<strong>"+ errors.errors.Descripcion+"</strong>";
-                $("#errorDescripcion").append(errorDescripcion);}
+            if(errors.errors.last_name){
+                var errorApellido = "<strong>"+ errors.errors.last_name+"</strong>";
+                $("#errorApellido").append(errorApellido);}
+            if(errors.errors.email){
+                var errorEmail = "<strong>"+ errors.errors.email+"</strong>";
+                $("#errorEmail").append(errorEmail);}
+            if(errors.errors.password){
+                var errorPassword = "<strong>"+ errors.errors.password+"</strong>";
+                $("#errorPassword").append(errorPassword);}
+            if(errors.errors.username){
+                var errorUsuario = "<strong>"+ errors.errors.username+"</strong>";
+                $("#errorUsuario").append(errorUsuario);}
+            if(errors.errors.telefono){
+                var errorTelefono = "<strong>"+ errors.errors.telefono+"</strong>";
+                $("#errorTelefono").append(errorTelefono);}
         }
     });
 }
 
 function renderSectionCargarVPRegistrarUsuario() {
     PopupPosition();
+    var turnoPorColaborador_id = $("#TurnoPorColaborador_id").val();
     $.ajax({
         type: 'GET',
         url: urlBase +'/cargarVPRegistrarUsuario/',
         dataType: 'json',
         success: function (data) {
+            var turnoPorColaborador_id = $("#TurnoPorColaborador_id").val();
             OcultarPopupposition();
             $('#divReservar').empty().append($(data));
+            $("#TurnoPorColaborador_id").val(turnoPorColaborador_id);
         },
         error: function (data) {
             OcultarPopupposition();

@@ -2,6 +2,7 @@
             <div id="register">
                 <div class="row justify-content-center">
                     <div class="col-md-10">
+                        <input type="hidden" id="TurnoPorColaborador_id" name="TurnoPorColaborador_id" value="1">
                         <form method="POST" id="registrarUsuario" name="registrarUsuario">
                             <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                             <input type="hidden" id="Sede_id" name="Sede_id" value="1">
@@ -12,12 +13,7 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
-                                    @if ($errors->has('name'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                    @endif
+                                    <span class="invalid-feedback" role="alert" id="errorNombre"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -25,12 +21,7 @@
 
                                 <div class="col-md-6">
                                     <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus>
-
-                                    @if ($errors->has('last_name'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                    </span>
-                                    @endif
+                                    <span class="invalid-feedback" role="alert" id="errorApellido"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -38,12 +29,7 @@
 
                                 <div class="col-md-6">
                                     <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
-
-                                    @if ($errors->has('username'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                    @endif
+                                    <span class="invalid-feedback" role="alert" id="errorUsuario"></span>
                                 </div>
                             </div>
 
@@ -52,12 +38,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                    @endif
+                                    <span class="invalid-feedback" role="alert" id="errorEmail"></span>
                                 </div>
                             </div>
 
@@ -66,12 +47,7 @@
 
                                 <div class="col-md-6">
                                     <input id="telefono" type="text" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" name="telefono" value="{{ old('telefono') }}" required>
-
-                                    @if ($errors->has('telefono'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('telefono') }}</strong>
-                                    </span>
-                                    @endif
+                                    <span class="invalid-feedback" role="alert" id="errorTelefono"></span>
                                 </div>
                             </div>
 
@@ -80,12 +56,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                    @endif
+                                    <span class="invalid-feedback" role="alert" id="errorPassword"></span>
                                 </div>
                             </div>
 

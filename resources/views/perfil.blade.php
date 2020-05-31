@@ -91,21 +91,11 @@
                                                                 <div class="box_login last">
                                                                     <div class="form-group">
                                                                         <input placeholder="Cédula ó Nombre de Usuario" id="login”" type="login" class="form-control{{ $errors->has('login') ? ' is-invalid' : '' }}" name="login" value="{{ old('login') }}" required autofocus>
-
-                                                                        @if ($errors->has('login'))
-                                                                            <span class="invalid-feedback" role="alert">
-                                                                                <strong>{{ $errors->first('login') }}</strong>
-                                                                            </span>
-                                                                        @endif
+                                                                        <span class="invalid-feedback" role="alert" id="errorLogin"></span>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <input placeholder="Contraseña" id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                                                        @if ($errors->has('password'))
-                                                                            <span class="invalid-feedback" role="alert">
-                                                                                <strong>{{ $errors->first('password') }}</strong>
-                                                                            </span>
-                                                                        @endif
+                                                                        <span class="invalid-feedback" role="alert" id="errorPassword"></span>
                                                                         <a href="{{ route('password.request') }}" class="forgot"><small>Olvidaste tu contraseña?</small></a>
                                                                     </div>
                                                                     <div class="form-group">

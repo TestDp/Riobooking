@@ -113,21 +113,19 @@
         <div class="row">
             <div class="col-lg-3 col-md-12">
                 <p>
-                    <a href="index.html" title="Findoctor">
-                        <img src="images/logo-blanco.png" data-retina="true" alt="" width="163" height="36" class="img-fluid">
+                    <a href="{{ url('/') }}" title="Findoctor">
+                        <img src="https://riobooking.co/images/logo-blanco.png" data-retina="true" alt="" width="163" height="36" class="img-fluid">
                     </a>
                 </p>
             </div>
             <div class="col-lg-3 col-md-4">
                 <h5>RioBooking</h5>
                 <ul class="links">
-                    <li><a href="#0">Acerca de nosotros</a></li>
-                    <li><a href="#0">Preguntas frecuentes</a></li>
                     <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
                     <li><a href="{{ route('register') }}">Registrarse</a></li>
                 </ul>
             </div>
-            <div class="col-lg-3 col-md-4">
+            <div style="display:none;" class="col-lg-3 col-md-4">
                 <h5>Categorías</h5>
                 <ul class="links">
                     <li><a href="#0">Cuidado personal</a></li>
@@ -138,14 +136,14 @@
             <div class="col-lg-3 col-md-4">
                 <h5>Contáctanos</h5>
                 <ul class="contacts">
-                    <li><a href=""><i class="icon_mobile"></i> + 57 312 342 21 20</a></li>
-                    <li><a href=""><i class="icon_mail_alt"></i> contacto@riobooking.co</a></li>
+                    <li><a href=""><i class="icon_mobile"></i> + 57 311 723 41 63</a></li>
+                    <li><a href=""><i class="icon_mail_alt"></i> reservas@riobooking.co</a></li>
                 </ul>
                 <div class="follow_us">
                     <h5>Síguenos</h5>
                     <ul>
-                        <li><a href="#0"><i class="social_facebook"></i></a></li>
-                        <li><a href="#0"><i class="social_instagram"></i></a></li>
+                        <li><a href="https://www.facebook.com/riobooking/" target="_blank"><i class="social_facebook"></i></a></li>
+                        <li><a href="https://www.instagram.com/riobooking/" target="_blank"><i class="social_instagram"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -155,8 +153,7 @@
         <div class="row">
             <div class="col-md-8">
                 <ul id="additional_links">
-                    <li><a href="#0">Términos y condiciones</a></li>
-                    <li><a href="#0">Política de datos</a></li>
+                    <li><a href="habeas-data">Política de datos</a></li>
                 </ul>
             </div>
             <div class="col-md-4">
@@ -181,6 +178,7 @@
 <script src="{{ asset('welcome/js/bootstrap-datepicker.js') }}"></script>
 <!-- SPECIFIC SCRIPTS -->
 <script src="{{ asset('welcome/js/tables_func.js') }}"></script>
+
 
 
 </body>

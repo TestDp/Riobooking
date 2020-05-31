@@ -637,6 +637,7 @@ footer h5 {
 footer ul li {
   margin-bottom: 10px;
 }
+
 footer ul li a {
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -645,7 +646,7 @@ footer ul li a {
   transition: all 0.3s ease-in-out;
   display: inline-block;
   position: relative;
-  color: #555555;
+  color: #fff;
 }
 footer ul li a:hover {
   color: #0098e4;

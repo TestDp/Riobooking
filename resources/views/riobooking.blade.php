@@ -47,7 +47,7 @@
                 @endforeach
             </div>
             <!-- /row -->
-            <p class="text-center add_top_30"><a href="#" class="btn_1 medium">Ver todos los negocios</a></p>
+            <p style="display:none;" class="text-center add_top_30"><a href="#" class="btn_1 medium">Ver todos los negocios</a></p>
         </div>
         <!-- /container -->
     </div>
@@ -81,7 +81,7 @@
             </div>
         </div>
         <!-- /row -->
-        <p class="text-center"><a href="#" class="btn_1 medium">Contáctanos</a></p>
+        <p class="text-center"><a href="https://dpsoluciones.co/contactanos/" target="_blank" class="btn_1 medium">Contáctanos</a></p>
 
     </div>
     <!-- /container -->

@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Cedula') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Cédula') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
@@ -43,7 +43,7 @@
                             </div>
 
                               <div class="form-group row">
-                                <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
+                                <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="telefono" type="text" class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}" name="telefono" value="{{ old('telefono') }}" required>
@@ -69,7 +69,7 @@
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <input class="btn_1" onclick="registrarUsuarioReserva()" value="Crear cuenta RioBooking">
+                                    <a style="cursor: pointer; color:#fff;" class="btn_1" onclick="registrarUsuarioReserva()" value="Crear cuenta RioBooking">Crear cuenta RioBooking</a>
                                 </div>
                             </div>
                             </div>

@@ -23,6 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {return view('riobooking');});
+Route::get('/habeas-data', function () {return view('habeasdata');});
 Route::get('/', 'InicioController@cargarVistaNegocios');
 
 //CONTROLADOR INICIO

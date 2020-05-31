@@ -11,7 +11,7 @@ namespace Org_Saludables\Negocio\Logica\MEmpresa;
 
 use App\Org_Saludables\Datos\Repositorio\MEmpresa\ISedeRepositorio;
 use App\Org_Saludables\Negocio\DTO\MEmpresa\SedeDTO;
-use Org_Saludables\Datos\Modelos\MEmpresa\Regional;
+use Org_Saludables\Datos\Modelos\MEmpresa\Sede;
 use App\Org_Saludables\Negocio\Logica\MEmpresa\ISedeServicio;
 
 
@@ -24,8 +24,8 @@ class SedeServicio implements ISedeServicio
     }
 
     public  function GuardarSede(SedeDTO $sedeDTO){
-        $sedeModel = $sedeDTO->toModel(Regional::class);
-        $sedeModel->Activa = 1;
+        $sedeModel = $sedeDTO->toModel(Sede::class);
+        $sedeModel->activa = 1;
         return $this->sedeRepositorio->GuardarSede($sedeModel);
     }
 

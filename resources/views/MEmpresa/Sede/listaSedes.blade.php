@@ -5,15 +5,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="panel panel-success">
-                <div class="panel-heading"><h3>Regionales</h3></div>
+                <div class="panel-heading"><h3>Sedes</h3></div>
                 <div class="panel-body">
                     <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" class="table table-bordered" id="tablaRegionales">
                         <thead>
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Activa</th>
-                            <th scope="col">Compañia</th>
+                           <th scope="col">Compañia</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -21,7 +20,6 @@
                             <tr>
                                 <th scope="row">{{$Regional->id}}</th>
                                 <td >{{$Regional->Nombre}}</td>
-                                <td>{{$Regional->Activa}}</td>
                                 <td>{{$Regional->NombreCompania}}</td>
                             </tr>
                         @endforeach
@@ -29,7 +27,7 @@
                     </table>
                     <div class="row">
                         <div class="col-md-4">
-                            <button onclick="ajaxRenderSectionCrearSede()" type="button" class="btn btn-success">Nueva Regional</button>
+                            <button onclick="ajaxRenderSectionCrearSede()" type="button" class="btn btn-success">Nueva Sede</button>
                         </div>
                     </div>
                 </div>

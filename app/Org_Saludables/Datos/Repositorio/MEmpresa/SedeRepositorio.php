@@ -10,14 +10,14 @@ namespace Org_Saludables\Datos\Repositorio\MEmpresa;
 
 
 
-use Org_Saludables\Datos\Modelos\MEmpresa\Regional;
+use Org_Saludables\Datos\Modelos\MEmpresa\Sede;
 use App\Org_Saludables\Datos\Repositorio\MEmpresa\ISedeRepositorio;
 use Illuminate\Support\Facades\DB;
 
 class SedeRepositorio implements ISedeRepositorio
 {
 
-    public  function GuardarSede(Regional $sede)
+    public  function GuardarSede(Sede $sede)
     {
         DB::beginTransaction();
         try {

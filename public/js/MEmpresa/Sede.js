@@ -38,7 +38,7 @@ function GuardarSede() {
             if(data.codeStatus == 200){
                 swal({
                     title: "Transaccción exitosa!",
-                    text: "La Regional fue grabada con exito!",
+                    text: "La Sede fue grabada con éxito!",
                     icon: "success",
                     button: "OK",
                 });
@@ -46,7 +46,7 @@ function GuardarSede() {
             }else{
                 swal({
                     title: "Transacción con error!",
-                    text: "No fue posible grabar la Regional!",
+                    text: "No fue posible grabar la Sede!",
                     icon: "error",
                     button: "OK",
                 });
@@ -56,7 +56,7 @@ function GuardarSede() {
             OcultarPopupposition();
             swal({
                 title: "Transacción con error!",
-                text: "No fue posible grabar la regional!",
+                text: "No fue posible grabar la sede!",
                 icon: "error",
                 button: "OK",
             });

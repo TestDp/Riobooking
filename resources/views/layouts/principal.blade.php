@@ -58,7 +58,7 @@
                               
                                 @if(Auth::user()->buscarRecurso('Sedes'))  
                                     <li>
-                                        <a href="#" onclick="ajaxRenderSectionListaSedes()" >Regionales</a>
+                                        <a href="#" onclick="ajaxRenderSectionListaSedes()" >Sedes</a>
                                     </li>
                                 @endif
                                 @if(Auth::user()->buscarRecurso('Usuarios'))

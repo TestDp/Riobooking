@@ -11,6 +11,7 @@ namespace App\Org_Saludables\Negocio\Logica\MCitas;
 
 use App\Org_Saludables\Datos\Repositorio\MCitas\AgendaRepositorio;
 use App\Org_Saludables\Negocio\DTO\MCitas\CitaXUsuarioDTO;
+use App\Org_Saludables\Negocio\DTO\MCitas\InfoReservaDTO;
 use App\Org_Saludables\Negocio\DTO\MCitas\ReservaDTO;
 use Org_Saludables\Datos\Modelos\MCitas\Cita_Por_Usuario;
 
@@ -81,6 +82,8 @@ class AgendaServicio
     }
 
     public function ObtenerInformacionReserva($TurnoPorColaborador_id){
-        return  $this->agendaRepositorio->ObtenerInformacionReserva($TurnoPorColaborador_id);
+        $infoReservaModel=  $this->agendaRepositorio->ObtenerInformacionReserva($TurnoPorColaborador_id);
+        $infoReservaDTO = new InfoReservaDTO((array)$infoReservaModel);
+        return $infoReservaDTO;
     }
 }

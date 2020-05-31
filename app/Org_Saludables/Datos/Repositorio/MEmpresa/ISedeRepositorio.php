@@ -9,7 +9,7 @@
 namespace App\Org_Saludables\Datos\Repositorio\MEmpresa;
 
 
-use Org_Saludables\Datos\Modelos\MEmpresa\Regional;
+use Org_Saludables\Datos\Modelos\MEmpresa\Sede;
 
 interface ISedeRepositorio
 {
@@ -17,7 +17,7 @@ interface ISedeRepositorio
      * @param Sede $sede
      * @return verdadero o falso si la operacion fue correcta o no.
      */
-    public function GuardarSede(Regional $sede);
+    public function GuardarSede(Sede $sede);
 
     /**
      * @param $idEmpreesa : id o pk de la empresa

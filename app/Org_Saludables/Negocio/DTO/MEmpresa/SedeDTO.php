@@ -14,8 +14,6 @@ use App\Org_Saludables\Negocio\DTO\BaseDTO;
 class SedeDTO extends BaseDTO
 {
     public $Nombre;
-    public $Direccion;
-    public $Telefono;
-    public $Activa;
+    public $activa;
     public $Compania_id;
 }

@@ -138,7 +138,7 @@ class GoogleCalendar
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store($Fecha, $Inicio, $Fin, $Lugar, $NombreCita)
+    public function store($Fecha, $Inicio, $Fin, $Lugar)
     {
         
         //session_start();
@@ -156,7 +156,7 @@ class GoogleCalendar
          $inicio=$Inicio;
          $Fin=$Fin;
          $Lugar=$Lugar;
-         $TipoCita=$NombreCita;
+     
 
         $startDateTime = $fecha."T".$inicio."-05:00";
         $endDateTime =   $fecha."T".$Fin."-05:00";
@@ -168,9 +168,9 @@ class GoogleCalendar
 
             $calendarId = 'primary';
             $event = new Google_Service_Calendar_Event([
-                'summary' => $TipoCita,
+                 'summary' => "Cita Rio Booking". $Lugar,
                 'location'=> $Lugar,
-                'description' => "Cita Organizaciones saludables",
+                'description' => "Cita Rio Booking",
                 'start' => ['dateTime' =>  $startDateTime,
                 'timeZone' =>"America/Bogota"],
                 'end' => ['dateTime' => $endDateTime,
@@ -181,7 +181,7 @@ class GoogleCalendar
           
             $results = $service->events->insert($calendarId, $event);
             $idEvento=$results->id;
-            $this->AgendaRepositorio->GuardarIdEvento($cita, $idEvento, $citaPorUsuario);
+            //$this->AgendaRepositorio->GuardarIdEvento($cita, $idEvento, $citaPorUsuario);
          
             if (!$results) {
              

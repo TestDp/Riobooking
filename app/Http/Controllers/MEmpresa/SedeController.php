@@ -49,13 +49,12 @@ class SedeController extends Controller
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $this->sedeValidaciones->ValidarFormularioCrear($request->all())->validate();
         if($request->ajax()){
-            $idEmpreesa = Auth::user()->Compania_id;
-            $prueba = $request->all();
+            $compania_id = Auth::user()->Sede->Compania_id;
             $sede = new SedeDTO($request->all());
-            $sede->Compania_id = $idEmpreesa;
+            $sede->Compania_id = $compania_id;
             $repuesta = $this->sedeServicio->GuardarSede($sede);
             if($repuesta == true){
-                $sedes = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
+                $sedes = $this->sedeServicio->ObtenerListaSedes($compania_id);
                 $view = View::make('MEmpresa/Sede/listaSedes')->with('listSedes',$sedes);
                 $sections = $view->renderSections();
                 return Response::json(['codeStatus' =>200,'data'=>$sections['content']]);
@@ -70,8 +69,8 @@ class SedeController extends Controller
     public  function ObtenerSedes(Request $request){
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idEmpreesa = Auth::user()->Compania_id;
-        $sedes = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
+        $compania_id = Auth::user()->Sede->Compania_id;
+        $sedes = $this->sedeServicio->ObtenerListaSedes($compania_id);
         $view = View::make('MEmpresa/Sede/listaSedes')->with('listSedes',$sedes);
         if($request->ajax()){
             $sections = $view->renderSections();

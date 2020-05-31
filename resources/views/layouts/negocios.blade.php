@@ -70,7 +70,7 @@
                         <li class="submenu">
                             <a href="{{ url('/') }}" class="show-submenu">Inicio</a>
                         </li>
-                        <li class="submenu">
+                        <li style="display: none;" class="submenu">
                             <a href="#0" class="show-submenu">Categorías<i class="icon-down-open-mini"></i></a>
                             <ul>
                                 <li><a href="">Cuidado personal</a></li>
@@ -78,7 +78,7 @@
                                 <li><a href="">Soporte técnico</a></li>
                             </ul>
                         </li>
-                        <li class="submenu">
+                        <li style="display: none;" class="submenu">
                             <a href="#0" class="show-submenu">Ciudades<i class="icon-down-open-mini"></i></a>
                             <ul>
                                 <li><a href="">Rionegro</a></li>
@@ -91,7 +91,7 @@
                                 <li><a href="">Envigado</a></li>
                             </ul>
                         </li>
-                        <li><a href="#0">Contáctanos</a></li>
+                        <li><a href="https://dpsoluciones.co/contactanos/" target="_blank">Contáctanos</a></li>
                     </ul>
                 </div>
                 <!-- /main-menu -->

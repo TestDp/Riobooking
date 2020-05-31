@@ -82,7 +82,7 @@ class RolController extends Controller
     public  function ObtenerRoles(Request $request){
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idEmpreesa = Auth::user()->Compania_id;
+        $idEmpreesa = Auth::user()->Sede->Compania_id;
         $roles = $this->rolServicio->ObtenerListaRoles($idEmpreesa);
         $view = View::make('MSistema/Rol/listaRoles')->with('listRoles',$roles);
         if($request->ajax()){

@@ -59,7 +59,14 @@ class ColaboradorController extends  Controller
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $compania_id = Auth::user()->Sede->Compania_id;
         $roles = $this->rolServicio->ObtenerListaRoles($compania_id);
-        $sedes = $this->sedeServicio->ObtenerListaSedes($compania_id);
+        if($request->user()->hasRole(env('IdRolSuperAdmin')))
+        {
+            $sedes = $this->sedeServicio->ObtenerSedesEmpreass();
+        }
+        else
+        {
+            $sedes = $this->sedeServicio->ObtenerListaSedes($compania_id);
+        }
         $view = View::make('MSistema/Colaborador/crearColaborador',
             array('listRoles'=>$roles,'listSedes'=> $sedes));
         if($request->ajax()){
@@ -77,7 +84,6 @@ class ColaboradorController extends  Controller
         DB::beginTransaction();
         try
         {
-
             $user = new User($request->all());
             $user->password = Hash::make($request->password);
             $user->Sede_id=$request['Sede_id'];

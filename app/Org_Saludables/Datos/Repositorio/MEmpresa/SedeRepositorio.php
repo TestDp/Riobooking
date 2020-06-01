@@ -31,12 +31,12 @@ class SedeRepositorio implements ISedeRepositorio
         }
     }
 
-     //public  function  ObtenerListaSedes($idEmpreesa)
-     //{    
-      //return Regional::where('Compania_id', '=', $idEmpreesa)->get();
-    //}
+     public function ObtenerSedesEmpreas()
+     {
+        return Sede::all();
+     }
 
-         public function ObtenerListaSedes($idEmpreesa)
+     public function ObtenerListaSedes($idEmpreesa)
     {
         $regionales = DB::table('Tbl_Sedes')
            // ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')

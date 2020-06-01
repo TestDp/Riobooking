@@ -25,4 +25,6 @@ interface ISedeServicio
      * @return lista de sedes de la empresa
      */
     public  function  ObtenerListaSedes($idEmpreesa);
+
+    public function ObtenerSedesEmpreas();
 }

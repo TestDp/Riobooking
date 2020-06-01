@@ -262,3 +262,29 @@ function guardarReservaUsuario() {
     });
 }
 
+
+function renderSectionCargarRioBookingCompaniasVP() {
+    PopupPosition();
+    var strNegocios = $("#BuscarNegocios").val();
+    if(strNegocios == ''){
+        strNegocios='ALL';
+    }
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'/cargarVPRioBooking/'+strNegocios,
+        dataType: 'json',
+        success: function (data) {
+            OcultarPopupposition();
+            $('#gridCompanias').empty().append($(data));
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}

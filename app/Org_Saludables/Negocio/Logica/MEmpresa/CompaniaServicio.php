@@ -43,6 +43,17 @@ class CompaniaServicio implements ICompaniaServicio
 
     }
 
+    public function ObtenerListaCompaniasXStrNombre($strNegocios){
+        $arrayModelCompanias = $this->iCompaniaRepositorio->ObtenerListaCompaniasXStrNombre($strNegocios);
+        $arrayDTOCompnias = array();
+        foreach ($arrayModelCompanias as $modelCompania){
+            $companiaDTO = new CompaniaDTO((array)$modelCompania);
+            $companiaDTO->RutaLogo= env('RutaLogo');
+            $arrayDTOCompnias[]=$companiaDTO;
+        }
+        return $arrayDTOCompnias;
+    }
+
     public function ObtenerCompania($idCompania)
     {
         $companiaModel = $this->iCompaniaRepositorio->ObtenerCompania($idCompania);

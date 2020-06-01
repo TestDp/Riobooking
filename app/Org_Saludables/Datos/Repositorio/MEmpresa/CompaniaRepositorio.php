@@ -44,8 +44,17 @@ class CompaniaRepositorio implements ICompaniaRepositorio
             ->get();
         return $compañias;
     }
-    public function ObtenerCompania($idCompania){
 
+    public function ObtenerListaCompaniasXStrNombre($strNegocios){
+        $compañias = DB::table('Tbl_Companias')
+            ->join('Tbl_Categoria', 'Tbl_Companias.Categoria_id', '=', 'Tbl_Categoria.id')
+            ->select('Tbl_Companias.*','Tbl_Categoria.Categoria')
+            ->where('Tbl_Companias.Nombre', 'like', '%'.$strNegocios.'%')
+            ->get();
+        return $compañias;
+    }
+
+    public function ObtenerCompania($idCompania){
 
         $compañias = DB::table('Tbl_Companias')
             ->join('Tbl_Categoria', 'Tbl_Companias.Categoria_id', '=', 'Tbl_Categoria.id')

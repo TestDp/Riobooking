@@ -15,6 +15,7 @@ interface ICompaniaRepositorio
     public function ObtenerListaCompanias();
     public function ObtenerCompania($idCompania);
     public function ObtenerListaCategorias();
+    public function ObtenerListaCompaniasXStrNombre($strNegocios);
 
     
 }

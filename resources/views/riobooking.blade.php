@@ -7,14 +7,15 @@
             <p>
                 Encuentra el servicio que requieres y reserva tu cita.
             </p>
-            <form method="post" action="list.html">
+
                 <div id="custom-search-input">
                     <div class="input-group">
-                        <input type="text" class=" search-query" placeholder="Ej. Barbería, centro de servicios ....">
-                        <input type="submit" class="btn_search" value="Buscar">
+                        <input type="text" class=" search-query"
+                               placeholder="Ej. Barbería, centro de servicios ...."  id="BuscarNegocios">
+                        <input type="button" class="btn_search" value="Buscar" onclick="renderSectionCargarRioBookingCompaniasVP()">
                     </div>
                 </div>
-            </form>
+
         </div>
     </div>
     <!-- /Hero -->
@@ -26,7 +27,7 @@
                 <h2>Reserva tu cita en el negocio que desees</h2>
                 <p>Estos son nuestros negocios más destacados</p>
             </div>
-            <div class="row">
+            <div class="row" id="gridCompanias">
                 @foreach($listCompanias as $Compania)
                 <div class="col-lg-4 col-md-6">
                     <div class="box_list home">

@@ -33,8 +33,8 @@ class InicioController extends Controller
     public function cargarVistaNegocios(Request $request)
     {
         $companias = $this->companiaServicio->ObtenerListaCompanias();
-        $view = View::make('riobooking')->with('listCompanias',$companias);
         if($request->ajax()){
+            $view = View::make('riobookingCompaniasVP')->with('listCompanias',$companias);
             $sections = $view->renderSections();
             return Response::json($sections['content']);
         }else
@@ -42,6 +42,20 @@ class InicioController extends Controller
             return view ('riobooking')->with('listCompanias',$companias);
         }
 
+    }
+
+    public function CargarVistaNegociosVP($strNegocios)
+    {
+        $companias=null;
+        if($strNegocios == 'ALL')
+        {
+            $companias = $this->companiaServicio->ObtenerListaCompanias();
+        }else{
+            $companias = $this->companiaServicio->ObtenerListaCompaniasXStrNombre($strNegocios);
+        }
+        $view = View::make('riobookingCompaniasVP')->with('listCompanias',$companias);
+        $sections = $view->renderSections();
+        return Response::json($sections['content']);
     }
 
     public function cargarVistaPerfilNegocio(Request $request, $idCompania)
@@ -61,8 +75,8 @@ class InicioController extends Controller
     //Metodo para obtener toda  la lista de sede de la empresa
     public  function cargarSedesEmpresa($idCompania)
     {
-      $sedes = $this->sedeServicio->ObtenerListaSedes($idCompania);
-      return Response::json($sedes);
+        $sedes = $this->sedeServicio->ObtenerListaSedes($idCompania);
+        return Response::json($sedes);
     }
 
     //Metodo para cargar  la vista para seleccionar un colaborador cuando se va a realizar una reserva

@@ -41,7 +41,9 @@ class CompaniaRepositorio implements ICompaniaRepositorio
         $compañias = DB::table('Tbl_Companias')
             ->join('Tbl_Categoria', 'Tbl_Companias.Categoria_id', '=', 'Tbl_Categoria.id')
             ->select('Tbl_Companias.*','Tbl_Categoria.Categoria')
+            ->where('Tbl_Companias.id', '<>', 1)
             ->get();
+        
         return $compañias;
     }
 

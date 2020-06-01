@@ -128,14 +128,14 @@ class ColaboradorController extends  Controller
     public  function ObtenerColaboradores(Request $request){
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idSede = Auth::user()->Sede_id;
+        $compania_id = Auth::user()->Sede->Compania_id;
         $idUsuario = Auth::user()->id;
         $usuarios = null;
         if($request->user()->hasRole(env('IdRolSuperAdmin')))
         {
             $usuarios = $this->colaboradorServicio->ObtenerTodosLosColaboradores($idUsuario);
         }else{
-            $usuarios = $this->colaboradorServicio->ObtenerListaColaboradores($idSede,$idUsuario);
+            $usuarios = $this->colaboradorServicio->ObtenerListaColaboradores($compania_id);
         }
         $view = View::make('MSistema/Colaborador/listaColaboradores')->with('listColaboradores',$usuarios);
         if($request->ajax()){

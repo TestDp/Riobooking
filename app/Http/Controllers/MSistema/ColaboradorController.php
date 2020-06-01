@@ -61,7 +61,7 @@ class ColaboradorController extends  Controller
         $roles = $this->rolServicio->ObtenerListaRoles($compania_id);
         if($request->user()->hasRole(env('IdRolSuperAdmin')))
         {
-            $sedes = $this->sedeServicio->ObtenerSedesEmpreass();
+            $sedes = $this->sedeServicio->ObtenerSedesEmpreas();
         }
         else
         {

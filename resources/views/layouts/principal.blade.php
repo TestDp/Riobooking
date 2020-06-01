@@ -122,12 +122,12 @@
                                          <a href="#" onclick="ajaxRenderSectionListaJornadas()" >Jornadas</a>
                                     </li>
                                 @endif
-                                @if(Auth::user()->buscarRecurso('Citas'))
+                                @if(Auth::user()->buscarRecurso('SolicitarCitas'))
                                    <li>
                                        <a href= "{{url('/citas')}}">Solicitar Citas</a>
                                     </li>
                                 @endif
-                                @if(Auth::user()->buscarRecurso('cancelarReserva'))
+                                @if(Auth::user()->buscarRecurso('MostrarCitas'))
                                     <li>                                        
                                        <a href= "{{url('/cancelarReserva')}}">Mis Citas</a>
                                     </li>

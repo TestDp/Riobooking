@@ -12,7 +12,7 @@
                     <div class="input-group">
                         <input type="text" class=" search-query"
                                placeholder="Ej. Barbería, centro de servicios ...."  id="BuscarNegocios">
-                        <input type="button" class="btn_search" value="Buscar" onclick="renderSectionCargarRioBookingCompaniasVP()">
+                        <input type="button" style="margin-top:2%;" class="btn_1 medium" value="Buscar" onclick="renderSectionCargarRioBookingCompaniasVP()">
                     </div>
                 </div>
 

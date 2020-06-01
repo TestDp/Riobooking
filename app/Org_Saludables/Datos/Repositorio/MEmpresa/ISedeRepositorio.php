@@ -27,5 +27,5 @@ interface ISedeRepositorio
 
     public  function  ObtenerListaSedesCompa($idSede);
 
-    public function ObtenerSedesEmpreas();
+    public function ObtenerSedesEmpresas();
 }

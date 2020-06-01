@@ -31,7 +31,7 @@ class SedeRepositorio implements ISedeRepositorio
         }
     }
 
-     public function ObtenerSedesEmpreas()
+     public function ObtenerSedesEmpresas()
      {
         return Sede::all();
      }

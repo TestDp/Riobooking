@@ -26,5 +26,5 @@ interface ISedeServicio
      */
     public  function  ObtenerListaSedes($idEmpreesa);
 
-    public function ObtenerSedesEmpreas();
+    public function ObtenerSedesEmpresas();
 }

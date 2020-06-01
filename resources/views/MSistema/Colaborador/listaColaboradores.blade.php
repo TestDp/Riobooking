@@ -19,7 +19,7 @@
                         <tbody>
                         @foreach($listColaboradores as $usuario)
                             <tr>
-                                <th><div style="background-size: cover; background-repeat: no-repeat; background-image: url('')"class="logo-negocio"></div></th>
+                                <th><div style="background-size: cover; background-repeat: no-repeat; background-image: url('https://riobooking.co/images/Logo-home.png')" class="logo-negocio"></div></th>
                                 <td>{{$usuario->Nombre}} </td>
                                 <td>{{$usuario->Nickname}}</td>
                                 <td>{{$usuario->telefono}}</td>

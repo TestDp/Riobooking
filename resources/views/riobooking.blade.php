@@ -35,7 +35,7 @@
                             <a href="{{url('perfilNegocio', ['idCompania' => $Compania->id ])}}"><img src="{{ $Compania->RutaLogo.$Compania->LogoNegocio}}" class="img-fluid" alt=""></a>
                         </figure>
                         <div class="wrapper">
-                            <small>Rionegro</small>
+                            <small>{{$Compania->Categoria}}</small>
                             <h3>{{$Compania->Nombre}}</h3>
                             <p>{{$Compania->Direccion}}</p>
                             <ul>

@@ -24,7 +24,7 @@ class CompaniaRepositorio implements ICompaniaRepositorio
         try {
             $compania->save();
             $sede = new Sede();
-            $sede->Nombre="Sede Principal". $compania->Nombre;
+            $sede->Nombre="Sede Principal ". $compania->Nombre;
             $sede->activa = 1;
             $sede->Compania_id = $compania->id;
             $sede->save();

@@ -19,4 +19,5 @@ class InfoReservaDTO extends BaseDTO
     public $NombreColaborador;
     public $NombreCompania;
     public $NombreCliente;
+    public $email;
 }

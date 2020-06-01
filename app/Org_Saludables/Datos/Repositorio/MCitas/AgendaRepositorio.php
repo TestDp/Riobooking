@@ -49,7 +49,7 @@ class AgendaRepositorio
             ->join('Tbl_Turno_Por_Colaborador','Tbl_Turno_Por_Colaborador.Colaborador_id','=','Tbl_Colaborador.id')
             ->join('Tbl_Citas', 'Tbl_Citas.id', '=', 'Tbl_Turno_Por_Colaborador.Cita_id')
             ->leftJoin('Tbl_Citas_Por_Usuarios', 'Tbl_Turno_Por_Colaborador.id', '=', 'Tbl_Citas_Por_Usuarios.TurnoPorColaborador_id')
-            ->select('Tbl_Citas.*','Tbl_Colaborador.Nickname as Nickname')
+            ->select('Tbl_Citas.*','Tbl_Colaborador.Nombre as Nickname')
             ->where('Tbl_Citas_Por_Usuarios.user_id', '=', $idUser)
             ->whereNotNull('Tbl_Citas_Por_Usuarios.id')
             ->get();
@@ -120,7 +120,7 @@ class AgendaRepositorio
                         ->join('Tbl_Sedes','users.Sede_id','=','Tbl_Sedes.id')
                         ->join('Tbl_Companias','Tbl_Sedes.Compania_id','=','Tbl_Companias.id')
                         ->where('Tbl_Turno_Por_Colaborador.id', '=', $TurnoPorColaborador_id)
-                        ->select(\DB::raw('Tbl_Citas.*, Tbl_Colaborador.Nombre as NombreColaborador,Tbl_Companias.Nombre as NombreCompania' ))
+                        ->select(\DB::raw('Tbl_Citas.*, Tbl_Colaborador.Nombre as NombreColaborador,users.email,Tbl_Companias.Nombre as NombreCompania' ))
                         ->get()->first();
         return $infoReserva;
     }

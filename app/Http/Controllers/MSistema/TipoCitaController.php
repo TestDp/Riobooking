@@ -53,7 +53,7 @@ class TipoCitaController extends Controller
             $idSede = Auth::user()->Sede_id;
             $repuesta = $this->TipoCitaServicio->GuardarTipoCita($request);
             if($repuesta == true){
-                $tiposCitas = $this->TipoCitaServicio->ObtenerListaTipoCitas($idSede);
+                $tiposCitas = $this->TipoCitaServicio->ObtenerListaTipoCitasR($idSede);
                 $view = View::make('MSistema/TipoCita/listaCitas')->with('listCitas',$tiposCitas);
                 $sections = $view->renderSections();
                 return Response::json(['codeStatus' =>200,'data'=>$sections['content']]);

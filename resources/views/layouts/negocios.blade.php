@@ -142,7 +142,7 @@
                 <div class="follow_us">
                     <h5>Síguenos</h5>
                     <ul>
-                        <li><a href="https://www.facebook.com/riobooking/" target="_blank"><i class="social_facebook"></i></a></li>
+                        <li><a href="https://www.facebook.com/RioBooking-112462420488966" target="_blank"><i class="social_facebook"></i></a></li>
                         <li><a href="https://www.instagram.com/riobooking/" target="_blank"><i class="social_instagram"></i></a></li>
                     </ul>
                 </div>

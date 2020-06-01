@@ -34,7 +34,7 @@ class AgendaServicio
         $arrayDTOreservas = array();
         foreach ($arrayReservasModel as $modelReservas){
             $reservaDTO = new ReservaDTO();
-            $reservaDTO->title = "Reserva de ".$modelReservas->Nickname;
+            $reservaDTO->title = "Reserva de ".$modelReservas->Nickname." ". $modelReservas->apellidos;
             $reservaDTO->start = $modelReservas->Fecha.' '. $modelReservas->Inicio;
             $reservaDTO->end = $modelReservas->Fecha.' '. $modelReservas->Fin;
             $arrayDTOreservas[]=$reservaDTO;
@@ -73,7 +73,7 @@ class AgendaServicio
         $arrayDTOreservas = array();
         foreach ($arrayReservasModel as $modelReservas){
             $reservaDTO = new ReservaDTO();
-            $reservaDTO->title = "Reserva de ".$modelReservas->Nickname;
+            $reservaDTO->title = "Reserva con ".$modelReservas->Nickname;
             $reservaDTO->start = $modelReservas->Fecha.' '. $modelReservas->Inicio;
             $reservaDTO->end = $modelReservas->Fecha.' '. $modelReservas->Fin;
             $arrayDTOreservas[]=$reservaDTO;

@@ -36,7 +36,7 @@ class AgendaRepositorio
             ->join('Tbl_Citas', 'Tbl_Citas.id', '=', 'Tbl_Turno_Por_Colaborador.Cita_id')
             ->leftJoin('Tbl_Citas_Por_Usuarios', 'Tbl_Turno_Por_Colaborador.id', '=', 'Tbl_Citas_Por_Usuarios.TurnoPorColaborador_id')
             ->join('users', 'users.id', '=', 'Tbl_Citas_Por_Usuarios.user_id')
-            ->select('Tbl_Citas.*','users.name as Nickname')
+            ->select('Tbl_Citas.*','users.name as Nickname','users.last_name as apellidos')
             ->where('Tbl_Colaborador.user_id', '=', $idUser)
             ->whereNotNull('Tbl_Citas_Por_Usuarios.id')
             ->get();

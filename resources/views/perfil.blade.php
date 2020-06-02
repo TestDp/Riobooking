@@ -49,7 +49,8 @@
                                 @foreach($tiposCitas as $tipoCita)
                                     <li>
                                         <div class="checkbox">
-                                            <input onclick="renderSectionCargarVPColaboradores({{$tipoCita->id}})" type="checkbox" class="css-checkbox" id="tipoServicio{{$tipoCita->id}}" name="check" value="tipoServicio{{$tipoCita->id}}">
+                                            <input onchange="renderSectionCargarVPColaboradores({{$tipoCita->id}})" type="radio"
+                                                   class="css-checkbox" id="tipoServicio{{$tipoCita->id}}" name="colaborador" value="tipoServicio{{$tipoCita->id}}">
                                             <label for="tipoServicio{{$tipoCita->id}}" class="css-label">{{$tipoCita->Nombre}} <strong>$ {{$tipoCita->Precio}}</strong></label>
                                         </div>
                                     </li>

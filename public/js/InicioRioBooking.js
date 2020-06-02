@@ -20,9 +20,10 @@ function renderSectionCargarVPColaboradores(idTipoCIta) {
             if (x.style.display === "none") {
                 x.style.display = "block";
                 window.scrollTo(0, 300);
-            } else {
-                x.style.display = "none";
             }
+            $('#divDisponibilidad').empty();
+            var x = document.getElementById("divReservar");
+            x.style.display = "none";
         },
         error: function (data) {
             OcultarPopupposition();
@@ -50,9 +51,9 @@ function renderSectionDisponibilidadColaborador(idColaborador) {
             if (x.style.display === "none") {
                 x.style.display = "block";
                 window.scrollTo(0, 900);
-            } else {
-                x.style.display = "none";
             }
+            var x = document.getElementById("divReservar");
+            x.style.display = "none";
         },
         error: function (data) {
             OcultarPopupposition();
@@ -96,6 +97,8 @@ function renderSectionTurnosDisponibles(fechaConsulta,idColabordor) {
         success: function (data) {
             OcultarPopupposition();
             $('#turnosDisponibles').empty().append($(data));
+            var x = document.getElementById("divReservar");
+            x.style.display = "none";
         },
         error: function (data) {
             OcultarPopupposition();
@@ -117,9 +120,10 @@ function mostrarFormReserva(element,turnoPorColaborador_id) {
         if (x.style.display === "none") {
             x.style.display = "block";
             window.scrollTo(0, 1400);
-        } else {
-            x.style.display = "none";
         }
+       /* else {
+            x.style.display = "none";
+        }*/
    }
 }
 

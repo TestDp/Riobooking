@@ -23,6 +23,7 @@
     <link href="{{ asset('welcome/css/custom.css') }}" rel="stylesheet">
     <!-- SPECIFIC CSS -->
     <link href="{{ asset('welcome/css/tables.css') }}" rel="stylesheet">
+    <link href="{{ asset('welcome/css/estilos.css') }}" rel="stylesheet">
 
     <!-- SPECIFIC CSS -->
     <link href="{{ asset('welcome/css/date_picker.css') }}" rel="stylesheet">

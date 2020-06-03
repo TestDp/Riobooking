@@ -45,10 +45,10 @@
                             <div class="main_title_3">
                                 <h3><strong>1</strong>Selecciona el tipo de servicio</h3>
                             </div>
-                            <ul class="treatments clearfix">
+                            <ul class="formulario">
                                 @foreach($tiposCitas as $tipoCita)
                                     <li>
-                                        <div class="checkbox">
+                                        <div class="radio">
                                             <input onchange="renderSectionCargarVPColaboradores({{$tipoCita->id}})" type="radio"
                                                    class="css-checkbox" id="tipoServicio{{$tipoCita->id}}" name="colaborador" value="tipoServicio{{$tipoCita->id}}">
                                             <label for="tipoServicio{{$tipoCita->id}}" class="css-label">{{$tipoCita->Nombre}} <strong>$ {{$tipoCita->Precio}}</strong></label>

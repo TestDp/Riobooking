@@ -136,7 +136,7 @@ class RegisterController extends Controller
             ]);
             $user
                 ->roles()
-                ->attach(Rol::where('Nombre', 'colaborador')->first());
+                ->attach(Rol::where('id', env('IdRolCliente'))->first());
             DB::commit();
             return $user;
         } catch (\Exception $e) {

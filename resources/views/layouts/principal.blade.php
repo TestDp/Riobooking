@@ -132,7 +132,7 @@
                                        <a href= "{{url('/cancelarReserva')}}">Mis Citas</a>
                                     </li>
                                 @endif
-                                @if(Auth::user()->buscarRecurso('Micalendario'))
+                                @if(Auth::user()->buscarRecurso('MiCalendario'))
                                     <li>
                                         <a href="#" onclick="ajaxRenderSectionMiCalendario()" >Mi Calendario</a>
                                     </li>

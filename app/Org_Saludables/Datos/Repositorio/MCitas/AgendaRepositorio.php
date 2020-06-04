@@ -72,13 +72,15 @@ class AgendaRepositorio
         $arrayFechasNoDisponibles = array();
         $fechaActual = new DateTime('today');
         $fechaHasta = new DateTime('today');
+        $fechaActual->modify('-1 Day');
         $fechaHasta->modify('1 Month');
+        $fechaFormateada1 = $fechaActual->format('Y-m-d');
         $listaFechasDisponiblesModel = DB::table('Tbl_Citas')
             ->join('Tbl_Turno_Por_Colaborador', 'Tbl_Citas.id', '=', 'Tbl_Turno_Por_Colaborador.Cita_id')
             ->join('Tbl_Colaborador','Tbl_Colaborador.id','=','Tbl_Turno_Por_Colaborador.Colaborador_id')
             ->leftJoin('Tbl_Citas_Por_Usuarios', 'Tbl_Turno_Por_Colaborador.id', '=', 'Tbl_Citas_Por_Usuarios.TurnoPorColaborador_id')
             ->where('Tbl_Colaborador.id', '=', $idColaborador)
-            ->whereRaw('Tbl_Citas.Fecha >= NOW() and Tbl_Citas.Fecha <= DATE(DATE_ADD(NOW(), INTERVAL 1 MONTH))')
+            ->whereRaw('Tbl_Citas.Fecha >= '. $fechaFormateada1 .' and Tbl_Citas.Fecha <= DATE(DATE_ADD(NOW(), INTERVAL 1 MONTH))')
             ->whereNull('Tbl_Citas_Por_Usuarios.id')
             ->select(\DB::raw('distinct Tbl_Citas.Fecha' ))
             ->GroupBy('Tbl_Citas.Fecha')
@@ -105,6 +107,7 @@ class AgendaRepositorio
             ->leftJoin('Tbl_Citas_Por_Usuarios', 'Tbl_Turno_Por_Colaborador.id', '=', 'Tbl_Citas_Por_Usuarios.TurnoPorColaborador_id')
             ->where('Tbl_Colaborador.id', '=', $idColaborador)
             ->where('Tbl_Citas.Fecha', '=', $fecha)
+            //->where('Tbl_Citas_Por_Usuarios.Estado')
             ->whereNull('Tbl_Citas_Por_Usuarios.id')
             ->select(\DB::raw('Tbl_Citas.*, Tbl_Turno_Por_Colaborador.Id,Tbl_Colaborador.id as idColaborador' ))
             ->get();

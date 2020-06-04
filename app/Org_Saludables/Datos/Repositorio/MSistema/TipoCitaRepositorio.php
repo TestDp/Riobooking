@@ -40,7 +40,7 @@ class TipoCitaRepositorio
         $tipoCitas = DB::table('Tbl_Sedes')
             ->join('Tbl_Companias', 'Tbl_Companias.id', '=', 'Tbl_Sedes.Compania_id')
             ->join('Tbl_Tipos_Citas', 'Tbl_Sedes.id', '=', 'Tbl_Tipos_Citas.Sede_id')
-            ->select(\DB::raw('Tbl_Tipos_Citas.Nombre, Tbl_Tipos_Citas.Activa, Tbl_Tipos_Citas.Sede_id, format(Tbl_Tipos_Citas.Precio,0) as Precio, Tbl_Sedes.Nombre as NombreRegional'))
+            ->select(\DB::raw('Tbl_Tipos_Citas.id, Tbl_Tipos_Citas.Nombre, Tbl_Tipos_Citas.Activa, Tbl_Tipos_Citas.Sede_id, format(Tbl_Tipos_Citas.Precio,0) as Precio, Tbl_Sedes.Nombre as NombreRegional'))
              ->where ('Tbl_Tipos_Citas.activa','=', 1)
             ->where('Tbl_Companias.id', '=', $idEmpreesa)
             ->get();

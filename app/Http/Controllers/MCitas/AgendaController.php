@@ -95,4 +95,14 @@ class AgendaController extends Controller
         }else return view('Citas/MiCalendario');
 
     }
+
+    public function ObtenerMisCitas(Request $request){
+        //$urlinfo= $request->getPathInfo();
+        //$request->user()->AutorizarUrlRecurso($urlinfo);
+        $view = View::make('Citas/listaCitas');
+        if($request->ajax()){
+            $sections = $view->renderSections();
+            return Response::json(['vista'=>$sections['content']]);
+        }else return view('Citas/listaCitas');
+    }
 }

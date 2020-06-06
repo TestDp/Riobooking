@@ -2,25 +2,21 @@
 
 @section('content')
     <div class="hero_home version_1">
-        <div class="content">
+        <div style="text-align: center;" class="content">
             <h3>Reserva de citas</h3>
             <p>
                 Encuentra el servicio que requieres y reserva tu cita.
             </p>
 
-                <div id="custom-search-input">
-                    <div class="input-group">
-                        <input type="text" class=" search-query"
-                               placeholder="Ej. Barbería, centro de servicios ...."  id="BuscarNegocios">
-                        <input type="button" style="margin-top:2%;" class="btn_1 medium" value="Buscar" onclick="renderSectionCargarRioBookingCompaniasVP()">
-                    </div>
+            <div id="custom-search-input">
+                <div class="input-group">
+                    <input type="text" class=" search-query"
+                           placeholder="Ej. Barbería, centro de servicios ...."  id="BuscarNegocios">
+                    <input type="button" style="margin-top:2%;" class="btn_1 medium" value="Buscar" onclick="renderSectionCargarRioBookingCompaniasVP()">
                 </div>
-
+            </div>
         </div>
     </div>
-    <!-- /Hero -->
-
-
     <div class="bg_color_1">
         <div class="container margin_120_95">
             <div class="main_title">
@@ -52,8 +48,6 @@
         </div>
         <!-- /container -->
     </div>
-    <!-- /white_bg -->
-
     <div class="container margin_120_95">
         <div class="main_title">
             <h2>Reserva tu <strong>cita</strong> en 3 simples pasos</h2>
@@ -81,11 +75,5 @@
                 </div>
             </div>
         </div>
-        <!-- /row -->
-        <p class="text-center"><a href="https://dpsoluciones.co/contactanos/" target="_blank" class="btn_1 medium">Contáctanos</a></p>
-
     </div>
-    <!-- /container -->
-
-    <!-- /app_section -->
 @endsection

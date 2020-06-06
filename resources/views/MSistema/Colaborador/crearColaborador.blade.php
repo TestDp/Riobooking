@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="panel panel-success">
-                    <div class="panel-heading"><h3>Crear Colaborador</h3></div>
+                    <div class="panel-heading"><h3>Crear Profesional</h3></div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -78,7 +78,7 @@
 
                         <div class="row">
                             <div class="col-md-4">
-                                <button onclick="GuardarColaborador()" type="button" class="btn btn-success">Crear Colaborador</button>
+                                <button onclick="GuardarColaborador()" type="button" class="btn btn-success">Crear Profesional</button>
                             </div>
                         </div>
 

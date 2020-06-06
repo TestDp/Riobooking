@@ -117,6 +117,7 @@ Route::get('oauth', ['as' => 'oauthCallback', 'uses' => 'gCalendarController@oau
 Route::get('agenda', 'MCitas\AgendaController@ObtenerAgenda')->name('agenda');
 Route::get('miCalendario', 'MCitas\AgendaController@ObtenerMiCalendario')->name('miCalendario');
 Route::post('reservar', 'MCitas\AgendaController@GuardarReserva')->name('reservar');
+Route::get('misCitas', 'MCitas\AgendaController@ObtenerMisCitas')->name('misCitas');
 
 
 

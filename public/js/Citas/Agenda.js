@@ -61,6 +61,29 @@ function ajaxRenderSectionMiCalendario() {
     });
 }
 
+function ajaxRenderSectionMisCitas() {
+    PopupPosition();
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'misCitas',
+        dataType: 'json',
+        success: function (data) {
+            OcultarPopupposition();
+            $('#principalPanel').empty().append($(data.vista));
+            renderCalendarioUser(data.reservas);
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+
 function renderCalendarioUser(arraymiCalendario) {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {

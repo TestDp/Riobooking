@@ -19,7 +19,7 @@
                         <tbody>
                         @foreach($listCompanias as $Compania)
                             <tr>
-                                <th><div style="background-size: cover; background-repeat: no-repeat; background-image: url('{{ $Compania->RutaLogo.$Compania->LogoNegocio}}')"class="logo-negocio"></div></th>
+                                <th><div style="background-size: cover; background-repeat: no-repeat; background-image: url('{{ $Compania->RutaLogo.$Compania->LogoNegocio}}')" class="logo-negocio"></div></th>
                                 <td>{{$Compania->Nombre}}</td>
                                 <td>{{$Compania->Categoria}}</td>
                                 <td>{{$Compania->Direccion}}</td>

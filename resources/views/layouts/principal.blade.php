@@ -18,6 +18,7 @@
     <link href="{{ asset('css/bootstrap.css') }}" rel='stylesheet' type='text/css'/>
     <!-- Custom CSS -->
     <link href="{{ asset('css/style.css') }}" rel='stylesheet' type='text/css'/>
+    <link href="{{ asset('welcome/css/admin.css') }}" rel='stylesheet' type='text/css'/>
     <!-- font CSS -->
     <!-- font-awesome icons -->
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
@@ -68,7 +69,7 @@
                                 @endif
                                     @if(Auth::user()->buscarRecurso('Colaboradores'))
                                         <li>
-                                            <a href="#" onclick="ajaxRenderSectionListaColaboradores()">Colaboradores</a>
+                                            <a href="#" onclick="ajaxRenderSectionListaColaboradores()">Profesionales</a>
                                         </li>
                                     @endif
                                 @if(Auth::user()->buscarRecurso('Roles'))
@@ -127,11 +128,11 @@
                                        <a href= "{{url('/citas')}}">Solicitar Citas</a>
                                     </li>
                                 @endif
-                                @if(Auth::user()->buscarRecurso('MostrarCitas'))
+
                                     <li>                                        
-                                       <a href= "{{url('/cancelarReserva')}}">Mis Citas</a>
+                                       <a href= "#" onclick="ajaxRenderSectionMisCitas()" >Mis Citas</a>
                                     </li>
-                                @endif
+
                                 @if(Auth::user()->buscarRecurso('MiCalendario'))
                                     <li>
                                         <a href="#" onclick="ajaxRenderSectionMiCalendario()" >Mi Calendario</a>

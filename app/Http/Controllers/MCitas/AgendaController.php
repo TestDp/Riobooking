@@ -99,10 +99,33 @@ class AgendaController extends Controller
     public function ObtenerMisCitas(Request $request){
         //$urlinfo= $request->getPathInfo();
         //$request->user()->AutorizarUrlRecurso($urlinfo);
-        $view = View::make('Citas/listaCitas');
+        $idUser = $request->user()->id;
+        $arrayDtoReservas  = $this->agendaServicio->obtenerMiCalendario($idUser);
+        $view = View::make('Citas/listaCitas')->with('reservas',$arrayDtoReservas);
         if($request->ajax()){
             $sections = $view->renderSections();
-            return Response::json(['vista'=>$sections['content']]);
+            return Response::json(['vista'=>$sections['content'],'reservas'=>$arrayDtoReservas]);
         }else return view('Citas/listaCitas');
+    }
+
+    public function CancelarCita(Request $request, $idCitaUser){
+
+        $idUser = $request->user()->id;
+        if($request->ajax()){
+
+            $repuesta = $this->agendaServicio->CancelarCita($idCitaUser);
+            if($repuesta == true){
+                $arrayDtoReservas  = $this->agendaServicio->obtenerMiCalendario($idUser);
+                $view = View::make('Citas/listaCitas')->with('reservas',$arrayDtoReservas);
+                $sections = $view->renderSections();
+                return Response::json(['codeStatus' =>200,'data'=>$sections['content']]);
+            }
+            else{
+                return Response::json(['codeStatus' =>500,'data'=>'']);
+            }
+        }else return view('Citas/listaCitas');
+
+
+
     }
 }

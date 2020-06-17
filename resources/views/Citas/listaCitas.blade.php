@@ -1,28 +1,36 @@
 @extends('layouts.principal')
 
 @section('content')
-
+    <form id="formDetalleCita">
     <div class="content-wrapper">
         <div class="container-fluid">
             <div class="box_general">
                 <div class="header_box">
                     <h2 class="d-inline-block">Mis Citas</h2>
+
                 </div>
+                <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+
                 <div class="list_general">
                     <ul>
+                        @foreach($reservas as $reserva)
                         <li>
-                            <h4>Diego Patino <i class="approved">Aprobada</i></h4>
+
+                            <h4>{{$reserva->title}}  <i class="approved">Aprobada</i></h4>
                             <ul class="booking_details">
-                                <li><strong>Fecha: </strong>  06/06/2020</li>
-                                <li><strong>Hora: </strong> 10:00 AM</li>
-                                <li><strong>Profesional: </strong> Milo barber</li>
-                                <li><strong>Celular: </strong> 0043 432324</li>
-                                <li><strong>Correo: </strong> user@email.com</li>
+
+                                <input type="hidden" id="idCitaUser" name="idCitaUser" value="{{$reserva->idCitaUser}}">
+                                <li><strong>Fecha: </strong>  {{$reserva->start}}</li>
+                                <li><strong>Hora: </strong> {{$reserva->start}}</li>
+                                <li><strong>Lugar: </strong> {{$reserva->nombreNegocio}}</li>
+
                             </ul>
                             <ul class="buttons">
-                                <li><a href="#0" style="color:red; border: 1px solid red; border-radius: 15px; padding: 3px;"><i class="fa fa-fw fa-times-circle-o"></i> Cancelar cita</a></li>
+                                <li><a onclick="CancelarCita()"  style="color:red; border: 1px solid red; border-radius: 15px; padding: 3px;"><i class="fa fa-fw fa-times-circle-o"></i> Cancelar cita</a></li>
                             </ul>
+
                         </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -30,6 +38,6 @@
         </div>
         <!-- /container-fluid-->
     </div>
-
+    </form>
 
 @endsection

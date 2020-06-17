@@ -1,20 +1,20 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: DPS-C
- * Date: 9/05/2020
- * Time: 12:42 PM
+ * User: DPS-J
+ * Date: 16/06/2020
+ * Time: 7:53 PM
  */
 
 namespace App\Org_Saludables\Negocio\DTO\MCitas;
 
 use App\Org_Saludables\Negocio\DTO\BaseDTO;
 
-class ReservaDTO extends BaseDTO
+class ReservaCalenDTO extends BaseDTO
 {
-
+    public $idCitaUser;
     public $title;
     public $start;
     public $end;
-
+    public $nombreNegocio;
 }

@@ -13,6 +13,7 @@ use App\Org_Saludables\Datos\Repositorio\MCitas\AgendaRepositorio;
 use App\Org_Saludables\Negocio\DTO\MCitas\CitaXUsuarioDTO;
 use App\Org_Saludables\Negocio\DTO\MCitas\InfoReservaDTO;
 use App\Org_Saludables\Negocio\DTO\MCitas\ReservaDTO;
+use App\Org_Saludables\Negocio\DTO\MCitas\ReservaCalenDTO;
 use Org_Saludables\Datos\Modelos\MCitas\Cita_Por_Usuario;
 
 class AgendaServicio
@@ -72,10 +73,12 @@ class AgendaServicio
         $arrayReservasModel = $this->agendaRepositorio->obtenerCalendarioUsuario($idUser);
         $arrayDTOreservas = array();
         foreach ($arrayReservasModel as $modelReservas){
-            $reservaDTO = new ReservaDTO();
+            $reservaDTO = new ReservaCalenDTO();
             $reservaDTO->title = "Reserva con ".$modelReservas->Nickname;
             $reservaDTO->start = $modelReservas->Fecha.' '. $modelReservas->Inicio;
             $reservaDTO->end = $modelReservas->Fecha.' '. $modelReservas->Fin;
+            $reservaDTO->idCitaUser = $modelReservas->IdCitaUser;
+            $reservaDTO->nombreNegocio = $modelReservas->Nombre;
             $arrayDTOreservas[]=$reservaDTO;
         }
         return $arrayDTOreservas;
@@ -85,5 +88,11 @@ class AgendaServicio
         $infoReservaModel=  $this->agendaRepositorio->ObtenerInformacionReserva($TurnoPorColaborador_id);
         $infoReservaDTO = new InfoReservaDTO((array)$infoReservaModel);
         return $infoReservaDTO;
+    }
+    public function CancelarCita($idCitaUser)
+    {
+        $InfoCita=  $this->agendaRepositorio->CancelarCita($idCitaUser);
+        return $InfoCita;
+
     }
 }
